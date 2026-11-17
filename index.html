@@ -3997,6 +3997,17 @@ html[data-bayan="light"] .cvx-mb .cvx-spo[aria-checked=true] svg{color:#0E5B49}
  html body.chat-open:not(.chat-lib):not(.duo-open) .chatv .cv-scroll{padding-top:18px!important}
 }
 html[data-bayan="light"] .cv-welcome .w-em img{content:url(img/emblem-gold.png)}
+
+/* v195: phones, chat while the keyboard is open */
+@media (max-width:760px){
+ html body.chat-open>main{visibility:hidden}
+ html body.chat-open{background:#06120F}
+ html[data-bayan="light"] body.chat-open{background:#F6F1E7}
+ html body.chat-open.kb-open #dock{display:none!important}
+ html body.chat-open.kb-open .cv-welcome{top:10%!important}
+ html body.chat-open.kb-open .cv-welcome .w-em{display:none}
+ html body.chat-open.kb-open .chatv .cv-scroll{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 16px,#000 calc(100% - 96px),transparent calc(100% - 64px))!important;mask-image:linear-gradient(180deg,transparent 0,#000 16px,#000 calc(100% - 96px),transparent calc(100% - 64px))!important}
+}
 /* v194: profile on phones = settings list, each item opens its own page */
 .pf-back{display:none}
 @media (max-width:760px){
@@ -6478,5 +6489,15 @@ if(prf&&card&&nav){
  var want=null;var P=window.bayanProfile;if(P&&P.open){var o=P.open;P.open=function(t){want=(typeof t==='string');var r=o.apply(this,arguments);prf.classList.toggle('pf-detail',want);return r}}
  new MutationObserver(function(){if(!prf.hidden){if(want===null)prf.classList.remove('pf-detail');want=null}}).observe(prf,{attributes:true,attributeFilter:['hidden']});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&MQ.matches&&prf.classList.contains('pf-detail')&&!prf.hidden){e.stopImmediatePropagation();bk.click()}},true)}
+})();</script>
+
+<script>/* v195: keep the chat inside the visible area when the phone keyboard opens */(function(){var chat=document.getElementById('chat'),B=document.body,MQ=matchMedia('(max-width:760px)'),V=window.visualViewport;if(!chat)return;
+function inChat(){var a=document.activeElement;return a&&chat.contains(a)&&(a.tagName==='INPUT'||a.tagName==='TEXTAREA')}
+function fit(){var on=MQ.matches&&B.classList.contains('chat-open');if(!on||!V){if(chat.style.top||chat.style.height){chat.style.top='';chat.style.height='';chat.style.bottom=''}if(B.classList.contains('kb-open'))B.classList.remove('kb-open');return}
+ var kb=inChat()&&V.height<window.innerHeight*0.85;if(B.classList.contains('kb-open')!==kb)B.classList.toggle('kb-open',kb);
+ if(kb){chat.style.top=V.offsetTop+'px';chat.style.height=V.height+'px';chat.style.bottom='auto'}else if(chat.style.top||chat.style.height){chat.style.top='';chat.style.height='';chat.style.bottom=''}}
+if(V){V.addEventListener('resize',fit);V.addEventListener('scroll',fit)}
+document.addEventListener('focusin',function(){setTimeout(fit,60);setTimeout(fit,350)});document.addEventListener('focusout',function(){setTimeout(fit,60);setTimeout(fit,350)});
+new MutationObserver(fit).observe(B,{attributes:true,attributeFilter:['class']});
 })();</script>
 </body></html>
