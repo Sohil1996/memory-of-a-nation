@@ -3877,6 +3877,33 @@ html[data-bayan="light"] .bw-t{color:#0E2A22}html[data-bayan="light"] .bw-a{colo
 html[data-bayan="light"] .bw-go{background:#0E5B49;color:#fff;box-shadow:0 8px 24px rgba(14,91,73,.25)}
 @media (max-width:760px){body.bw-open .hero-c form,body.bw-open #cpills,body.bw-open #dock{visibility:hidden}html body .fanp{display:none!important}}
 @media (prefers-reduced-motion:reduce){.bw{transition:none}}
+
+/* v192: mobile chat app bar (site header hidden in book chat) */
+@media (max-width:760px){
+ html body.chat-open:not(.chat-lib) #hd{display:none!important}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .cv-side{height:calc(env(safe-area-inset-top,0px) + 84px)!important;border-radius:0 0 24px 24px!important}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .cv-info{top:calc(env(safe-area-inset-top,0px) + 10px)!important;height:64px!important;padding:0 12px!important;grid-template-columns:40px 42px minmax(0,1fr) 40px!important;grid-template-rows:auto auto!important;grid-template-areas:"bk cv t fv" "bk cv a fv"!important;column-gap:10px!important;row-gap:2px!important;align-content:center!important;align-items:center!important}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .cv-info .cv-mback{grid-area:bk;display:grid!important}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .cv-info .cv-kw{grid-area:cv;grid-row:1/3;align-self:center}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .cv-info .cv-covw{width:42px!important;height:62px!important}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .cv-info .cv-cover{width:42px!important;height:62px!important;object-fit:cover;border-radius:7px!important}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .cv-info .cv-t{grid-area:t;align-self:end;margin:0!important;font:700 16px/1.3 var(--sans)!important;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .cv-info .cv-a{grid-area:a;align-self:start;margin:0!important;font:400 12.5px/1.3 var(--sans)!important;opacity:.72;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .cv-info .cv-fav{grid-area:fv;width:40px!important;height:40px!important}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .cvx-mb{top:calc(env(safe-area-inset-top,0px) + 88px)!important;height:48px!important;padding:4px 12px!important}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .cvx-mb button{height:38px!important}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .chatv:not(.lib) .cv-main{top:calc(env(safe-area-inset-top,0px) + 140px)!important}
+ html body.chat-open:not(.chat-lib):not(.duo-open) .chatv .cv-scroll{padding-top:14px!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18px,#000 calc(100% - 170px),transparent calc(100% - 110px))!important;mask-image:linear-gradient(180deg,transparent 0,#000 18px,#000 calc(100% - 170px),transparent calc(100% - 110px))!important}
+ .cv-mback{width:40px;height:40px;border-radius:999px;place-items:center;color:#F6F1E7;cursor:pointer;padding:0}
+ html[data-bayan="light"] .cv-mback{color:#0E2A22}
+ html[dir=rtl] .cv-mback svg{transform:scaleX(-1)}
+ /* backgrounds framed for portrait screens */
+ html body .hx-bg{background-position:12% 100%!important;background-size:cover!important}
+ html body .auth:not(.pgov) .au-bg{background-position:12% 100%!important;background-size:cover!important}
+ html body .chatv .cv-bg,html body .rdV .cv-bg,html body .pgov.prf .au-bg,html body .pgov.spc .au-bg,html body .pgov.fvp .au-bg{background-position:8% 100%!important;background-size:cover!important}
+}
+.cv-mback{display:none}
+@media (max-width:760px){html[data-bayan="light"] body .hx-bg,html[data-bayan="light"] body .auth:not(.pgov) .au-bg{background-position:12% 100%!important;background-size:cover!important}html[data-bayan="light"] body .chatv .cv-bg,html[data-bayan="light"] body .rdV .cv-bg,html[data-bayan="light"] body .pgov.prf .au-bg,html[data-bayan="light"] body .pgov.spc .au-bg,html[data-bayan="light"] body .pgov.fvp .au-bg{background-position:8% 100%!important;background-size:cover!important}}
 </style>
 <script>
 /* v183: Arabic book conversations (Arabic mode answers in Arabic) */
@@ -6277,4 +6304,13 @@ window.bayanCredits={open:goCredits,render:render};
 </script>
 
 <script>/* v190: talk-to for real people goes to the guide */(function(){var o=window.bayanTalkTo;if(!o)return;window.bayanTalkTo=function(n){if(window.chIsReal&&chIsReal(n)){if(window.chReal)chReal(n);return}return o.apply(this,arguments)}})();</script>
+
+<script>/* v192: back button in the mobile chat app bar; author in Arabic */(function(){var info=document.querySelector('#chat .cv-info');if(!info)return;
+ var b=document.createElement('button');b.type='button';b.className='cv-mback lg2';b.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>';
+ function lab(){var t=document.documentElement.dir==='rtl'?'رجوع':'Back';b.setAttribute('aria-label',t);b.title=t}lab();
+ new MutationObserver(lab).observe(document.documentElement,{attributes:true,attributeFilter:['dir']});
+ b.addEventListener('click',function(){var l=document.querySelector('.cvx-l .cvx-logo')||document.querySelector('a.logo.wm');if(l)l.click()});
+ info.insertBefore(b,info.firstChild);
+ var a=document.getElementById('cvA');if(a){var busy=0;new MutationObserver(function(){if(busy)return;var t=a.textContent,n=window.chAUT?chAUT(t):t;if(n&&n!==t){busy=1;a.textContent=n;busy=0}}).observe(a,{childList:true,characterData:true,subtree:true})}
+})();</script>
 </body></html>
