@@ -3780,11 +3780,11 @@ html body .cvx-l .cvx-t{overflow-wrap:anywhere}
 #pmenu .pm-cr b{font:700 15px var(--sans);color:#E2C98D}
 #pmenu .pm-cr small{font:500 11.5px var(--sans);opacity:.72}
 .cr-bar{display:block;position:relative;height:6px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:8px}
-.cr-bar i{position:absolute;inset:0 auto 0 0;border-radius:99px;background:linear-gradient(90deg,#174D40,#B99A55,#E2C98D)}
+.cr-bar i{position:absolute;inset:0 auto 0 0;border-radius:99px;background:linear-gradient(90deg,#B99A55,#E2C98D)}
 html[dir=rtl] .cr-bar i{inset:0 0 0 auto}
 html[data-bayan="light"] #pmenu .pm-cr b{color:#0E5B49}
 html[data-bayan="light"] .cr-bar{background:rgba(14,36,30,.10)}
-html[data-bayan="light"] .cr-bar i{background:linear-gradient(90deg,#0E5B49,#174D40,#B99A55)}
+html[data-bayan="light"] .cr-bar i{background:linear-gradient(90deg,#9C8042,#B99A55,#D9BE7E)}
 .pf-card[data-tab=credit] .pf-s[data-s=credit]{display:block}
 .pf-card[data-tab=credit] #pfForm{display:none}
 .cr-wrap{display:grid;gap:16px;margin-top:6px}
@@ -6122,7 +6122,7 @@ function rtl(){return document.documentElement.dir==='rtl'}
 var CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>';
 function backPill(){document.querySelectorAll('.cvx-l .cvx-logo').forEach(function(b){if(!b.classList.contains('cvx-backp')){b.classList.add('cvx-backp','lg2');var sp=document.createElement('span');sp.className='cvx-bt';b.insertAdjacentHTML('afterbegin',CHEV);b.appendChild(sp)}var t=rtl()?'رجوع':'Back';var sp=b.querySelector('.cvx-bt');if(sp&&sp.textContent!==t)sp.textContent=t;b.setAttribute('aria-label',t)})}
 /* (3) title fit: current size is the maximum, shrink to at most 3 lines */
-function fit(){var t=document.querySelector('.cvx-l .cvx-t');if(!t||!t.offsetWidth)return;t.style.fontSize='';var cs=getComputedStyle(t),max=parseFloat(cs.fontSize),lh=parseFloat(cs.lineHeight);var ratio=isNaN(lh)?1.2:lh/max;var f=max,min=12;function lines(){var l=parseFloat(getComputedStyle(t).lineHeight);if(isNaN(l))l=f*ratio;return Math.round(t.scrollHeight/l)}var g=0;while(lines()>3&&f>min&&g++<60){f-=1;t.style.fontSize=f+'px'}}
+function fit(){var t=document.querySelector('.cvx-l .cvx-t');if(!t||!t.offsetWidth)return;t.style.fontSize='';var cs=getComputedStyle(t),max=parseFloat(cs.fontSize),lh=parseFloat(cs.lineHeight);var ratio=isNaN(lh)?1.2:lh/max;var f=max,min=12;function lines(){var l=parseFloat(getComputedStyle(t).lineHeight);if(isNaN(l))l=f*ratio;return Math.round(t.scrollHeight/l)}var g=0;while(lines()>4&&f>min&&g++<60){f-=1;t.style.fontSize=f+'px'}}
 var fq=0;function sched(){if(fq)return;fq=requestAnimationFrame(function(){fq=0;backPill();fit()})}
 new MutationObserver(function(m){for(var i=0;i<m.length;i++){var n=m[i].target;if(n.nodeType===3)n=n.parentNode;if(n&&n.closest&&n.closest('.cvx-l')){sched();return}}}).observe(document.body,{subtree:true,childList:true,characterData:true});
 new MutationObserver(sched).observe(document.documentElement,{attributes:true,attributeFilter:['dir','lang']});
