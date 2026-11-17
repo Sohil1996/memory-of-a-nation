@@ -10,8 +10,10 @@
 <meta name="theme-color" content="#134C3D">
 <script>try{if(localStorage.getItem('bayan-lang')!=='en'){document.documentElement.lang='ar';document.documentElement.classList.add('ar-boot')}}catch(e){}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preload" href="fonts/Alexandria.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Alexandria";src:url(fonts/Alexandria.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Alexandria:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,700;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,700;1,900&display=swap" rel="stylesheet">
 <style>
 /* Layout concept: Kling-style cinematic hero over near-black, Higgsfield bento, Krea carousel; liquid glass surfaces with a coral glow. Single dark look by choice. */
 :root{
@@ -3720,6 +3722,18 @@ html[dir=rtl] .pill .askb svg{transform:scaleX(-1)}
 /* RTL: category card corners mirror */
 @media (min-width:761px){html[dir=rtl] .catfx{border-radius:0 26px 26px 0!important}}
 
+/* v180: closed similar-books panel must not show as an empty box over the hero heading (mobile) */
+html body .fanp:not(.open){opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+html body .fanp{transition:opacity .25s,visibility .25s}
+/* v180: mobile nav dock 24px lower */
+@media (max-width:760px){
+ html body .dock{bottom:max(6px,calc(env(safe-area-inset-bottom,0px) - 10px))!important}
+ html body .fanp{bottom:calc(88px + env(safe-area-inset-bottom,0px))!important}
+}
+
+/* v180: Arabic never gets synthetic italic/bold */
+html[lang="ar"] body *{font-synthesis:none!important}
+html[lang="ar"] em,html[lang="ar"] i:not(.lg i){font-style:normal!important}
 </style>
 </head>
 <body>
