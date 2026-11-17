@@ -3952,6 +3952,73 @@ html:not([dir=rtl]) .cvx-mb .cvx-spo[aria-checked=true] .ssw::after{transform:tr
 html[data-bayan="light"] .cvx-mb .cvx-spo .ssw{background:rgba(14,36,30,.2)}
 html[data-bayan="light"] .cvx-mb .cvx-spo[aria-checked=true] .ssw{background:#0E5B49}
 html[data-bayan="light"] .cvx-mb .cvx-spo[aria-checked=true] svg{color:#0E5B49}
+
+/* v194: response tools large enough to tap on phones */
+@media (max-width:760px){
+ html body .mtools{gap:6px!important}
+ html body .mtools button{width:40px!important;height:40px!important;border-radius:999px!important;display:grid!important;place-items:center!important}
+ html body .mtools button svg{width:19px!important;height:19px!important}
+}
+/* v194: Explore on phones (title below the header, no empty gap) */
+@media (max-width:760px){
+ html body #exp .ex-side{top:calc(env(safe-area-inset-top,0px) + 66px)!important;height:auto!important;bottom:auto!important;transform:none!important;opacity:1!important}
+ html body #exp .ex-main{top:calc(env(safe-area-inset-top,0px) + 176px)!important;padding-top:6px!important}
+}
+/* v194: general chat on phones: app bar + welcome */
+.cv-lbar,.cv-welcome{display:none}
+@media (max-width:760px){
+ html body.chat-open.chat-lib #hd{display:none!important}
+ html body.chat-open.chat-lib .cv-lbar{display:grid;position:absolute;z-index:46;top:0;left:0;right:0;padding:calc(env(safe-area-inset-top,0px) + 10px) 12px 10px;grid-template-columns:40px 44px minmax(0,1fr);column-gap:10px;align-items:center;background:rgba(6,18,15,.55);-webkit-backdrop-filter:blur(18px) saturate(1.2);backdrop-filter:blur(18px) saturate(1.2);border-bottom:1px solid rgba(255,255,255,.08);border-radius:0 0 24px 24px}
+ html[data-bayan="light"] body.chat-open.chat-lib .cv-lbar{background:rgba(253,251,248,.75);border-bottom-color:rgba(14,36,30,.1)}
+ .cv-lbar .lb-back{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;color:#F6F1E7;cursor:pointer;padding:0}
+ html[data-bayan="light"] .cv-lbar .lb-back{color:#0E2A22}
+ html[dir=rtl] .cv-lbar .lb-back svg{transform:scaleX(-1)}
+ .cv-lbar .lb-av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(226,201,141,.5);background:radial-gradient(circle at 50% 35%,rgba(23,77,64,.9),rgba(9,32,26,.95));box-shadow:0 0 18px rgba(226,201,141,.25)}
+ .cv-lbar .lb-av img{width:30px;height:auto}
+ .cv-lbar .lb-t{min-width:0}
+ .cv-lbar .lb-t b{display:block;font:700 16px/1.25 var(--sans);color:#F6F1E7}
+ .cv-lbar .lb-t small{display:block;font:400 12.5px/1.3 var(--sans);color:rgba(246,241,231,.7)}
+ html[data-bayan="light"] .cv-lbar .lb-t b{color:#0E2A22}html[data-bayan="light"] .cv-lbar .lb-t small{color:rgba(14,42,34,.7)}
+ html body.chat-open.chat-lib .chatv .cv-main{top:calc(env(safe-area-inset-top,0px) + 74px)!important}
+ html body.chat-open.chat-lib .chatv .cv-scroll{padding-top:16px!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 16px,#000 calc(100% - 170px),transparent calc(100% - 110px))!important;mask-image:linear-gradient(180deg,transparent 0,#000 16px,#000 calc(100% - 170px),transparent calc(100% - 110px))!important}
+ /* welcome state */
+ html body.chat-open.chat-lib.cv-empty .cv-welcome{display:flex;position:absolute;z-index:2;left:24px;right:24px;top:22%;flex-direction:column;align-items:center;text-align:center;gap:12px;pointer-events:none}
+ html body.chat-open.chat-lib.cv-empty #cvThread{visibility:hidden}
+ .cv-welcome .w-em{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(226,201,141,.55);background:radial-gradient(circle at 50% 35%,rgba(23,77,64,.95),rgba(9,32,26,.98));box-shadow:0 0 0 10px rgba(226,201,141,.06),0 0 50px rgba(226,201,141,.28);animation:wpulse 3.2s ease-in-out infinite}
+ .cv-welcome .w-em img{width:62px;height:auto}
+ .cv-welcome h3{margin:8px 0 0;font:700 24px/1.3 var(--sans);color:#F6F1E7}
+ .cv-welcome h3 em{font-style:normal;color:#E2C98D}
+ .cv-welcome p{margin:0;max-width:300px;font:400 15px/1.6 var(--sans);color:rgba(246,241,231,.75)}
+ html[data-bayan="light"] .cv-welcome h3{color:#0E2A22}html[data-bayan="light"] .cv-welcome h3 em{color:#0E5B49}html[data-bayan="light"] .cv-welcome p{color:rgba(14,42,34,.75)}
+ html[data-bayan="light"] .cv-welcome .w-em{background:radial-gradient(circle at 50% 35%,#fff,#F3EBDB);border-color:rgba(14,91,73,.35);box-shadow:0 0 0 10px rgba(14,91,73,.05),0 0 40px rgba(185,154,85,.25)}
+ @keyframes wpulse{0%,100%{box-shadow:0 0 0 10px rgba(226,201,141,.06),0 0 50px rgba(226,201,141,.22)}50%{box-shadow:0 0 0 16px rgba(226,201,141,.03),0 0 70px rgba(226,201,141,.36)}}
+ @media (prefers-reduced-motion:reduce){.cv-welcome .w-em{animation:none}}
+ /* book chat: keep the first message clear of the bars */
+ html body.chat-open:not(.chat-lib):not(.duo-open) .chatv .cv-scroll{padding-top:18px!important}
+}
+html[data-bayan="light"] .cv-welcome .w-em img{content:url(img/emblem-gold.png)}
+/* v194: profile on phones = settings list, each item opens its own page */
+.pf-back{display:none}
+@media (max-width:760px){
+ html body #prf .pf-wrap{display:block!important}
+ html body #prf:not(.pf-detail) .pf-card{display:none!important}
+ html body #prf.pf-detail .pf-side{display:none!important}
+ html body #prf .pf-side{margin:calc(env(safe-area-inset-top,0px) + 72px) 12px 120px!important;padding:22px 16px 16px!important;border-radius:24px!important;border:1px solid rgba(255,255,255,.12)!important}
+ html[data-bayan="light"] body #prf .pf-side{border-color:rgba(14,36,30,.14)!important}
+ html body #prf .pf-id{display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;gap:6px}
+ html body #prf .pf-nav{display:flex!important;flex-direction:column!important;gap:8px!important;overflow:visible!important;margin-top:18px!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important}
+ html body #prf .pf-nav button{position:relative;display:flex!important;align-items:center!important;gap:12px!important;width:100%!important;min-height:54px!important;padding:0 16px!important;border-radius:16px!important;border:1px solid rgba(255,255,255,.12)!important;background:rgba(9,28,23,.55)!important;color:#F6F1E7!important;font:600 15px var(--sans)!important;justify-content:flex-start!important;box-shadow:none!important}
+ html body #prf .pf-nav button::after{content:"";margin-inline-start:auto;width:8px;height:8px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg);opacity:.6}
+ html[dir=rtl] body #prf .pf-nav button::after{transform:rotate(-135deg)}
+ html body #prf .pf-nav button[aria-selected=true]{border-color:rgba(255,255,255,.12)!important;background:rgba(9,28,23,.55)!important;color:#F6F1E7!important}
+ html[data-bayan="light"] body #prf .pf-nav button,html[data-bayan="light"] body #prf .pf-nav button[aria-selected=true]{background:rgba(253,251,248,.82)!important;border-color:rgba(14,36,30,.14)!important;color:#0E2A22!important}
+ html body #prf .pf-out{margin-top:14px!important;width:100%;justify-content:center}
+ html body #prf.pf-detail .pf-card{margin:calc(env(safe-area-inset-top,0px) + 72px) 12px 120px!important}
+ html body #prf.pf-detail .pf-back{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px 0 10px;margin:0 0 12px;border-radius:999px;color:#F6F1E7;font:600 13.5px var(--sans);cursor:pointer}
+ html[dir=rtl] body #prf.pf-detail .pf-back{padding:0 10px 0 14px}
+ html[dir=rtl] body #prf .pf-back svg{transform:scaleX(-1)}
+ html[data-bayan="light"] body #prf .pf-back{color:#0E2A22}
+}
 </style>
 <script>
 /* v183: Arabic book conversations (Arabic mode answers in Arabic) */
@@ -6385,5 +6452,31 @@ if(mb&&T){var b=document.createElement('button');b.type='button';b.className='cv
  b.addEventListener('click',function(){T.click();setTimeout(sync,0)});
  new MutationObserver(sync).observe(T,{attributes:true,attributeFilter:['aria-checked']});new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:['dir']});
  var sw=mb.querySelector('.sw');mb.insertBefore(b,sw||null);sync()}
+})();</script>
+
+<script>/* v194: general-chat app bar + welcome; profile list/detail on phones */(function(){
+function rtl(){return document.documentElement.dir==='rtl'}
+var CH='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>';
+var chat=document.getElementById('chat'),main=chat&&chat.querySelector('.cv-main'),th=document.getElementById('cvThread'),B=document.body;
+if(chat&&main){
+ var bar=document.createElement('div');bar.className='cv-lbar';bar.innerHTML='<button type="button" class="lb-back lg2">'+CH+'</button><span class="lb-av"><img src="img/emblem-soft.png" alt=""></span><span class="lb-t"><b></b><small></small></span>';chat.appendChild(bar);
+ var wel=document.createElement('div');wel.className='cv-welcome';wel.setAttribute('aria-hidden','true');wel.innerHTML='<span class="w-em"><img src="img/emblem-soft.png" alt=""></span><h3></h3><p></p>';main.appendChild(wel);
+ function lab(){var a=rtl();bar.querySelector('b').textContent=a?'ذاكرة وطن':'Memory of a Nation';bar.querySelector('small').textContent=a?'أمين مكتبتك الثقافي':'Your cultural librarian';var bk=bar.querySelector('.lb-back');bk.setAttribute('aria-label',a?'رجوع':'Back');wel.querySelector('h3').innerHTML=a?'أهلًا بك في <em>ذاكرة وطن</em>':'Welcome to <em>Memory of a Nation</em>';var first=th&&th.querySelector('.cv-msg.a .bub p');wel.querySelector('p').textContent=(first&&first.textContent.trim())||(a?'أخبرني بمزاج أو كتاب أو شخصية وسأجد لك الطريق.':'Tell me a mood, a book or a character and I will find the way.')}
+ bar.querySelector('.lb-back').addEventListener('click',function(){var l=document.querySelector('a.logo.wm');if(l)l.click()});
+ function empty(){var e=B.classList.contains('chat-lib')&&th&&!th.querySelector('.cv-msg.u')&&th.querySelectorAll('.cv-msg.a').length<=1;B.classList.toggle('cv-empty',!!e);if(e)lab()}
+ if(th)new MutationObserver(function(){setTimeout(empty,0)}).observe(th,{childList:true,subtree:true,characterData:true});
+ new MutationObserver(empty).observe(B,{attributes:true,attributeFilter:['class']});
+ new MutationObserver(lab).observe(document.documentElement,{attributes:true,attributeFilter:['dir']});lab();empty()}
+/* profile */
+var prf=document.getElementById('prf'),card=document.getElementById('pfCard'),nav=document.getElementById('pfNav'),MQ=matchMedia('(max-width:760px)');
+if(prf&&card&&nav){
+ var bk=document.createElement('button');bk.type='button';bk.className='pf-back lg2';bk.innerHTML=CH+'<span></span>';card.insertBefore(bk,card.firstChild);
+ function bl(){bk.querySelector('span').textContent=rtl()?'رجوع':'Back';bk.setAttribute('aria-label',rtl()?'رجوع إلى الملف الشخصي':'Back to profile')}bl();
+ new MutationObserver(bl).observe(document.documentElement,{attributes:true,attributeFilter:['dir']});
+ bk.addEventListener('click',function(){prf.classList.remove('pf-detail');var c=nav.querySelector('[aria-selected=true]');setTimeout(function(){(c||nav.querySelector('button')).focus({preventScroll:true})},0);prf.scrollTop=0});
+ nav.addEventListener('click',function(e){if(e.target.closest('button')&&MQ.matches){prf.classList.add('pf-detail');prf.scrollTop=0;setTimeout(function(){bk.focus({preventScroll:true})},50)}});
+ var want=null;var P=window.bayanProfile;if(P&&P.open){var o=P.open;P.open=function(t){want=(typeof t==='string');var r=o.apply(this,arguments);prf.classList.toggle('pf-detail',want);return r}}
+ new MutationObserver(function(){if(!prf.hidden){if(want===null)prf.classList.remove('pf-detail');want=null}}).observe(prf,{attributes:true,attributeFilter:['hidden']});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&MQ.matches&&prf.classList.contains('pf-detail')&&!prf.hidden){e.stopImmediatePropagation();bk.click()}},true)}
 })();</script>
 </body></html>
