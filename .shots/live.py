@@ -16,7 +16,7 @@ with sync_playwright() as p:
             pg.add_init_script(f"localStorage.setItem('bayan-lang','{lang}');localStorage.setItem('bayan-theme','{theme}')")
             pg.goto(url,wait_until='networkidle');pg.wait_for_timeout(2500)
             if theme=='light' and pg.evaluate("document.documentElement.getAttribute('data-bayan')")!='light': pg.click('#theme');pg.wait_for_timeout(600)
-            pg.evaluate(f"document.querySelector('#rail .rb[data-k={k}]').click()");pg.wait_for_timeout(3000)
+            pg.evaluate(f"window.openBookChat('{k}')");pg.wait_for_timeout(3000)
             for q in qs:
                 pg.fill('#cvQ',q);pg.keyboard.press('Enter');pg.wait_for_timeout(5000)
             pg.screenshot(path=O+name+'.png')
