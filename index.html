@@ -3734,6 +3734,16 @@ html body .fanp{transition:opacity .25s,visibility .25s}
 /* v180: Arabic never gets synthetic italic/bold */
 html[lang="ar"] body *{font-synthesis:none!important}
 html[lang="ar"] em,html[lang="ar"] i:not(.lg i){font-style:normal!important}
+
+/* v181: listen player is a full-screen overlay (all sizes, LTR+RTL) */
+html body #cvLis.lis,html[dir=rtl] body #cvLis.lis,html body #cvLis.lis.lis-lib{position:fixed!important;inset:0!important;left:0!important;right:0!important;top:0!important;bottom:0!important;width:auto!important;z-index:400!important;background:linear-gradient(rgba(4,13,11,.6),rgba(4,13,11,.86)),#06120F var(--bgD) center/cover no-repeat!important;padding:max(16px,env(safe-area-inset-top,0px)) 0 max(16px,env(safe-area-inset-bottom,0px));overflow-y:auto}
+html[data-bayan="light"] body #cvLis.lis{background:linear-gradient(rgba(248,244,235,.7),rgba(248,244,235,.9)),#F6F1E7 var(--bgL) center/cover no-repeat!important}
+html body .lis .lis-back,html body .lis.lis-lib .lis-back{position:absolute;top:max(18px,calc(env(safe-area-inset-top,0px) + 10px))!important;left:18px!important;right:auto!important;z-index:2}
+html[dir=rtl] body .lis .lis-back{left:auto!important;right:18px!important}
+html body .lis-in{width:min(760px,calc(100% - 40px))!important;box-sizing:border-box}
+html body .lis-wave{overflow:hidden}
+body.cv-listen .cvx-mb,body.cv-listen .dock,body.cv-listen header{visibility:hidden}
+html[dir=rtl] body .lis .lis-back svg{transform:scaleX(-1)}
 </style>
 </head>
 <body>
@@ -5419,7 +5429,7 @@ pp.addEventListener('click',function(){playing?stop():play()});
 document.getElementById('lisBk').addEventListener('click',function(){seek(pos-15/tot)});document.getElementById('lisFw').addEventListener('click',function(){seek(pos+15/tot)});
 wave.addEventListener('click',function(e){var r=wave.getBoundingClientRect();seek((e.clientX-r.left)/r.width)});
 wave.addEventListener('keydown',function(e){if(e.key==='ArrowRight')seek(pos+5/tot);if(e.key==='ArrowLeft')seek(pos-5/tot)});
-function open(k,lib){var b=CAT[k];if(!b)return;L.classList.toggle('lis-lib',!!lib);ar=/[؀-ۿ]/.test(b.t);txt=(window.bayanSummaryText?bayanSummaryText(k):b.b).replace(/•/g,'').replace(/\n+/g,'. ').replace(/\s+/g,' ');len=txt.length;tot=Math.max(30,Math.round(len/(ar?12:15)));pos=0;off=0;document.getElementById('lisCov').src='img/b-'+k+'.jpg';var t=document.getElementById('lisT');t.textContent=b.t+' — '+(ar?'ملخص':'Summary');t.dir='auto';document.getElementById('lisA').textContent=b.a;build(k);paint();L.hidden=false;B.classList.add('cv-listen');void L.offsetWidth;L.classList.add('go');play()}
+function open(k,lib){var b=CAT[k];if(!b)return;L.classList.toggle('lis-lib',!!lib);ar=/[؀-ۿ]/.test(b.t);txt=(window.bayanSummaryText?bayanSummaryText(k):b.b).replace(/•/g,'').replace(/\n+/g,'. ').replace(/\s+/g,' ');len=txt.length;tot=Math.max(30,Math.round(len/(ar?12:15)));pos=0;off=0;document.getElementById('lisCov').src='img/b-'+k+'.jpg';var t=document.getElementById('lisT');var _rtl=document.documentElement.dir==='rtl',_bt=(_rtl&&typeof trA==='function'&&trA(b.t))||b.t;t.textContent=(_rtl||ar)?'ملخص '+_bt:b.t+' — Summary';t.dir='auto';document.getElementById('lisA').textContent=b.a;build(k);paint();L.hidden=false;B.classList.add('cv-listen');void L.offsetWidth;L.classList.add('go');play()}
 function close(){if(L.hidden)return;stop();L.classList.remove('go');B.classList.remove('cv-listen');setTimeout(function(){L.hidden=true},300)}
 document.addEventListener('click',function(e){if(!B.classList.contains('cv-listen'))return;var a=e.target.closest&&e.target.closest('a.logo');if(a){e.preventDefault();e.stopImmediatePropagation();close()}},true);
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!L.hidden){e.stopImmediatePropagation();close()}},true);
@@ -5843,4 +5853,6 @@ if(B.classList.contains('chat-open'))update();
 
 })();
 </script>
+
+<script>/* v181: listen player escapes chat panel to be truly full-screen */(function(){var w=window.bayanListen;if(!w)return;var o=w.open;w.open=function(){var L=document.getElementById('cvLis');if(L&&L.parentNode!==document.body)document.body.appendChild(L);return o.apply(this,arguments)}})();</script>
 </body></html>
