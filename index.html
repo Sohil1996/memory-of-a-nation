@@ -2032,7 +2032,7 @@ html[dir=rtl] .sp-rb{right:auto;left:10px}
 .sp-pl{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(230,207,150,.6);background:linear-gradient(135deg,rgba(226,201,141,.3),rgba(115,208,177,.2));color:#ECDBAF;cursor:pointer;transition:transform .2s,background .2s}
 .sp-pl svg{margin-inline-start:2px}
 .sp-pl:hover{transform:scale(1.08);background:rgba(226,201,141,.38)}
-html[dir=rtl] .sp-pl svg{transform:scaleX(-1)}
+html[dir=rtl] .sp-pl svg{transform:none}
 @media (max-width:760px){.sp-sc .sp-rd{width:auto}}
 .lis.lis-lib{left:0;z-index:70}
 .lis.lis-lib .lis-back{top:72px}
@@ -4099,6 +4099,20 @@ html body .cv-msg.a .bub:has(>.cv-bgrid)>.cv-bgrid{max-width:560px}
 
 /* v200: duo column matches the book column */
 @media (min-width:761px){html body.duo-open.cvx-r .cv-side,html[data-bayan="light"] body.duo-open.cvx-r .cv-side{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:none!important}}
+
+/* v201: design tokens — one card, button and field system across views */
+:root{--r-card:16px;--p-card:10px;--h-btn:44px;--h-chip:30px;--card-bg:rgba(9,28,23,.5);--card-bd:rgba(255,255,255,.11)}
+html[data-bayan="light"]{--card-bg:rgba(253,251,248,.78);--card-bd:rgba(14,36,30,.12)}
+html body .cvx-li,html body .cbk,html body .sp-cc,html body .sp-ec,html body .sp-sc,html body .cvx-duo .dx-c,html body .df-slot{border-radius:var(--r-card)!important;background:var(--card-bg)!important;border:1px solid var(--card-bd)!important;box-shadow:0 1px 2px rgba(0,0,0,.04)!important}
+html body .cvx-li,html body .cbk,html body .sp-cc,html body .sp-ec,html body .sp-sc{padding:var(--p-card)!important}
+html body .cvx-li img,html body .cbk img,html body .sp-cc img,html body .sp-ec img,html body .sp-sc img,html body .cvx-duo .dx-b>img{border-radius:10px!important}
+html body .cvx-read,html body .cvx-l .cvx-fav,html body .prf .pf-actions button,html body .dh-btn,html body .pf-reset,html body .au-go{min-height:var(--h-btn)!important;height:var(--h-btn)!important}
+html body .sp-search{border-radius:999px!important;height:var(--h-btn)!important;padding:0 18px!important}
+html body .cv-chip,html body .chipb{min-height:var(--h-chip)}
+html[data-bayan="light"] body .sp-pl:not(.sp-rd){background:rgba(226,201,141,.2)!important;border:1px solid rgba(14,91,73,.55)!important;color:#0E5B49!important;opacity:1!important}
+html[data-bayan="light"] body .sp-pl:not(.sp-rd) svg{fill:currentColor;opacity:1!important}
+html body .cvx-tabs>button,html body .pf-nav>button{min-height:var(--h-btn)!important;height:var(--h-btn)!important}
+html[data-bayan] body .cv-bgrid .cbk,html body .cv-bgrid .cbk{border-color:var(--card-bd)!important;background:var(--card-bg)!important;border-radius:var(--r-card)!important;padding:var(--p-card) 12px!important}
 /* v194: profile on phones = settings list, each item opens its own page */
 .pf-back{display:none}
 @media (max-width:760px){
@@ -5529,7 +5543,7 @@ var CHR={
  war:[['Pierre','Count Bezukhov','A kind, awkward heir searching for meaning in a world at war.','ch-pierre'],['Natasha','Natasha Rostova','A lively young woman whose warmth lights every room she enters.','ch-natasha'],['Prince Andrei','Officer','A proud, disillusioned officer who longs for something greater than glory.','ch-andrei'],['Napoleon','Emperor of France','The emperor whose invasion of Russia shapes every life in the novel.','ch-napoleon']],
  nights:[['The Dreamer','The narrator','A lonely young man who knows St. Petersburg better than its people.','ch-dreamer'],['Nastenka','The girl on the bridge','A shy, sincere girl who is waiting for someone.','ch-nastenka'],['The Lodger','A figure at the edge','A quiet presence the story keeps circling back to.','ch-lodger']],
  gebelawi:[['الجبلاوي','صاحب البيت الكبير','الجدّ الذي يتحدث عنه الجميع ولا يراه أحد.','ch-jabalawi'],['أدهم','ابن البيت الكبير','الابن الأقرب إلى قلب الجدّ، وبداية الحكاية.','ch-adham'],['جبل','من أبناء الحارة','رجل يسعى إلى إقامة العدل في الحارة.','ch-jabal'],['رفاعة','صاحب الدعوة','يدعو إلى الرحمة والتسامح.'],['قاسم','من أبناء الحارة','رجل يوحّد الحارة بحكمته.','ch-qasim'],['عرفة','رجل العلم','يحلم بحارة جديدة يصنعها العلم.','ch-arafa']],
- tawq:[['المحقق','المحقق','رجل يتتبّع خيوط الجريمة في أزقة مكة العتيقة.','ch-detective'],['القتيلة','الغائبة','الغائبة التي تدور حولها الحكاية.','ch-victim'],['أهل الحيّ','أهل الحارة','وجوه الحارة التي تحفظ الأسرار.','ch-locals']]
+ tawq:[['المحقق','المحقق','رجل يتتبّع خيوط الجريمة في أزقة مكة العتيقة.','ch-ph'],['القتيلة','الغائبة','الغائبة التي تدور حولها الحكاية.','ch-victim'],['أهل الحيّ','أهل الحارة','وجوه الحارة التي تحفظ الأسرار.','ch-ph']]
 };
 var chrEl=document.getElementById('chr'),chrBody=document.getElementById('chrBody'),chrTO=0,chrCur=null;
 function mono(n){var c=n.replace(/^(The|Prince|Lady|ال)\s*/i,'')||n,l=c.charAt(0).toUpperCase();
@@ -5635,7 +5649,7 @@ function duoSetupShow(){var old=document.getElementById('duoSU');var names=funct
  var e=document.getElementById('duoEmpty');if(e)e.remove();
  var box=document.createElement('div');box.id='duoSU';box.className='cv-msg a duo-su';box.innerHTML='<div class="abody"><div class="bub glass"><div class="su-h"><b class="su-t"></b><span class="su-n"></span></div><div class="su-w"></div><p class="su-q" dir="auto"></p><div class="su-o" role="group"></div><div class="su-f"><button type="button" class="su-b">‹</button><button type="button" class="su-s"></button></div></div></div>';
  duoThread.appendChild(box);box._i=0;box._a=[];duoSetupDraw();duoBottom()}
-function duoSetupHead(){var box=document.getElementById('duoSU');if(!box)return;var L=DSQ[AR?'ar':'en'].ui;box.querySelector('.su-w').textContent=L.with_+' '+duoSel.map(duoById).filter(Boolean).map(function(c){return c.n}).join(' & ');box.querySelector('.su-w').dir='auto'}
+function duoSetupHead(){var box=document.getElementById('duoSU');if(!box)return;var L=DSQ[AR?'ar':'en'].ui;box.querySelector('.su-w').textContent=L.with_+' '+duoSel.map(duoById).filter(Boolean).map(function(c){return c.n}).join((document.documentElement.dir==='rtl'?' و':' & '));box.querySelector('.su-w').dir='auto'}
 function duoSetupDraw(){var box=document.getElementById('duoSU');if(!box)return;var L=DSQ[AR?'ar':'en'].ui,qs=duoSetQs(duoSel.length),i=box._i;
  box.querySelector('.su-t').textContent=L.t;
  duoSetupHead();
@@ -5910,7 +5924,7 @@ var RB='<svg class="sp-rib" width="22" height="22" viewBox="0 0 24 24" fill="cur
 function bookCard(x){var k=x.k;return '<div class="sp-book"><button type="button" class="sp-bk" data-open="'+k+'"><img alt="" src="'+cover(k)+'"><span class="sp-bt"><b dir="auto">'+esc(CAT[k].t)+'</b><small dir="auto">'+esc(CAT[k].a)+'</small></span></button><button type="button" class="sp-rb" data-unfav="'+k+'" aria-label="'+tr('Remove from favorites')+'">'+RB+'</button></div>'}
 function moreMenu(attr,id,open){return '<div class="sp-mw"><button type="button" class="sp-more" data-more aria-label="More">•••</button><div class="sp-menu">'+(open?'<button type="button" '+open+'>'+tr('Open')+'</button>':'')+'<button type="button" class="red" '+attr+'="'+id+'">'+tr('Remove')+'</button></div></div>'}
 function convCard(c){var b=c.k&&CAT[c.k];return '<div class="sp-cc"><button type="button" class="sp-cm" data-conv="'+c.id+'">'+(b?'<img alt="" src="'+cover(c.k)+'">':'<span class="sp-mono">B</span>')+'<span class="sp-ct"><b dir="auto">'+esc(c.title)+'</b><small dir="auto">'+tr('A conversation with Memory of a Nation')+(b?' · <bdi>'+esc(CAT[c.k].t)+'</bdi>':'')+'</small><em><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.800 7L4 20.500l1.500-4.600A8 8 0 1 1 21 12z"/></svg>'+c.n+' '+tr(c.n===1?'message':'messages')+' · '+dt(c.t)+'</em></span></button>'+moreMenu('data-delc',c.id,'data-conv="'+c.id+'"')+'</div>'}
-function encCard(e){var av=e.names.map(function(n,i){return '<span class="sp-av"><img alt="" src="'+chImg(e.ks[i],n)+'"></span>'}).join('');return '<div class="sp-ec" data-enc="'+e.id+'" role="button" tabindex="0"><span class="sp-avs">'+av+'</span><span class="sp-ct"><b dir="auto">'+e.names.map(function(x){return esc(document.documentElement.dir==='rtl'&&typeof trA==='function'&&trA(x)||x)}).join(' &amp; ')+'</b><small dir="auto">'+(e.topic?tr('On')+' '+esc(e.topic):tr(e.kind==='duo'?'Duo conversation':'Chat'))+'</small><em>'+dt(e.t)+'</em></span>'+moreMenu('data-dele',e.id,'')+'</div>'}
+function encCard(e){var av=e.names.map(function(n,i){return '<span class="sp-av"><img alt="" src="'+chImg(e.ks[i],n)+'"></span>'}).join('');return '<div class="sp-ec" data-enc="'+e.id+'" role="button" tabindex="0"><span class="sp-avs">'+av+'</span><span class="sp-ct"><b dir="auto">'+e.names.map(function(x){return esc(document.documentElement.dir==='rtl'&&typeof trA==='function'&&trA(x)||x)}).join(document.documentElement.dir==='rtl'?' و':' &amp; ')+'</b><small dir="auto">'+(e.topic?tr('On')+' '+esc(e.topic):tr(e.kind==='duo'?'Duo conversation':'Chat'))+'</small><em>'+dt(e.t)+'</em></span>'+moreMenu('data-dele',e.id,'')+'</div>'}
 function secEmpty(msg,cta){return '<div class="sp-se"><p>'+tr(msg)+'</p>'+(cta?'<button type="button" class="sp-cta2" data-go="home">'+tr(cta)+'</button>':'')+'</div>'}
 function mt(q,arr){return !sq||arr.join(' ').toLowerCase().indexOf(sq)>-1}
 function renderSpace(){
@@ -6360,7 +6374,7 @@ function sync(){var k=K(),on=duoOn(),sel=on?duoSel.slice():[];
  var st=M.querySelector('.st'),nm=M.querySelector('.nm'),rb=M.querySelector('[data-d=r]');rb.hidden=!(k&&CHR[k]);st.innerHTML='';
  var show=cs.length?cs:(k&&CHR[k]?CHR[k].slice(0,3).map(function(c){return {img:c[3],n:c[0]}}):[]);
  show.forEach(function(c){var i=document.createElement('img');i.alt='';i.src=duoImg(c);st.appendChild(i)});
- nm.textContent=cs.length?cs.map(function(c){return c.n}).join(' & '):'Characters';rb.classList.toggle('on',cs.length>0);M.querySelector('[data-sw]').hidden=cs.length<2}
+ nm.textContent=cs.length?cs.map(function(c){return c.n}).join((document.documentElement.dir==='rtl'?' و':' & ')):'Characters';rb.classList.toggle('on',cs.length>0);M.querySelector('[data-sw]').hidden=cs.length<2}
 
 function syncFav(){if(!fv)return;var b=L.querySelector('.cvx-fav'),on=fv.getAttribute('aria-pressed')==='true'||fv.classList.contains('on');b.setAttribute('aria-pressed',on);var l=on?'Remove from favorites':'Add to favorites';b.setAttribute('aria-label',l);b.title=l}
 function syncHc(){var o=acts.querySelector('.cv-act[data-act="hist"] .hc'),m=L.querySelector('.cvx-mini .hc');if(!o||!m)return;m.hidden=o.hidden;m.textContent=o.textContent}
@@ -6460,7 +6474,7 @@ function dx(){var L=document.querySelector('aside.cvx-l');if(!L)return;var on=B.
  var P=L.querySelector('.cvx-duo');if(!P){P=document.createElement('section');P.className='cvx-duo';L.appendChild(P)}
  var a=rtl();function card(c){var b=CAT[c.k],im=c.img?(String(c.img).indexOf('/')>-1?c.img:'img/'+c.img+'.jpg'):'img/ch-ph.jpg';return '<div class="dx-c"><button type="button" class="dx-b" data-k="'+c.k+'"><img src="img/b-'+c.k+'.jpg" alt=""><span><b dir="auto">'+E(chART(c.k,b.t))+'</b><small dir="auto">'+E(chAUT(b.a))+'</small></span>'+GO+'</button><div class="dx-p"><img src="'+E(im)+'" alt=""><div><b dir="auto">'+E(T(c.n))+'</b><i dir="auto">'+E(T(c.role||''))+'</i><p dir="auto">'+E(T(c.bio||''))+'</p></div></div></div>'}
  P.setAttribute('aria-label',a?'حوار ثنائي':'Duo conversation');
- P.innerHTML='<div><div class="dx-k">'+(a?'حوار ثنائي':'Duo conversation')+'</div><h3 class="dx-h">'+E(T(cs[0].n))+' <em>'+(a?'و':'&amp;')+'</em> '+E(T(cs[1].n))+'</h3></div>'+card(cs[0])+'<span class="dx-x" aria-hidden="true">'+SW+'</span>'+card(cs[1]);
+ P.innerHTML='<div><div class="dx-k">'+(a?'حوار ثنائي':'Duo conversation')+'</div><h3 class="dx-h">'+E(T(cs[0].n))+' <em>'+(a?'و':'&amp;')+'</em>'+(a?'':' ')+E(T(cs[1].n))+'</h3></div>'+card(cs[0])+'<span class="dx-x" aria-hidden="true">'+SW+'</span>'+card(cs[1]);
  [].forEach.call(P.querySelectorAll('.dx-b'),function(x){x.setAttribute('aria-label',(a?'افتح محادثة ':'Open the chat for ')+chART(x.dataset.k,CAT[x.dataset.k].t));x.onclick=function(){if(window.openBookChat)openBookChat(x.dataset.k)}})}
 var _dr=duoRender;duoRender=function(){var r=_dr.apply(this,arguments);try{dx()}catch(e){}return r};
 new MutationObserver(function(){try{dx()}catch(e){}}).observe(B,{attributes:true,attributeFilter:['class']});
