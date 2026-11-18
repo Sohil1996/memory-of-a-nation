@@ -6504,7 +6504,28 @@ if(B.classList.contains('chat-open'))update();
  try{if(typeof setPQ==='function'&&typeof selKey!=='undefined'&&selKey)setPQ(selKey)}catch(e){}
 })();
 /* v186: English demo books replaced by the King Fahd National Library collection */
-;(function(){try{window.__trA=trA}catch(e){}try{(function(){var B=document.body,SW='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>',GO='<svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>',sig='';
+;(function(){/* v206: everything already on screen follows a language switch */
+try{(function(){var B=document.body,last=document.documentElement.lang;
+function isAR(){return document.documentElement.lang==='ar'||document.documentElement.dir==='rtl'}
+function chips(list){var r=document.getElementById('cvSugg');if(!r||!r.children.length||!list)return;list=list.slice();if(cvCtx&&cvCtx.k){var SL=isAR()?'لخّص هذا الكتاب':'Summarize this book';list=list.filter(function(x){return !/^(summari[sz]e this book|لخّص هذا الكتاب)$/i.test(x)});list.unshift(SL)}r.innerHTML='';list.forEach(function(x,n){var c=document.createElement('button');c.type='button';c.className='cv-chip';c.textContent=x;c.dir='auto';c.style.setProperty('--n',n);c.addEventListener('click',function(){cvSend(x)});r.appendChild(c)})}
+function relang(){var cl=B.classList,ar=isAR();
+ try{if(cl.contains('bks-open')&&window.bayanBooks){bayanBooks.close(true);setTimeout(function(){bayanBooks.open()},40)}}catch(e){}
+ try{var sp=document.getElementById('spc'),fv=document.getElementById('fvp');if(sp&&!sp.hidden&&window.bayanSpace)bayanSpace.open();else if(fv&&!fv.hidden&&window.bayanSpace)bayanSpace.fav()}catch(e){}
+ try{[].forEach.call(document.querySelectorAll('#cvThread .cbk[data-k]'),function(c){var k=c.dataset.k,b=CAT[k];if(!b)return;var t=c.querySelector('.cbk-t>b'),a2=c.querySelector('.cbk-t>small'),g=c.querySelector('.cbk-g em'),h=c.querySelector('.cbk-h');if(t)t.textContent=chART(k,b.t);if(a2)a2.textContent=chAUT(b.a);if(g)g.textContent=(b.tags||[]).slice(0,2).map(chTAG).join(' · ');if(h)h.setAttribute('aria-label',ar?'أضف إلى المفضلة':'Add to favorites')})}catch(e){}
+ try{var pr=document.getElementById('prf');if(pr&&!pr.hidden){var u=JSON.parse(localStorage.getItem('bayan-user')||'{}');if(u&&u.joined)document.getElementById('pfJoin').textContent=new Date(u.joined).toLocaleDateString(ar?'ar':'en-US',{year:'numeric',month:'long',day:'numeric'});var t=document.querySelector('#pfNav [aria-selected=true]');if(t)t.click()}}catch(e){}
+ try{if(cl.contains('chat-open')&&cvCtx){var k=cvCtx.k,b=k&&CAT[k];
+  if(b&&cvCtx.d!==undefined&&!cl.contains('chat-lib')){var od=cvCtx.d,nd=chD(k,CH[k]||{kick:'In the story',intro:b.b+' Where would you like to go?',chips:['Meet the characters','Discover the themes','Find a similar book'],qa:[],chars:[]});cvCtx.d=nd;cvSetPanel();
+   var mine=cvThread.querySelector('.cv-msg.u,.cv-msg.me,.cv-msg.user');var msgs=cvThread.querySelectorAll('.cv-msg.a:not(.typing)');
+   if(!mine&&msgs.length===1&&od&&nd&&od.intro!==nd.intro){var p=msgs[0].querySelector('.bub p');if(p)p.textContent=nd.intro}
+   if(!B.classList.contains('cvx-ch')&&!B.classList.contains('duo-open'))chips(nd.chips)}
+ }}catch(e){}
+ try{if(document.getElementById('duoSU'))duoSetupDraw()}catch(e){}
+ try{var sg=document.getElementById('cvSugg'),cs=sg?[].slice.call(sg.querySelectorAll('.cv-chip')):[];if(cs.length===2&&/^(Show me something shorter|اقترح كتابًا أقصر|أرني شيئاً أقصر)$/.test(cs[1].textContent.trim())){var gr=cvThread.querySelectorAll('.cv-bgrid'),f=gr.length?gr[gr.length-1].querySelector('.cbk[data-k]'):null,kk=f&&f.dataset.k,bb=kk&&CAT[kk];if(bb){var nl=ar?['حدّثني عن «'+chART(kk,bb.t)+'»','اقترح كتابًا أقصر']:['Ask about '+bb.t,'Show me something shorter'];cs.forEach(function(c,i){var n=c.cloneNode(false);n.textContent=nl[i];n.addEventListener('click',function(){cvSend(nl[i])});c.replaceWith(n)})}}}catch(e){}
+ try{if(B.classList.contains('duo-open'))duoRender()}catch(e){}
+}
+new MutationObserver(function(){var l=document.documentElement.lang;if(l===last)return;last=l;setTimeout(relang,150)}).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+window.__relang=relang})()}catch(e){}
+try{window.__trA=trA}catch(e){}try{(function(){var B=document.body,SW='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>',GO='<svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>',sig='';
 function E(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function rtl(){return document.documentElement.dir==='rtl'}
 function T(n){return rtl()&&typeof trA==='function'&&trA(n)||n}
