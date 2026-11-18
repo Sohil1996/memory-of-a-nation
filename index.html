@@ -4101,9 +4101,9 @@ html body .cv-msg.a .bub:has(>.cv-bgrid)>.cv-bgrid{max-width:560px}
 @media (min-width:761px){html body.duo-open.cvx-r .cv-side,html[data-bayan="light"] body.duo-open.cvx-r .cv-side{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:none!important}}
 
 /* v201: design tokens — one card, button and field system across views */
-:root{--r-card:16px;--p-card:10px;--h-btn:44px;--h-chip:30px;--card-bg:rgba(9,28,23,.5);--card-bd:rgba(255,255,255,.11)}
-html[data-bayan="light"]{--card-bg:rgba(253,251,248,.78);--card-bd:rgba(14,36,30,.12)}
-html body .cvx-li,html body .cbk,html body .sp-cc,html body .sp-ec,html body .sp-sc,html body .cvx-duo .dx-c,html body .df-slot{border-radius:var(--r-card)!important;background:var(--card-bg)!important;border:1px solid var(--card-bd)!important;box-shadow:0 1px 2px rgba(0,0,0,.04)!important}
+:root{--r-card:16px;--p-card:10px;--h-btn:44px;--h-chip:30px;--card-bg:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.016));--card-bd:rgba(236,219,175,.22)}
+html[data-bayan="light"]{--card-bg:rgba(255,255,255,.55);--card-bd:rgba(14,91,73,.22)}
+html body .cvx-li,html body .cbk,html body .sp-cc,html body .sp-ec,html body .sp-sc,html body .cvx-duo .dx-c,html body .df-slot{border-radius:var(--r-card)!important;background:var(--card-bg)!important;border:1px solid var(--card-bd)!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 html body .cvx-li,html body .cbk,html body .sp-cc,html body .sp-ec,html body .sp-sc{padding:var(--p-card)!important}
 html body .cvx-li img,html body .cbk img,html body .sp-cc img,html body .sp-ec img,html body .sp-sc img,html body .cvx-duo .dx-b>img{border-radius:10px!important}
 html body .cvx-read,html body .cvx-l .cvx-fav,html body .prf .pf-actions button,html body .dh-btn,html body .pf-reset,html body .au-go{min-height:var(--h-btn)!important;height:var(--h-btn)!important}
@@ -4118,6 +4118,31 @@ html[data-bayan] body .cv-bgrid .cbk,html body .cv-bgrid .cbk{border-color:var(-
 html body.chat-open.duo-open #duo>.cv-bg{display:none!important}
 html body.chat-open.duo-open #duo{background:transparent!important}
 html body.chat-open.duo-open:has(#duo:not([hidden])) #chat .cv-main>#cvScroll,html body.chat-open.duo-open:has(#duo:not([hidden])) #chat .cv-main>#cvSugg,html body.chat-open.duo-open:has(#duo:not([hidden])) #chat .cv-main>#cvForm{visibility:hidden!important;pointer-events:none!important}
+
+/* v203: phone duo uses the book-chat app bar preset (same glass bar, duo content) */
+.dxbar{display:none}
+@media (max-width:760px){
+ html body.chat-open.duo-open #hd{display:none!important}
+ html body.chat-open.duo-open #duoArt,html body.chat-open.duo-open .cvx-mb,html body.chat-open.duo-open .cv-info,html body.chat-open.duo-open .cvx-l{display:none!important}
+ html body.chat-open.duo-open .cv-side{display:block!important;visibility:visible!important;position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:auto!important;width:auto!important;height:calc(env(safe-area-inset-top,0px) + 84px)!important;border-radius:0 0 24px 24px!important;background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:0 0 40px rgba(0,0,0,.25)!important;border:0!important;border-bottom:1px solid rgba(255,255,255,.11)!important;transform:none!important;opacity:1!important;z-index:40!important}
+ html[data-bayan="light"] body.chat-open.duo-open .cv-side{border-bottom-color:rgba(14,36,30,.098)!important}
+ html body.chat-open.duo-open .dxbar{display:grid;position:fixed;z-index:48;top:calc(env(safe-area-inset-top,0px) + 10px);left:0;right:0;height:64px;padding:0 12px;grid-template-columns:40px auto minmax(0,1fr);column-gap:10px;align-items:center;color:#F6F1E7}
+ html[data-bayan="light"] body.chat-open.duo-open .dxbar{color:#0E241E}
+ .dxbar .dxb-back{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;padding:0;cursor:pointer;color:inherit;border:1px solid rgba(255,255,255,.09);background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.024));-webkit-backdrop-filter:blur(16px) saturate(2);backdrop-filter:blur(16px) saturate(2);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 8px 26px rgba(0,0,0,.3)}
+ html[data-bayan="light"] .dxbar .dxb-back{border-color:rgba(255,255,255,.8);background:linear-gradient(180deg,rgba(255,255,255,.74),rgba(255,255,255,.46));-webkit-backdrop-filter:blur(28px) saturate(1.9);backdrop-filter:blur(28px) saturate(1.9);box-shadow:0 8px 30px rgba(16,65,53,.14),inset 0 1px 0 rgba(255,255,255,.95);color:#0E2A22}
+ .dxbar .dxb-f{display:flex;align-items:center}
+ .dxbar .dxb-f img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid rgba(246,241,231,.9);background:#0B211B}
+ html[data-bayan="light"] .dxbar .dxb-f img{border-color:#fff}
+ .dxbar .dxb-f img+img{margin-inline-start:-14px}
+ .dxbar .dxb-t{min-width:0;display:flex;flex-direction:column;gap:2px}
+ .dxbar .dxb-t b{font:700 16px/1.3 var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .dxbar .dxb-t small{font:400 12.5px/1.3 var(--sans);opacity:.72;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ html body.chat-open.duo-open .cv-side .cv-art,html body.chat-open.duo-open .cv-side .cv-shade,html body.chat-open.duo-open .cv-side>*:not(.dxbar){display:none!important}
+ html body.chat-open.duo-open #duoScroll{-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 52px,#000 76px,#000 calc(100% - 170px),transparent calc(100% - 110px))!important;mask-image:linear-gradient(180deg,transparent 0,transparent 52px,#000 76px,#000 calc(100% - 170px),transparent calc(100% - 110px))!important}
+ html body.chat-open.duo-open #duo{top:calc(env(safe-area-inset-top,0px) + 88px)!important;bottom:0!important;left:0!important;right:0!important}
+ html body.chat-open.duo-open #duoScroll{top:0!important;padding-top:58px!important}
+ html body.chat-open.duo-open #duoStrip{position:fixed!important;top:calc(env(safe-area-inset-top,0px) + 92px)!important;left:12px!important;right:12px!important;z-index:47!important;display:flex!important;justify-content:center!important;margin:0!important;transform:none!important}
+}
 /* v194: profile on phones = settings list, each item opens its own page */
 .pf-back{display:none}
 @media (max-width:760px){
@@ -6635,4 +6660,21 @@ var busy=0;function all(root){busy=1;(root||document).querySelectorAll('[aria-la
 new MutationObserver(function(){all()}).observe(document.documentElement,{attributes:true,attributeFilter:['dir','lang']});
 new MutationObserver(function(ms){if(busy)return;busy=1;try{for(var i=0;i<ms.length;i++){var m=ms[i];if(m.type==='attributes'){var e=m.target;var k='data-'+(m.attributeName==='title'?'ti':'al')+'0';if(!rtl()&&e.hasAttribute(k)&&e.getAttribute(m.attributeName)!==e.getAttribute(k)&&/[A-Za-z]{3}/.test(e.getAttribute(m.attributeName)))e.setAttribute(k,e.getAttribute(m.attributeName));else if(rtl()&&/[A-Za-z]{3}/.test(e.getAttribute(m.attributeName)||'')){e.setAttribute(k,e.getAttribute(m.attributeName))}fix(e)}else{m.addedNodes.forEach(function(n){if(n.nodeType===1){if(n.hasAttribute&&(n.hasAttribute('aria-label')||n.hasAttribute('title')))fix(n);n.querySelectorAll&&n.querySelectorAll('[aria-label],[title]').forEach(fix)}})}}}finally{busy=0}}).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['aria-label','title']});
 all();})();</script>
+
+<script>/* v203: phone duo app bar */(function(){var B=document.body,bar=null;
+function rtl(){return document.documentElement.dir==='rtl'}
+function E(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function build(){if(!B.classList.contains('duo-open')){if(bar)bar.hidden=true;return}
+ var st=document.getElementById('duoStrip');if(!st)return;var im=[].slice.call(st.querySelectorAll('.dm>img')).map(function(i){return i.getAttribute('src')}),nm=[].slice.call(st.querySelectorAll('.dm>b')).map(function(b){return b.textContent});
+ if(nm.length<1)return;var bk=[].slice.call(document.querySelectorAll('.cvx-duo .dx-b b')).map(function(b){return b.textContent});
+ var ttl=nm.join(rtl()?' و':' & '),sub=bk.length?bk.join(' · '):(rtl()?'حوار ثنائي':'Duo conversation');
+ if(!bar){bar=document.createElement('div');bar.className='dxbar';document.body.appendChild(bar);bar.addEventListener('click',function(e){if(e.target.closest('.dxb-back')){var m=document.querySelector('.cv-mback');if(m)m.click();else{var l=document.querySelector('.cvx-logo');l&&l.click()}}})}
+ var key=im.join()+ttl+sub+rtl();if(bar.dataset.k===key){bar.hidden=false;return}bar.dataset.k=key;
+ bar.innerHTML='<button type="button" class="dxb-back" aria-label="'+(rtl()?'رجوع':'Back')+'"><svg'+(rtl()?' style="transform:scaleX(-1)"':'')+' width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+'M15 18l-6-6 6-6'+'"/></svg></button><span class="dxb-f">'+im.map(function(s){return '<img alt="" src="'+E(s)+'">'}).join('')+'</span><span class="dxb-t"><b dir="auto">'+E(ttl)+'</b><small dir="auto">'+E(sub)+'</small></span>';bar.hidden=false}
+var t=0;function q(){clearTimeout(t);t=setTimeout(build,60)}
+new MutationObserver(q).observe(B,{attributes:true,attributeFilter:['class']});
+new MutationObserver(q).observe(document.documentElement,{attributes:true,attributeFilter:['dir']});
+document.addEventListener('DOMContentLoaded',function(){var st=document.getElementById('duoStrip');st&&new MutationObserver(q).observe(st,{childList:true,subtree:true})});
+var st0=document.getElementById('duoStrip');st0&&new MutationObserver(q).observe(st0,{childList:true,subtree:true});
+})();</script>
 </body></html>
