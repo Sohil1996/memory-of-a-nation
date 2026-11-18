@@ -4143,6 +4143,17 @@ html body.chat-open.duo-open:has(#duo:not([hidden])) #chat .cv-main>#cvScroll,ht
  html body.chat-open.duo-open #duoScroll{top:0!important;padding-top:58px!important}
  html body.chat-open.duo-open #duoStrip{position:fixed!important;top:calc(env(safe-area-inset-top,0px) + 92px)!important;left:12px!important;right:12px!important;z-index:47!important;display:flex!important;justify-content:center!important;margin:0!important;transform:none!important}
 }
+
+/* v204: duo column built from the book column's own components */
+html body.cvx-dx aside.cvx-l .cvx-duo{display:contents!important}
+.dx-covs{position:relative;overflow:visible!important;background:none!important;box-shadow:none!important}
+.dx-covs img{position:absolute;width:78%!important;height:auto!important;aspect-ratio:2/3;object-fit:cover;border-radius:10px;box-shadow:0 16px 34px rgba(0,0,0,.55),0 0 0 1px rgba(236,219,175,.28)}
+.dx-covs img:first-child{top:0;inset-inline-start:0;z-index:2}
+.dx-covs img:last-child{bottom:0;inset-inline-end:0;z-index:1;transform:rotate(6deg)}
+html[dir=rtl] .dx-covs img:last-child{transform:rotate(-6deg)}
+html[data-bayan="light"] .dx-covs img{box-shadow:0 14px 30px rgba(14,36,30,.28),0 0 0 1px rgba(14,36,30,.12)}
+.dx-chr img{border-radius:50%!important;object-fit:cover}
+.dx-uh2{margin-top:6px}
 /* v194: profile on phones = settings list, each item opens its own page */
 .pf-back{display:none}
 @media (max-width:760px){
@@ -6502,10 +6513,22 @@ function dx(){var L=document.querySelector('aside.cvx-l');if(!L)return;var on=B.
  if(B.classList.contains('cvx-dx')!==!!diff)B.classList.toggle('cvx-dx',!!diff);if(!diff){sig='';return}
  var sg=cs.map(function(c){return c.k+':'+c.n}).join('|')+document.documentElement.dir;if(sg===sig)return;sig=sg;
  var P=L.querySelector('.cvx-duo');if(!P){P=document.createElement('section');P.className='cvx-duo';L.appendChild(P)}
- var a=rtl();function card(c){var b=CAT[c.k],im=c.img?(String(c.img).indexOf('/')>-1?c.img:'img/'+c.img+'.jpg'):'img/ch-ph.jpg';return '<div class="dx-c"><button type="button" class="dx-b" data-k="'+c.k+'"><img src="img/b-'+c.k+'.jpg" alt=""><span><b dir="auto">'+E(chART(c.k,b.t))+'</b><small dir="auto">'+E(chAUT(b.a))+'</small></span>'+GO+'</button><div class="dx-p"><img src="'+E(im)+'" alt=""><div><b dir="auto">'+E(T(c.n))+'</b><i dir="auto">'+E(T(c.role||''))+'</i><p dir="auto">'+E(T(c.bio||''))+'</p></div></div></div>'}
+ var a=rtl();
+ function q(sel){var e=L.querySelector(':scope>'+sel);return e?e.outerHTML:''}
+ var DIV=(L.querySelector('.cvx-uni .cvx-div')||{}).outerHTML||'<div class="cvx-div"><i></i><i></i></div>';
+ var STAR=(L.querySelector('.cvx-uh svg')||{}).outerHTML||'';
+ var AR=((L.querySelector('.cvx-li .ar')||{}).innerHTML)||'';
+ function cimg(c){return c.img?(String(c.img).indexOf('/')>-1?c.img:'img/'+c.img+'.jpg'):'img/ch-ph.jpg'}
+ function li(img,t,st,k,cls){return '<button type="button" class="cvx-li '+cls+'" data-k="'+k+'"><img src="'+E(img)+'" alt=""><span class="tx"><b dir="auto">'+E(t)+'</b><small dir="auto">'+E(st)+'</small></span><span class="ar" aria-hidden="true">'+AR+'</span></button>'}
+ var bt=cs.map(function(c){return chART(c.k,CAT[c.k].t)});
  P.setAttribute('aria-label',a?'حوار ثنائي':'Duo conversation');
- P.innerHTML='<div><div class="dx-k">'+(a?'حوار ثنائي':'Duo conversation')+'</div><h3 class="dx-h">'+E(T(cs[0].n))+' <em>'+(a?'و':'&amp;')+'</em>'+(a?'':' ')+E(T(cs[1].n))+'</h3></div>'+card(cs[0])+'<span class="dx-x" aria-hidden="true">'+SW+'</span>'+card(cs[1]);
- [].forEach.call(P.querySelectorAll('.dx-b'),function(x){x.setAttribute('aria-label',(a?'افتح محادثة ':'Open the chat for ')+chART(x.dataset.k,CAT[x.dataset.k].t));x.onclick=function(){if(window.openBookChat)openBookChat(x.dataset.k)}})}
+ P.innerHTML='<div class="cvx-card dx-card"><div class="cvx-cov dx-covs"><img src="img/b-'+cs[0].k+'.jpg" alt=""><img src="img/b-'+cs[1].k+'.jpg" alt=""></div><div class="cvx-ct"><div class="cvx-tt"><h2 class="cvx-t" dir="auto">'+E(T(cs[0].n))+(a?' و':' &amp; ')+E(T(cs[1].n))+'</h2></div><p class="cvx-a" dir="auto">'+(a?'حوار ثنائي بين كتابين':'A duo across two books')+'</p><button type="button" class="cvx-read dx-chg"><span>'+(a?'تغيير الشخصيات':'Change characters')+'</span></button></div></div>'+
+  '<div class="cvx-uni dx-uni">'+DIV+'<div class="cvx-uh">'+STAR+'<div><h3>'+(a?'الشخصيتان':'The characters')+'</h3><p>'+(a?'من يتحدث في هذا الحوار':'Who is talking in this duo')+'</p></div></div><div class="cvx-ub list">'+
+  cs.map(function(c,i){return li(cimg(c),T(c.n),T(c.role||'')+' · '+bt[i],c.k,'dx-chr')}).join('')+'</div>'+
+  '<div class="cvx-uh dx-uh2">'+STAR+'<div><h3>'+(a?'الكتابان':'The books')+'</h3><p>'+(a?'افتح محادثة أي كتاب':'Open a chat with either book')+'</p></div></div><div class="cvx-ub list">'+
+  cs.map(function(c,i){return li('img/b-'+c.k+'.jpg',bt[i],chAUT(CAT[c.k].a),c.k,'dx-bk')}).join('')+'</div></div>';
+ [].forEach.call(P.querySelectorAll('.cvx-li'),function(x){x.setAttribute('aria-label',(a?'افتح محادثة ':'Open the chat for ')+chART(x.dataset.k,CAT[x.dataset.k].t));x.onclick=function(e){e.stopPropagation();var k=x.dataset.k;try{duoHide()}catch(_){}try{duoCustom=false;duoBook=null}catch(_){}B.classList.remove('cvx-dx');var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(B.classList.contains('chat-open')&&typeof closeChat==='function')closeChat();var n=0;(function go(){if(B.classList.contains('chat-open')&&n++<40){setTimeout(go,60);return}setTimeout(function(){if(window.openBookChat)openBookChat(k)},rm?0:120)})()}});
+ var cg=P.querySelector('.dx-chg');cg.onclick=function(e){e.stopPropagation();var b=document.querySelector('#duoStrip .dm-ch');if(b)b.click()}}
 var _dr=duoRender;duoRender=function(){var r=_dr.apply(this,arguments);try{dx()}catch(e){}return r};
 new MutationObserver(function(){try{dx()}catch(e){}}).observe(B,{attributes:true,attributeFilter:['class']});
 new MutationObserver(function(){sig='';try{dx()}catch(e){}}).observe(document.documentElement,{attributes:true,attributeFilter:['dir']});
