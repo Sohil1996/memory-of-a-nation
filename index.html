@@ -4193,6 +4193,30 @@ html body .sp-rd{min-height:44px;height:44px}
 html[dir=rtl] .uni-body.tline::before{left:auto!important;right:19.25px!important}
 html:not([dir=rtl]) .tline .ut-row [dir=auto]{text-align:left!important;unicode-bidi:plaintext}
 html[dir=rtl] .tline .ut-row [dir=auto]{text-align:right!important;unicode-bidi:plaintext}
+
+/* v210: full pages (Library, Favourites, Profile) always get their own header and dock, whatever is open underneath */
+html body.page-open.page-open.page-open header.hd{transform:none!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+html body.page-open.page-open.page-open header.hd a.logo.wm{display:flex!important;visibility:visible!important;opacity:1!important;height:34px!important;line-height:19.44px!important;pointer-events:auto!important}
+html body.page-open.page-open.page-open header.hd a.logo.wm .brand-logo{display:block!important}
+html body.page-open.page-open.page-open header.hd a.logo.wm .bk{display:none!important}
+html body.page-open.page-open.page-open nav.dock{display:grid!important;visibility:visible!important;opacity:1!important;transform:translateX(-50%)!important;pointer-events:auto!important}
+/* v210: Arabic fan is a true mirror: books sit outside the bar's right end and titles fan out to the right */
+@media (min-width:701px){
+html[dir=rtl] body.fan-hover .fanp{--fx:72px}
+html[dir=rtl] body:not(.fan-hover) .fanp{--fx:200px}
+html[dir=rtl] .fanp.open .fi{transform:translate(calc(var(--fx) + var(--sxr,0px) - var(--o)*var(--o)*13px),calc(var(--o)*68px)) rotate(calc(var(--o)*6deg))!important}
+html[dir=rtl] .fanp.open .fi:hover,html[dir=rtl] .fanp.open .fi:focus-visible{transform:translate(calc(var(--fx) + var(--sxr,0px) - var(--o)*var(--o)*13px + 8px),calc(var(--o)*68px)) rotate(calc(var(--o)*6deg)) scale(1.12)!important}
+html[dir=rtl] .fanp.open .fi.cur{transform:translate(calc(var(--fx) + var(--sxr,0px) + 8px),0) rotate(0)!important}
+html[dir=rtl] .fanp.open .fi.cur:hover{transform:translate(calc(var(--fx) + var(--sxr,0px) + 8px),0) rotate(0) scale(1.04)!important}
+html[dir=rtl] .fanp .fl{left:calc(100% + 14px)!important;right:auto!important;transform:translateY(-50%)!important}
+html[dir=rtl] .fnote{left:calc(var(--fx) + var(--sxr,0px) - 125px)}
+}
+
+/* v210: long fan titles wrap to two lines instead of running off the screen */
+@media (min-width:701px){html body .fanp .fi .fl.flw{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;border-radius:14px!important;line-height:1.3!important;width:max-content}}
+
+/* v210: page backgrounds mirror in Arabic in light mode too */
+html[dir=rtl][data-bayan="light"] .pgov.prf .au-bg,html[dir=rtl][data-bayan="light"] .pgov.spc .au-bg,html[dir=rtl][data-bayan="light"] .pgov.fvp .au-bg{transform:scaleX(-1)!important}
 /* v194: profile on phones = settings list, each item opens its own page */
 .pf-back{display:none}
 @media (max-width:760px){
@@ -6759,4 +6783,13 @@ new MutationObserver(q).observe(document.documentElement,{attributes:true,attrib
 document.addEventListener('DOMContentLoaded',function(){var st=document.getElementById('duoStrip');st&&new MutationObserver(q).observe(st,{childList:true,subtree:true})});
 var st0=document.getElementById('duoStrip');st0&&new MutationObserver(q).observe(st0,{childList:true,subtree:true});
 })();</script>
+
+<script>/* v210: opening a page closes the fan; Arabic fan stays on screen */(function(){var B=document.body;
+function closeFan(){var f=document.querySelector('.fanp');if(!B.classList.contains('fan-open')&&!(f&&f.classList.contains('open')))return;B.classList.remove('fan-open','fan-hover');if(f)f.classList.remove('open');var a=document.querySelector('.hero-c');a&&a.classList.remove('fan-on');var h=document.querySelector('.hero');h&&h.classList.remove('fan-dim');var w=document.querySelector('.fo');w&&w.classList.remove('fo');var sb=document.getElementById('selb');sb&&sb.setAttribute('aria-expanded','false')}
+function fit(){var f=document.querySelector('.fanp'),sb=document.getElementById('selb');if(!f||!sb)return;if(document.documentElement.dir!=='rtl'){f.style.removeProperty('--sxr');return}var r=sb.getBoundingClientRect(),cx=r.left+r.width/2,fx=B.classList.contains('fan-hover')?72:200,right=cx+fx+42+184,lim=innerWidth-12;f.style.setProperty('--sxr',Math.min(0,lim-right)+'px')}
+var was=B.classList.contains('page-open');
+new MutationObserver(function(){var p=B.classList.contains('page-open');if(p&&!was)closeFan();was=p;if(B.classList.contains('fan-open'))fit()}).observe(B,{attributes:true,attributeFilter:['class']});
+function wrapT(){var f=document.querySelector('.fanp');if(!f||!f.classList.contains('open')||innerWidth<701)return;var rtl=document.documentElement.dir==='rtl';[].forEach.call(f.querySelectorAll('.fi .fl'),function(l){l.classList.remove('flw');['max-width','white-space','border-radius','line-height','overflow','text-overflow'].forEach(function(p){l.style.removeProperty(p)});var c=l.parentElement.getBoundingClientRect(),av=rtl?(innerWidth-12-(c.right+14)):(c.left-14-12),w=l.getBoundingClientRect().width;if(w>av&&av>110){l.classList.add('flw');var st=l.style;st.setProperty('max-width',Math.floor(av)+'px','important');st.setProperty('white-space','normal','important');st.setProperty('border-radius','14px','important');st.setProperty('line-height','1.3','important');st.setProperty('overflow','visible','important');st.setProperty('text-overflow','clip','important')}})}
+var wt=0;new MutationObserver(function(){var f=document.querySelector('.fanp');clearTimeout(wt);if(f&&f.classList.contains('open'))wt=setTimeout(wrapT,700);else if(f)[].forEach.call(f.querySelectorAll('.fl.flw'),function(l){l.classList.remove('flw');['max-width','white-space','border-radius','line-height','overflow','text-overflow'].forEach(function(p){l.style.removeProperty(p)})})}).observe(document.querySelector('.fanp')||document.body,{attributes:true,attributeFilter:['class']});
+addEventListener('resize',function(){fit();clearTimeout(wt);wt=setTimeout(wrapT,200)});})();</script>
 </body></html>
