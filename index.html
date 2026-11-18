@@ -4113,6 +4113,11 @@ html[data-bayan="light"] body .sp-pl:not(.sp-rd){background:rgba(226,201,141,.2)
 html[data-bayan="light"] body .sp-pl:not(.sp-rd) svg{fill:currentColor;opacity:1!important}
 html body .cvx-tabs>button,html body .pf-nav>button{min-height:var(--h-btn)!important;height:var(--h-btn)!important}
 html[data-bayan] body .cv-bgrid .cbk,html body .cv-bgrid .cbk{border-color:var(--card-bd)!important;background:var(--card-bg)!important;border-radius:var(--r-card)!important;padding:var(--p-card) 12px!important}
+
+/* v202: duo conversation uses the single chat background, like the book conversation */
+html body.chat-open.duo-open #duo>.cv-bg{display:none!important}
+html body.chat-open.duo-open #duo{background:transparent!important}
+html body.chat-open.duo-open:has(#duo:not([hidden])) #chat .cv-main>#cvScroll,html body.chat-open.duo-open:has(#duo:not([hidden])) #chat .cv-main>#cvSugg,html body.chat-open.duo-open:has(#duo:not([hidden])) #chat .cv-main>#cvForm{visibility:hidden!important;pointer-events:none!important}
 /* v194: profile on phones = settings list, each item opens its own page */
 .pf-back{display:none}
 @media (max-width:760px){
