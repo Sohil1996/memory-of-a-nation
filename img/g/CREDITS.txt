@@ -2,3 +2,4 @@
 Models: brass_diya_lantern, Lantern_01, wooden_lantern_01, lantern_chandelier_01, brass_pot_01, brass_vase_01, wooden_bowl_01, wicker_basket_01, stone_fire_pit
 Textures: patterned_clay_plaster, clay_plaster, clay_block_wall, marble_01, medieval_wood, palm_tree_bark, old_planks_02, brown_mud_dry, rough_linen
 Sky: qwantani_dusk_2 (puresky)
+Fonts: Amiri and Reem Kufi (SIL Open Font License 1.1), via Fontsource
