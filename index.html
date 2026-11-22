@@ -4387,7 +4387,7 @@ html[data-bayan="light"] :is(.pgov,.expV) :is(.pfv,.subtabs){background:rgba(255
 /* header no longer carries badges or the joined date — they live in Personal info */
 #prf .pf-jn,#pfAcct{display:none!important}
 html body #prf #pfNav button[data-tab="topics"]{display:none!important}
-html body #pfCard[data-tab="credit"]{max-width:1080px!important}
+@media (min-width:761px){html body #pfCard[data-tab="credit"]{max-width:1080px!important}}
 /* Personal info: read-only view, edit on demand */
 .pfv{border-radius:20px;border:1px solid var(--line);padding:6px 18px;margin-bottom:14px}
 .pfv-r{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
@@ -4417,6 +4417,7 @@ html[data-bayan="light"] .subwrap.stuck{background:linear-gradient(180deg,rgba(2
 .subtabs button[aria-selected="true"]{opacity:1;background:rgba(226,201,141,.16);color:#E2C98D;box-shadow:inset 0 0 0 1px rgba(226,201,141,.45)}
 html[data-bayan="light"] .subtabs button[aria-selected="true"]{background:rgba(185,154,85,.16);color:#7A5A1E}
 .sub-off{display:none!important}
+.wl{grid-template-columns:minmax(0,1fr)}.subwrap{min-width:0}
 .p2-topics{border-radius:20px;border:1px solid var(--line);padding:18px}
 .p2-topics h3{margin:0 0 4px;font:500 20px var(--display)}.p2-topics p{margin:0 0 14px;font-size:13px;opacity:.7}
 html:not([data-bayan="light"]) .pgov .p2-topics{background:rgba(8,20,17,.56);-webkit-backdrop-filter:blur(26px) saturate(1.2);backdrop-filter:blur(26px) saturate(1.2)}
@@ -7282,6 +7283,7 @@ function bar(id,items,cur,onPick){var w=document.createElement('div');w.classNam
  b.addEventListener('click',function(e){var t=e.target.closest('[data-sub]');if(t)onPick(t.dataset.sub,true)});
  b.addEventListener('keydown',function(e){if(!/^Arrow(Left|Right)$|^Home$|^End$/.test(e.key))return;var bs=[].slice.call(b.children),i=bs.indexOf(document.activeElement);if(i<0)return;var f=(e.key==='ArrowRight')!==ar()?1:-1;var n=e.key==='Home'?0:e.key==='End'?bs.length-1:(i+f+bs.length)%bs.length;e.preventDefault();onPick(bs[n].dataset.sub,true);var nb=b.querySelector('[data-sub="'+bs[n].dataset.sub+'"]');nb&&nb.focus()});
  return w}
+function seen(w){var t=w&&w.list&&w.list.querySelector('[aria-selected="true"]');if(!t)return;var l=w.list,r=t.getBoundingClientRect(),lr=l.getBoundingClientRect();if(r.left<lr.left)l.scrollLeft-=lr.left-r.left+12;else if(r.right>lr.right)l.scrollLeft+=r.right-lr.right+12}
 function show(host,cur){[].forEach.call(host.querySelectorAll('[data-subp]'),function(el){el.classList.toggle('sub-off',el.dataset.subp!==cur)})}
 function toTop(host,b){subTop();var y=b.getBoundingClientRect().top;if(y<0||y>parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--subTop'))+4){P.scrollTop+=y-parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--subTop'))}}
 
@@ -7290,8 +7292,8 @@ var W=$('wlHost'),wSub='balance',WI=[['balance',['Balance','الرصيد']],['lo
 function decorateW(){if(!W||busyW||!W.firstElementChild)return;busyW=true;
  var old=$('wlTabs');if(old)old.remove();
  [].forEach.call(W.children,function(c){var k=c.classList.contains('wl-bal')||c.classList.contains('wl-note')?'balance':c.querySelector('#wlLogH')?'log':c.querySelector('#wlPrH')?'prices':'topup';c.dataset.subp=k});
- var b=bar('wlTabs',WI,wSub,function(k,user){wSub=k;[].forEach.call(b.list.children,function(x){var on=x.dataset.sub===k;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1});show(W,k);if(user)toTop(W,b)});
- W.insertBefore(b,W.firstChild);show(W,wSub);busyW=false}
+ var b=bar('wlTabs',WI,wSub,function(k,user){wSub=k;[].forEach.call(b.list.children,function(x){var on=x.dataset.sub===k;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1});show(W,k);seen(b);if(user)toTop(W,b)});
+ W.insertBefore(b,W.firstChild);show(W,wSub);busyW=false;seen(b)}
 if(W)new MutationObserver(function(){if(!busyW&&W.firstElementChild&&W.firstElementChild.id!=='wlTabs')decorateW()}).observe(W,{childList:true});
 /* the wallet's top-up packs scroll the balance into view after paying: show the balance tab then */
 document.addEventListener('submit',function(e){if(e.target.id==='wlPay')setTimeout(function(){wSub='balance';decorateW()},1300)},true);
@@ -7307,8 +7309,8 @@ function decorateP(){if(!H||busyP||!H.firstElementChild)return;busyP=true;
  [].forEach.call(H.children,function(c){if(c===tp)return;var cl=c.classList;c.dataset.subp=cl.contains('p2-st')?'overview':(cl.contains('p2-rh')||cl.contains('p2-tw')||cl.contains('p2-em'))?'reading':(cl.contains('p2-uh')||cl.contains('p2-u'))?'data':'';if(!c.dataset.subp)delete c.dataset.subp});
  var hd=H.querySelector('.p2-hd'),st=H.querySelector('.p2-st');
  topicsText();if(chips)H.insertBefore(tp,st?st.nextSibling:null);
- var b=bar('p2Tabs',PI,pSub,function(k,user){pSub=k;[].forEach.call(b.list.children,function(x){var on=x.dataset.sub===k;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1});show(H,k);if(user)toTop(H,b)});
- H.insertBefore(b,hd?hd.nextSibling:H.firstChild);show(H,pSub);busyP=false}
+ var b=bar('p2Tabs',PI,pSub,function(k,user){pSub=k;[].forEach.call(b.list.children,function(x){var on=x.dataset.sub===k;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1});show(H,k);seen(b);if(user)toTop(H,b)});
+ H.insertBefore(b,hd?hd.nextSibling:H.firstChild);show(H,pSub);busyP=false;seen(b)}
 if(H)new MutationObserver(function(m){if(busyP)return;var bad=!$('p2Tabs')||!H.contains(tp);if(bad)decorateP()}).observe(H,{childList:true});
 /* opening the old "topics" tab now lands on Personalization › Favourite topics */
 var nav=$('pfNav');
