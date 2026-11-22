@@ -4497,6 +4497,68 @@ html[data-bayan="light"] .hist-note{color:#6B5320}
 html[data-bayan="light"] .hist-note::before,html[data-bayan="light"] .hist-note::after{background:rgba(107,83,32,.25)}
 html[data-bayan="light"] .dm-swap,html[data-bayan="light"] .cvx-sw{color:#6B5320}
 html[data-bayan="light"] .su2-who small,html[data-bayan="light"] .su2-scene small,html[data-bayan="light"] .su2-ed{color:#6B5320}
+
+/* v216: Claude-style question panel */
+.su3{width:100%;max-width:none;box-sizing:border-box;margin:6px 0 18px;align-self:stretch;padding:12px 12px 10px;border-radius:18px;background:rgba(14,26,23,.82);border:1px solid rgba(255,255,255,.12);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);box-shadow:0 12px 40px rgba(0,0,0,.28);color:#F2F1EC;font-family:var(--sans)}
+.su3-hd{display:flex;align-items:center;gap:10px;padding:4px 6px 8px}
+.su3-q{flex:1;min-width:0;margin:0;font:500 15.5px/1.4 var(--sans);letter-spacing:0;color:inherit}
+.su3-nav{display:flex;align-items:center;gap:2px;flex:none;color:rgba(255,255,255,.62);font:400 13.5px var(--sans)}
+.su3-n{min-width:44px;text-align:center;font-variant-numeric:tabular-nums}
+.su3-pv,.su3-nx,.su3-x{width:28px;height:28px;display:grid;place-items:center;border:0;border-radius:8px;background:none;color:rgba(255,255,255,.7);cursor:pointer;padding:0}
+.su3-pv:hover:not(:disabled),.su3-nx:hover,.su3-x:hover{background:rgba(255,255,255,.08);color:#fff}
+.su3-pv:disabled{opacity:.3;cursor:default}
+.su3-x{margin-inline-start:4px}
+.su3-h{margin:-4px 6px 8px;font:400 13px/1.45 var(--sans);color:rgba(255,255,255,.6)}
+.su3-o{display:flex;flex-direction:column}
+.su3-op{display:flex;align-items:center;gap:14px;width:100%;padding:9px 8px;border:0;border-radius:10px;background:none;color:inherit;text-align:start;cursor:pointer;position:relative;font:inherit}
+.su3-op+.su3-op:before{content:"";position:absolute;top:0;left:8px;right:8px;height:1px;background:rgba(255,255,255,.08)}
+.su3-op:hover{background:rgba(255,255,255,.06)}
+.su3-op:hover:before,.su3-op:hover+.su3-op:before{opacity:0}
+.su3-op:focus-visible{outline:0;background:rgba(255,255,255,.06)}
+html[data-bayan="light"] .su3-op:focus-visible{background:rgba(14,36,30,.05)}
+.su3-op>i,.su3-pen{flex:none;width:32px;height:32px;display:grid;place-items:center;border-radius:9px;background:rgba(255,255,255,.08);font:500 13.5px var(--sans);font-style:normal;color:rgba(255,255,255,.75)}
+.su3-op>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.su3-op b{font:400 15px/1.35 var(--sans);color:#F2F1EC}
+.su3-op small{font:400 13px/1.35 var(--sans);color:rgba(255,255,255,.58);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.su3-op[aria-checked="true"]>i{background:#E2C98D;color:#1A1208}
+.su3-op[aria-checked="true"] b{font-weight:500}
+.su3-other{display:flex;align-items:center;gap:14px;margin-top:2px;padding:9px 8px 4px;border-top:1px solid rgba(255,255,255,.08)}
+.su3-pen{color:rgba(255,255,255,.6)}
+.su3-other input{flex:1;min-width:0;border:0;outline:0;background:none;color:#F2F1EC;font:400 15px var(--sans);padding:6px 0}
+.su3-other input::placeholder{color:rgba(255,255,255,.45)}
+.su3-other input[aria-invalid="true"]{color:#F2A08C}
+.su3-other.nf .su3-sp{flex:1}
+.su3-skip{flex:none;height:34px;padding:0 14px;border:0;border-radius:10px;background:rgba(255,255,255,.1);color:#F2F1EC;font:500 14px var(--sans);cursor:pointer}
+.su3-skip:hover{background:rgba(255,255,255,.16)}
+.su3-other.on .su3-skip{background:#E2C98D;color:#1A1208}
+.su3-after{padding:6px}
+.su3-cont>i{background:#E2C98D!important;color:#1A1208!important}
+.su3-cont>svg{flex:none;opacity:.6}
+html[data-bayan="light"] .su3{background:rgba(255,255,255,.9);border-color:rgba(14,36,30,.12);color:#0E241E;box-shadow:0 12px 36px rgba(14,36,30,.12)}
+html[data-bayan="light"] .su3-op b,html[data-bayan="light"] .su3-other input{color:#0E241E}
+html[data-bayan="light"] .su3-op small,html[data-bayan="light"] .su3-h,html[data-bayan="light"] .su3-nav{color:#4C5C57}
+html[data-bayan="light"] .su3-op>i,html[data-bayan="light"] .su3-pen{background:rgba(14,36,30,.07);color:#2E3E39}
+html[data-bayan="light"] .su3-op+.su3-op:before{background:rgba(14,36,30,.09)}
+html[data-bayan="light"] .su3-other{border-top-color:rgba(14,36,30,.09)}
+html[data-bayan="light"] .su3-op:hover,html[data-bayan="light"] .su3-pv:hover:not(:disabled),html[data-bayan="light"] .su3-nx:hover,html[data-bayan="light"] .su3-x:hover{background:rgba(14,36,30,.05);color:#0E241E}
+html[data-bayan="light"] .su3-pv,html[data-bayan="light"] .su3-nx,html[data-bayan="light"] .su3-x{color:#4C5C57}
+html[data-bayan="light"] .su3-other input::placeholder{color:rgba(14,36,30,.5)}
+html[data-bayan="light"] .su3-skip{background:rgba(14,36,30,.08);color:#0E241E}
+html[data-bayan="light"] .su3-op[aria-checked="true"]>i,html[data-bayan="light"] .su3-other.on .su3-skip,html[data-bayan="light"] .su3-cont>i{background:#0E5B49!important;color:#fff!important}
+@media (max-width:760px){.su3{margin:4px 0 14px;padding:10px 8px 8px}.su3-q{font-size:15px}.su3-n{min-width:38px}.su3-op{gap:12px}}
+/* v216: Arabic book grid reads right to left */
+html[dir="rtl"] .df-sug{direction:rtl}
+/* v216: chip hover lift is no longer clipped */
+.cv-sugg,.dc-c{padding-top:5px!important;padding-bottom:4px!important;margin-top:-5px}
+/* v216: clear selected state for characters in the duo flow (both brands) */
+.df-ch{transition:border-color .2s,background .2s,box-shadow .2s,transform .2s}
+.df-ch:hover:not(:disabled):not(.on){border-color:rgba(230,207,150,.45)!important;transform:translateY(-2px)}
+html:not([data-bayan="light"]) .df-ch.on{border:2px solid #E2C98D!important;background:rgba(226,201,141,.16)!important;box-shadow:0 0 0 4px rgba(226,201,141,.14),0 0 26px rgba(226,201,141,.28)!important}
+html:not([data-bayan="light"]) .df-ch.on span,html:not([data-bayan="light"]) .df-ch.on b{color:#fff!important}
+html[data-bayan="light"] .df-ch.on{border-width:2px!important;box-shadow:0 0 0 4px rgba(14,91,73,.12)!important}
+.df-ch.on img{box-shadow:0 0 0 2px #E2C98D}
+/* v216: Continue stays in view while browsing many books */
+.df-go{position:sticky;bottom:18px;z-index:6;box-shadow:0 12px 32px rgba(0,0,0,.45),0 0 28px rgba(226,201,141,.25)!important}
 /* v194: profile on phones = settings list, each item opens its own page */
 .pf-back{display:none}
 @media (max-width:760px){
@@ -6091,6 +6153,58 @@ function duoSetupDone(a){var box=document.getElementById('duoSU');if(box)box.rem
  var list=duoOrder(duoSel.map(duoById).filter(Boolean)),need=duoNeed.length?list.filter(function(c){return duoNeed.some(function(x){return x&&x.n===c.n})}):list;duoNeed=[];
  if(duoPend){var pd=duoPend;duoPend=null;duoBusy=true;var i=0;(function nx(){if(i>=list.length){duoBusy=false;duoLater(function(){duoAsk(pd.q,pd.tk)},rm?0:350);return}var c=list[i++];duoLater(function(){duoIntro(c,nx)},i>1?250:(rm?0:300))})()}
  else{duoBusy=false;duoIntros(need.length?need:list)}}
+/* v216: Claude-style question panel. Later declarations replace the v214 ones in this scope. */
+function suQs(box){return box._qs?box._qs():duoSetQs(duoSel.length)}
+function suChev(d){return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="su2-fl"><path d="'+(d<0?'M15 6l-6 6 6 6':'M9 6l6 6-6 6')+'"/></svg>'}
+var SU_PEN='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/></svg>',SU_X='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+function duoSetupShow(mode,opt){if(!opt)duoMode=mode||(duoCustom?'home':'book');var e=document.getElementById('duoEmpty');if(e)e.remove();
+ var box=document.getElementById('duoSU');if(box)box.remove();
+ box=document.createElement('section');box.id='duoSU';box.className='su3';box.setAttribute('aria-label',opt&&opt.label||DSQ[AR?'ar':'en'].ui.t);box._i=0;box._a=[];if(opt){box._qs=opt.qs;box._done=opt.done;box._cancel=opt.cancel}
+ duoThread.appendChild(box);document.body.classList.add('duo-setup');suWire(box);duoSetupDraw();duoBottom()}
+function suFocus(box){var f=box.querySelector('.su3-op[aria-checked="true"]')||box.querySelector('.su3-op')||document.getElementById('su2In');if(f)f.focus({preventScroll:true})}
+function suInIdx(os){var r=-1;os.forEach(function(o,k){if(o.input)r=k});return r}
+function suPh(q,o){return o.v==='other'?(q.num?suL('Another number, 1 to 10','رقم آخر، من ١ إلى ١٠'):suL('Something else','شيء آخر')):o.input}
+function duoSetupDraw(){var box=document.getElementById('duoSU');if(!box)return;var Q=suQs(box),n=Q.length,i=Math.max(0,Math.min(box._i,n-1)),E=cvEsc,q=Q[i],a=box._a[i],os=suOpts(q),ki=suInIdx(os),j=0,h,first=-1;box._i=i;
+ os.forEach(function(o,k){if(!o.input&&first<0)first=k});
+ var txt=a&&a.k===ki?a.txt||'':'',inp=ki>-1?os[ki]:null,cl=box._cancel?suL('Close','إغلاق'):suL('Skip setup','تخطَّ الإعداد');
+ h='<div class="su3-hd"><h3 class="su3-q" id="su3Q" dir="auto">'+E(q.q)+'</h3><div class="su3-nav"><button type="button" class="su3-pv" aria-label="'+E(suL('Previous question','السؤال السابق'))+'"'+(i===0?' disabled':'')+'>'+suChev(-1)+'</button><span class="su3-n" aria-live="polite">'+(i+1)+' '+E(suL('of','من'))+' '+n+'</span><button type="button" class="su3-nx" aria-label="'+E(suL('Next question','السؤال التالي'))+'">'+suChev(1)+'</button></div><button type="button" class="su3-x" aria-label="'+E(cl)+'" title="'+E(cl)+'">'+SU_X+'</button></div>';
+ if(q.h)h+='<p class="su3-h" dir="auto">'+E(q.h)+'</p>';
+ h+='<div class="su3-o" role="radiogroup" aria-labelledby="su3Q">'+os.map(function(o,k){if(o.input)return '';j++;var on=!!a&&a.k===k;return '<button type="button" role="radio" class="su3-op" data-k="'+k+'" aria-checked="'+on+'" tabindex="'+(on||(!(a&&a.k!==ki)&&k===first)?0:-1)+'"><i>'+j+'</i><span dir="auto"><b>'+E(o.t)+'</b>'+(o.d?'<small>'+E(o.d)+'</small>':'')+'</span></button>'}).join('')+'</div>';
+ var sk=txt.trim()?suL('Send','إرسال'):suL('Skip','تخطَّ');
+ if(inp){var ph=suPh(q,inp);h+='<div class="su3-other'+(txt.trim()?' on':'')+'"><span class="su3-pen">'+SU_PEN+'</span><input id="su2In" type="text" '+(q.num?'inputmode="numeric" maxlength="2"':'maxlength="160"')+' dir="auto" autocomplete="off" placeholder="'+E(ph)+'" aria-label="'+E(ph)+'" value="'+E(txt)+'"><button type="button" class="su3-skip">'+E(sk)+'</button></div>'}
+ else h+='<div class="su3-other nf"><span class="su3-sp"></span><button type="button" class="su3-skip">'+E(sk)+'</button></div>';
+ box.innerHTML=h}
+function suGo(box,i,focus){box._i=i;duoSetupDraw();if(focus)suFocus(box);duoBottom()}
+function suFinish(box){var a=box._a,f=box._done;if(f){box.remove();document.body.classList.remove('duo-setup');f(a)}else duoSetupDone(a)}
+function suNext(box){var n=suQs(box).length;if(box._i+1>=n)suFinish(box);else suGo(box,box._i+1,true)}
+function suWire(box){
+ box.addEventListener('click',function(e){var Q=suQs(box),i=box._i,t,q=Q[i];
+  if(t=e.target.closest('.su3-op')){box._a[i]={k:+t.dataset.k,txt:''};duoSetupDraw();var b=box.querySelector('.su3-op[data-k="'+t.dataset.k+'"]');if(b)b.focus({preventScroll:true});setTimeout(function(){if(box._i===i&&box.isConnected)suNext(box)},rm?0:220);return}
+  if(e.target.closest('.su3-skip')){var a=box._a[i],ki=suInIdx(suOpts(q));if(a&&a.k===ki&&(a.txt||'').trim()){if(!suOk(q,a)){var f=document.getElementById('su2In');if(f){f.focus();f.setAttribute('aria-invalid','true')}if(window.say)window.say(suL('Type a number from 1 to 10','اكتب رقمًا من ١ إلى ١٠'));return}}else if(a&&a.k===ki)delete box._a[i];suNext(box);return}
+  if(e.target.closest('.su3-nx')){suNext(box);return}
+  if(e.target.closest('.su3-pv')){suGo(box,Math.max(0,i-1),true);return}
+  if(e.target.closest('.su3-x')){if(box._cancel){var c=box._cancel;box.remove();document.body.classList.remove('duo-setup');c()}else suFinish(box);return}});
+ box.addEventListener('input',function(e){if(e.target.id!=='su2In')return;var Q=suQs(box),i=box._i,ki=suInIdx(suOpts(Q[i])),v=e.target.value;e.target.removeAttribute('aria-invalid');
+  if(v.trim()){box._a[i]={k:ki,txt:v};[].forEach.call(box.querySelectorAll('.su3-op'),function(b){b.setAttribute('aria-checked','false')})}else if(box._a[i]&&box._a[i].k===ki)delete box._a[i];
+  var o=box.querySelector('.su3-other');if(o)o.classList.toggle('on',!!v.trim());var sk=box.querySelector('.su3-skip');if(sk)sk.textContent=v.trim()?suL('Send','إرسال'):suL('Skip','تخطَّ')});
+ box.addEventListener('keydown',function(e){if(e.target.id==='su2In'){if(e.key==='Enter'){e.preventDefault();box.querySelector('.su3-skip').click()}return}
+  if(/^[1-9]$/.test(e.key)&&!e.metaKey&&!e.ctrlKey&&!e.altKey){var r=box.querySelectorAll('.su3-op')[+e.key-1];if(r){e.preventDefault();r.click()}return}
+  var op=e.target.closest&&e.target.closest('.su3-op');if(!op||!/^Arrow(Up|Down)$/.test(e.key))return;var all=[].slice.call(box.querySelectorAll('.su3-op')),k=all.indexOf(op),f=e.key==='ArrowDown'?1:-1;e.preventDefault();var nx=all[k+f];if(!nx){if(f>0){var fi=document.getElementById('su2In');if(fi)fi.focus()}return}all.forEach(function(x){x.tabIndex=-1});nx.tabIndex=0;nx.focus()})}
+/* v216: after a round, Continue asks turns then the scene, and the same conversation carries on */
+function duoAfterCard(){var old=document.getElementById('duoAfter');if(old)old.remove();var E=cvEsc,box=document.createElement('section');box.id='duoAfter';box.className='su3 su3-after';
+ box.innerHTML='<button type="button" class="su3-op su3-cont"><i><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.500v13l10.500-6.500z"/></svg></i><span dir="auto"><b>'+E(suL('Continue the conversation','أكمل المحادثة'))+'</b><small>'+E(suL('Choose the number of turns and the scene, then they carry on.','اختر عدد الأدوار والمشهد، ثم يُكملان الحديث.'))+'</small></span>'+suChev(1)+'</button>';
+ box.querySelector('button').addEventListener('click',function(){if(duoBusy)return;box.remove();duoContinueSetup()});
+ duoThread.appendChild(box);duoBottom()}
+function duoContQs(){var cur=duoCfg&&duoCfg.scene;return [
+ {id:'turns',q:suL('How many turns this time?','كم دورًا هذه المرة؟'),o:[{v:2,t:suL('2 turns — one each','دوران — رسالة لكلٍّ منهما')},{v:4,t:suL('4 turns','٤ أدوار')},{v:6,t:suL('6 turns','٦ أدوار')}],num:1},
+ {id:'next',q:suL('Same scene or a different one?','المشهد نفسه أم مشهد مختلف؟'),o:[{v:'same',t:suL('Stay in the same scene','البقاء في المشهد نفسه'),d:cur||''},{v:'ai',t:suL('Let AI choose a new scene','دع الذكاء الاصطناعي يختار مشهدًا جديدًا')},{v:'me',t:suL('A different scene','مشهد مختلف'),input:suL('Describe a different scene…','صِف مشهدًا مختلفًا…')}],noOther:1}]}
+function duoContinueSetup(){duoSetupShow(null,{label:suL('Continue the conversation','أكمل المحادثة'),qs:duoContQs,cancel:duoAfterCard,done:function(a){var Q=duoContQs(),sm=[],sc=null;duoCfg=duoCfg||{len:1};
+  var t=a[0]&&suOpts(Q[0])[a[0].k];if(t){var tn=t.input?+String(a[0].txt).trim().replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)}):t.v;if(tn>=1&&tn<=10){duoCfg.turns=tn;sm.push(t.input?(AR?tn+' أدوار':tn+' turns'):t.t)}}
+  var o=a[1]&&suOpts(Q[1])[a[1].k];if(o){if(o.v==='ai'){var x=SU_SCENES.filter(function(z){return (AR?z[1]:z[0])!==duoCfg.scene});x=x[Math.floor(Math.random()*x.length)]||SU_SCENES[0];sc=AR?x[1]:x[0]}else if(o.input)sc=(a[1].txt||'').trim()||null;else sm.push(o.t)}
+  if(sm.length){var nt=document.createElement('div');nt.className='hist-note';nt.dir='auto';nt.textContent=sm.join(' · ');duoThread.appendChild(nt)}
+  if(sc){duoCfg.scene=sc;suScene(sc)}
+  duoSilent=true;duoAsk(duoLastQ||'…',duoLastTopic)}});suFocus(document.getElementById('duoSU'))}
+
 function duoGreet(){var ar=isAr(CAT[duoBook].t),t=ar?'اختر شخصية أو اثنتين من '+CAT[duoBook].t+' لتتحدث معهما، أو أضف شخصيات من كتب أخرى بزر +.':'Choose a character, or two, to talk to from '+CAT[duoBook].t+'. Tap + to bring in someone from another book.';
   var b=document.createElement('div');b.className='cv-msg a';b.innerHTML='<span class="bav" aria-hidden="true"><img class="bav-em" src="img/emblem-soft.png" alt=""></span><div class="abody"><div class="bub glass"><p dir="auto"></p></div></div>';b.querySelector('p').textContent=t;duoThread.appendChild(b)}
 function duoUser(t){var e=document.getElementById('duoEmpty');if(e)e.remove();var b=document.createElement('div');b.className='cv-msg u';b.innerHTML='<div class="bub"><span class="tx" dir="auto"></span></div><div class="mtools"><time></time></div>';b.querySelector('.tx').textContent=t;b.querySelector('time').textContent=duoTime();duoThread.appendChild(b);duoBottom();return b}
