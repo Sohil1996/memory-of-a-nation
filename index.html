@@ -4217,6 +4217,96 @@ html[dir=rtl] .fnote{left:calc(var(--fx) + var(--sxr,0px) - 125px)}
 
 /* v210: page backgrounds mirror in Arabic in light mode too */
 html[dir=rtl][data-bayan="light"] .pgov.prf .au-bg,html[dir=rtl][data-bayan="light"] .pgov.spc .au-bg,html[dir=rtl][data-bayan="light"] .pgov.fvp .au-bg{transform:scaleX(-1)!important}
+
+/* v211: registration wizard (DGA deck steps 1–3) */
+.rg{position:fixed;inset:0;z-index:95;overflow-y:auto;opacity:0;transition:opacity .3s}
+.rg.go{opacity:1}
+.rg[hidden]{display:none}
+.rg-bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(55% 45% at 12% 100%,rgba(84,198,160,.2),transparent 70%),radial-gradient(55% 45% at 92% 0%,rgba(226,201,141,.16),transparent 70%),#06120F}
+html[data-bayan="light"] .rg-bg{background:radial-gradient(55% 45% at 12% 100%,rgba(84,198,160,.14),transparent 70%),radial-gradient(55% 45% at 92% 0%,rgba(226,201,141,.2),transparent 70%),#F6F2E8}
+.rg-wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:clamp(14px,4vw,48px)}
+.rg-card{width:min(1080px,100%);border-radius:30px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.02));box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 30px 80px rgba(0,0,0,.45);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);overflow:hidden}
+html[data-bayan="light"] .rg-card{background:linear-gradient(135deg,rgba(255,255,255,.85),rgba(255,255,255,.6));border-color:rgba(255,255,255,.9);box-shadow:0 30px 80px rgba(15,95,76,.15)}
+.rg-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(18px,3vw,34px);border-bottom:1px solid var(--line)}
+.rg-brand{display:flex;align-items:center;gap:10px;font-size:13px;opacity:.75}
+.rg-brand img{height:28px;width:auto}
+.rg-step{display:flex;align-items:center;gap:12px;font-size:13px;opacity:.85}
+.rg-dots{display:flex;gap:5px}.rg-dots i{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.25}
+.rg-dots i.on{background:#73D0B1;opacity:1}
+.rg-x{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:transparent;color:inherit;display:grid;place-items:center;cursor:pointer}
+.rg-body{padding:clamp(20px,3vw,36px) clamp(18px,3vw,34px) 8px}
+.rg-k{margin:0;color:#5CC4A2;font-size:13px;font-weight:600}
+html[data-bayan="light"] .rg-k{color:#0F7A60}
+.rg-h{margin:8px 0 6px;font:500 clamp(24px,3vw,34px)/1.2 var(--display)}
+.rg-s{margin:0 0 22px;opacity:.75;font-size:15px}
+.rg-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rg-opt{position:relative;display:flex;gap:14px;text-align:start;padding:18px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:inherit;font:inherit;cursor:pointer;transition:border-color .2s,background .2s,box-shadow .2s}
+.rg-opt:hover{border-color:rgba(115,208,177,.5)}
+.rg-opt[aria-checked="true"],.rg-opt[aria-pressed="true"]{border-color:#5CC4A2;background:rgba(92,196,162,.08);box-shadow:0 0 0 1px #5CC4A2 inset}
+html[data-bayan="light"] .rg-opt{background:rgba(255,255,255,.55)}
+.rg-ic{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(92,196,162,.14);color:#5CC4A2}
+.rg-ic.v{background:rgba(185,154,85,.16);color:#D9BF83}
+html[data-bayan="light"] .rg-ic{color:#0F7A60}html[data-bayan="light"] .rg-ic.v{color:#8A6A28}
+.rg-opt b{display:block;font-size:17px;font-weight:600}
+.rg-tag{display:inline-block;margin:6px 0 8px;padding:2px 10px;border-radius:999px;font-size:12px;background:rgba(92,196,162,.14);color:#6FD3B1}
+.rg-tag.v{background:rgba(185,154,85,.16);color:#E2C98D}
+html[data-bayan="light"] .rg-tag{color:#0F7A60}html[data-bayan="light"] .rg-tag.v{color:#7A5A1E}
+.rg-opt p{margin:0;font-size:14px;line-height:1.6;opacity:.8}
+.rg-opt small{display:block;margin-top:10px;font-size:13px;color:#5CC4A2}
+html[data-bayan="light"] .rg-opt small{color:#0F7A60}
+.rg-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(18px,3vw,34px) 24px;flex-wrap:wrap}
+.rg-foot p{margin:0;font-size:13px;opacity:.65;flex:1;min-width:220px}
+.rg-btns{display:flex;gap:10px;align-items:center}
+.rg-go{height:48px;padding:0 30px;border:0;border-radius:999px;background:#E2C98D;color:#091B16;font:600 15px var(--sans);cursor:pointer;box-shadow:0 8px 28px rgba(226,201,141,.3)}
+.rg-go:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.rg-back{height:48px;padding:0 20px;border-radius:999px;border:1px solid var(--line);background:transparent;color:inherit;font:500 14px var(--sans);cursor:pointer}
+.rg-two{display:grid;grid-template-columns:1.05fr 1fr;gap:16px;align-items:start}
+.rg-box{border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.03);padding:18px}
+html[data-bayan="light"] .rg-box{background:rgba(255,255,255,.55)}
+.rg-box.rg-hl{border-color:rgba(92,196,162,.45)}
+.rg-lv{display:flex;gap:12px;padding:12px 4px;border-bottom:1px solid var(--line)}
+.rg-lv:last-child{border-bottom:0}
+.rg-lv>span{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:600;font-size:14px;background:rgba(255,255,255,.06)}
+.rg-lv.on>span{background:#5CC4A2;color:#06120F}
+.rg-lv b{font-size:15px}.rg-lv em{display:block;font-style:normal;font-size:12px;color:#5CC4A2;margin:2px 0 4px}
+html[data-bayan="light"] .rg-lv em{color:#0F7A60}
+.rg-lv p{margin:0;font-size:13px;opacity:.75;line-height:1.55}
+.rg-lv .rg-you{margin-inline-start:8px;padding:1px 8px;border-radius:999px;background:rgba(92,196,162,.18);color:#6FD3B1;font-size:11px;font-weight:600;vertical-align:2px}
+html[data-bayan="light"] .rg-lv .rg-you{color:#0F7A60}
+.rg-lv:not(.on){opacity:.6}
+.rg-nf{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.rg-nf b{font-size:17px}.rg-nf small{display:block;font-size:13px;opacity:.7}
+.rg-code{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-radius:16px;border:1px dashed rgba(255,255,255,.22);background:rgba(0,0,0,.18);margin-bottom:12px}
+html[data-bayan="light"] .rg-code{background:rgba(255,255,255,.7);border-color:rgba(9,28,22,.2)}
+.rg-code span{font-size:13px;opacity:.75}
+.rg-code b{font:700 30px/1 var(--sans);letter-spacing:.08em;color:#5CC4A2}
+html[data-bayan="light"] .rg-code b{color:#0F7A60}
+.rg-code.wait b{animation:rgPulse 1.2s ease-in-out infinite}
+@keyframes rgPulse{50%{opacity:.45}}
+.rg-chk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.rg-chk li{display:flex;gap:10px;align-items:center;font-size:14px}
+.rg-chk li i{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);transition:background .3s,border-color .3s}
+.rg-chk li.ok i{background:#5CC4A2;border-color:#5CC4A2;color:#06120F}
+.rg-chk li.run i{border-color:#5CC4A2;border-top-color:transparent;animation:rgSpin .8s linear infinite}
+@keyframes rgSpin{to{transform:rotate(360deg)}}
+.rg-pdpl{display:flex;gap:10px;align-items:center;margin-top:12px;padding:12px 14px;border-radius:16px;border:1px solid rgba(92,196,162,.35);font-size:13px}
+.rg-pdpl svg{flex:none;color:#5CC4A2}
+.rg-cr{display:flex;align-items:center;gap:10px;height:48px;margin:0 0 14px;padding:0 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+.rg-cr input{flex:1;min-width:0;border:0;background:transparent;color:inherit;font:inherit;font-size:15px;outline:none}
+.rg-cr.bad{border-color:#E57373}
+.rg-done{display:flex;gap:10px;align-items:center;margin-top:12px;padding:12px 14px;border-radius:16px;background:rgba(92,196,162,.14);color:#6FD3B1;font-weight:600;font-size:14px}
+html[data-bayan="light"] .rg-done{color:#0F7A60}
+.rg-grp{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:20px;border:1px solid var(--line);margin-bottom:12px}
+.rg-grp b{font-size:20px;font-family:var(--display);font-weight:500}.rg-grp p{margin:2px 0 0;font-size:14px;opacity:.75}
+.rg-plan .rg-price{display:block;margin-top:8px;font-weight:600;font-size:15px;color:#5CC4A2}
+html[data-bayan="light"] .rg-plan .rg-price{color:#0F7A60}
+.rg-note{margin:12px 0 0;font-size:13px;opacity:.7}
+.pf-acct{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:10px 0 0}
+.pf-acct span{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;font-size:12px;border:1px solid var(--line)}
+.pf-acct .ok{border-color:rgba(92,196,162,.5);color:#6FD3B1}
+html[data-bayan="light"] .pf-acct .ok{color:#0F7A60}
+.pf-acct button{padding:3px 10px;border-radius:999px;border:0;background:transparent;color:var(--gold);font:inherit;font-size:12px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:760px){.rg-grid,.rg-two{grid-template-columns:1fr}.rg-top{flex-wrap:wrap}.rg-step{order:3;width:100%}.rg-code b{font-size:24px}}
 /* v194: profile on phones = settings list, each item opens its own page */
 .pf-back{display:none}
 @media (max-width:760px){
@@ -6792,4 +6882,148 @@ new MutationObserver(function(){var p=B.classList.contains('page-open');if(p&&!w
 function wrapT(){var f=document.querySelector('.fanp');if(!f||!f.classList.contains('open')||innerWidth<701)return;var rtl=document.documentElement.dir==='rtl';[].forEach.call(f.querySelectorAll('.fi .fl'),function(l){l.classList.remove('flw');['max-width','white-space','border-radius','line-height','overflow','text-overflow'].forEach(function(p){l.style.removeProperty(p)});var c=l.parentElement.getBoundingClientRect(),av=rtl?(innerWidth-12-(c.right+14)):(c.left-14-12),w=l.getBoundingClientRect().width;if(w>av&&av>110){l.classList.add('flw');var st=l.style;st.setProperty('max-width',Math.floor(av)+'px','important');st.setProperty('white-space','normal','important');st.setProperty('border-radius','14px','important');st.setProperty('line-height','1.3','important');st.setProperty('overflow','visible','important');st.setProperty('text-overflow','clip','important')}})}
 var wt=0;new MutationObserver(function(){var f=document.querySelector('.fanp');clearTimeout(wt);if(f&&f.classList.contains('open'))wt=setTimeout(wrapT,700);else if(f)[].forEach.call(f.querySelectorAll('.fl.flw'),function(l){l.classList.remove('flw');['max-width','white-space','border-radius','line-height','overflow','text-overflow'].forEach(function(p){l.style.removeProperty(p)})})}).observe(document.querySelector('.fanp')||document.body,{attributes:true,attributeFilter:['class']});
 addEventListener('resize',function(){fit();clearTimeout(wt);wt=setTimeout(wrapT,200)});})();</script>
+<script>
+/* v211: registration by user type, Nafath identity check and package (DGA deck steps 1–3) */
+;(function(){
+var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function ar(){return document.documentElement.getAttribute('dir')==='rtl'}
+function L(a){return ar()?a[1]:a[0]}
+function ad(n){return ar()?String(n).replace(/\d/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[d]}):String(n)}
+var SV='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+var IC={home:SV+'<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>',
+ cap:SV+'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>',
+ tv:SV+'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M10 8l4 2-4 2z"/></svg>',
+ brief:SV+'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>',
+ id:SV+'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.200"/><path d="M5.500 16c.8-1.700 2-2.500 3.500-2.500s2.700.8 3.500 2.500M14 10h4M14 13h3"/></svg>',
+ gift:SV+'<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12"/><path d="M12 8C10 4 6.500 5 7.500 7.500 8 8.500 12 8 12 8zM12 8c2-4 5.500-3 4.500-.5C16 8.500 12 8 12 8z"/></svg>',
+ book:SV+'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg>',
+ users:SV+'<circle cx="9" cy="8" r="3.500"/><path d="M3 20c0-3.300 2.700-6 6-6s6 2.700 6 6"/><path d="M16 5.500a3 3 0 0 1 0 5.500M18 14c2 .7 3 2.800 3 6"/></svg>',
+ shield:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.500-3.400 8-8 9-4.600-1-8-4.500-8-9V6z"/></svg>',
+ check:'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>',
+ x:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>'};
+/* Text below follows the DGA deck word for word (Arabic); English is a faithful translation. */
+var TYPES=[
+ {id:'citizen',ic:'home',v:0,level:0,group:'ind',plan:'free',t:['Citizen or resident','مواطن أو مقيم'],tag:['Always free','مجاني دائمًا'],d:['Browse the Kingdom’s memory, search and preview for free — and share your story in the national archive.','تصفح ذاكرة المملكة، ابحث وعاين مجانًا — وشارك قصتك في الأرشيف الوطني.'],n:['Search and preview with no credits, always','البحث والمعاينة بلا رصيد، دائمًا']},
+ {id:'researcher',ic:'cap',v:0,level:0,group:'ind',plan:'paid',t:['Individual researcher','باحث فرد'],tag:['Prepaid credits','أرصدة مسبقة'],d:['Advanced search in manuscripts, photos and recordings, with high-resolution downloads using credits.','بحث متقدم في المخطوطات والصور والتسجيلات، وتحميل بدقة عالية بأرصدة.'],n:['Free preview of every result before buying','معاينة مجانية لكل نتيجة قبل الشراء']},
+ {id:'media',ic:'tv',v:1,level:1,group:'co',plan:'business',t:['Media or events company','منشأة إعلامية أو فعاليات'],tag:['Packages','باقات'],d:['Commercial use, publishing, broadcast and public exhibitions — with clear licences and published prices.','استخدام تجاري ونشر وبث ومعارض عامة — بتراخيص واضحة وأسعار معلنة.'],n:['The package is the unit of purchase — no meters','الباقة وحدة الشراء — لا عدادات']},
+ {id:'entity',ic:'brief',v:1,level:2,group:'co',plan:'business',t:['Organisation or platform','جهة أو منصة'],tag:['Partnerships','شراكات'],d:['Programmatic access to the memory through APIs, with broad licensing for organisations and platforms.','وصول برمجي للذاكرة عبر واجهات برمجية، وترخيص واسع للجهات والمنصات.'],n:['Access through annual licences or deals','وصول بتراخيص سنوية أو صفقات']}];
+var LEVELS=[
+ {t:['Light level','المستوى الخفيف'],w:['For citizens and individual researchers','للمواطن والباحث الفردي'],d:['Mobile or email — free browsing and preview, raising the limit with a single Nafath check.','موبايل أو بريد إلكتروني — تصفح ومعاينة مجانية، ورفع الحد بتحقق نفاذ واحد.']},
+ {t:['Standard level','المستوى المعياري'],w:['For commercial and media companies','للمنشآت التجارية والإعلامية'],d:['Full Nafath verification + linking the commercial registration when needed — for commercial use.','تحقق كامل عبر نفاذ + ربط السجل التجاري عند الحاجة — للاستخدام التجاري.']},
+ {t:['Enhanced level','المستوى المعزز'],w:['For major licensing deals and platforms','لصفقات التراخيص الكبرى والمنصات'],d:['Wathq + sanctions and beneficial-owner screening before the contract is signed.','وثاق + فحص العقوبات والأشخاص ذوي الصفة قبل إبرام العقد.']}];
+var GROUPS={ind:{ic:'id',t:['Individuals','أفراد'],d:['Citizens and residents, researchers and readers from inside and outside the Kingdom','مواطنين ومقيمين، باحثين وقرّاء من داخل المملكة وخارجها']},
+ co:{ic:'brief',t:['Companies','شركات'],d:['Local and global companies in media, culture and marketing','شركات محلية وعالمية في مجالات الإعلام والثقافة والتسويق']}};
+var PLANS={ind:[{id:'free',ic:'gift',t:['Free package','الباقة المجانية'],p:['SAR 0 / forever','٠ ريال / دائمًا'],d:['Browsing, search and free preview of all the platform’s material.','تتيح مزايا التصفح والبحث والمعاينة المجانية لجميع مواد المنصة']},
+  {id:'paid',ic:'book',t:['Paid subscription','الاشتراك المدفوع'],p:['SAR 600 / month','٦٠٠ ريال / شهريًا'],d:['Lets individuals download the platform’s material in high quality in exchange for credit points.','تسمح للأفراد تحميل المواد المتاحة عبر المنصة بجودة عالية مقابل نقاط من الرصيد']}],
+ co:[{id:'free',ic:'gift',t:['Free package','الباقة المجانية'],p:['SAR 0 / forever','٠ ريال / دائمًا'],d:['Browsing, search and free preview of all the platform’s material.','تتيح مزايا التصفح والبحث والمعاينة المجانية لجميع مواد المنصة']},
+  {id:'business',ic:'brief',t:['Business package','الباقة التجارية'],p:['SAR 10,000 / month','١٠٠٠٠ ريال / شهريًا'],d:['Lets companies download and use the platform’s content commercially, such as advertising material and events.','تتيح للشركات تحميل واستخدام محتويات المنصة في الاستخدام التجاري مثل المواد الإعلانية والفعاليات']}]};
+var STEPN=[['Registration','التسجيل'],['Verification','التحقق'],['Subscription','الاشتراك']];
+
+function acct(){try{return JSON.parse(localStorage.getItem('mon-account')||'null')}catch(e){return null}}
+function save(a){try{localStorage.setItem('mon-account',JSON.stringify(a))}catch(e){}}
+window.monAccount={get:acct,types:TYPES,levels:LEVELS,plans:PLANS,L:L};
+
+var R=document.createElement('section');R.className='rg';R.id='reg';R.hidden=true;R.setAttribute('role','dialog');R.setAttribute('aria-modal','true');
+R.innerHTML='<div class="rg-bg" aria-hidden="true"></div><div class="rg-wrap"><div class="rg-card"><div class="rg-top"><div class="rg-brand"><img class="brand-logo" src="img/logo-ar-dark.svg" alt="ذاكرة وطن · Memory of a Nation"><span id="rgPlat"></span></div><div class="rg-step" id="rgStep"></div><button type="button" class="rg-x" id="rgX">'+IC.x+'</button></div><div class="rg-body" id="rgBody"></div><div class="rg-foot"><p id="rgFootNote"></p><div class="rg-btns"><button type="button" class="rg-back" id="rgBack"></button><button type="button" class="rg-go" id="rgGo"></button></div></div></div></div>';
+document.body.appendChild(R);
+var $=function(id){return document.getElementById(id)};
+var st={step:0,type:null,plan:null,verified:false,busy:false,cr:'',code:'',mode:'signup'};
+var pending=null,lastFocus=null,timers=[];
+function later(f,ms){timers.push(setTimeout(f,rm?0:ms))}
+function clearT(){timers.forEach(clearTimeout);timers=[]}
+function T(){return TYPES.filter(function(x){return x.id===st.type})[0]}
+
+function render(){
+ var t=T();R.setAttribute('aria-label',L(['Create your account','إنشاء حسابك']));
+ $('rgPlat').textContent=L(['· The Kingdom’s memory platform','· منصة ذاكرة المملكة']);
+ $('rgX').setAttribute('aria-label',L(['Close','إغلاق']));
+ var dots='';for(var i=0;i<7;i++)dots+='<i class="'+(i<=st.step?'on':'')+'"></i>';
+ $('rgStep').innerHTML='<span>'+L(['Step ','الخطوة '])+ad(st.step+1)+L([' of ',' من '])+ad(7)+' — '+L(STEPN[st.step])+'</span><span class="rg-dots" aria-hidden="true">'+dots+'</span>';
+ var B=$('rgBody'),h='';
+ if(st.step===0){
+  h='<p class="rg-k">'+L(['Choose your identity','اختر هويتك'])+'</p><h2 class="rg-h" id="rgH">'+L(['Welcome to the Kingdom’s memory','مرحبًا بك في ذاكرة المملكة'])+'</h2><p class="rg-s">'+L(['We build your experience on your intent: who is asking for the Kingdom’s memory, and how they want to use it','نبني تجربتك على نيتك: من يطلب ذاكرة المملكة، وكيف يريد استخدامها'])+'</p><div class="rg-grid" role="radiogroup" aria-labelledby="rgH">';
+  TYPES.forEach(function(x){h+='<button type="button" class="rg-opt" role="radio" data-type="'+x.id+'" aria-checked="'+(st.type===x.id)+'"><span class="rg-ic'+(x.v?' v':'')+'">'+IC[x.ic]+'</span><span><b>'+L(x.t)+'</b><span class="rg-tag'+(x.v?' v':'')+'">'+L(x.tag)+'</span><p>'+L(x.d)+'</p><small>'+L(x.n)+'</small></span></button>'});
+  h+='</div>';
+  $('rgFootNote').textContent=L(['You can change your identity later from your account settings','يمكنك تعديل هويتك لاحقًا من إعدادات حسابك']);
+  $('rgGo').textContent=L(['Continue','متابعة']);$('rgGo').disabled=!st.type;$('rgBack').hidden=true;
+ }else if(st.step===1){
+  var lv=t.level;
+  h='<p class="rg-k">'+L(['By intended use — not by spend','حسب نية الاستخدام — لا حجم الصرف'])+'</p><h2 class="rg-h">'+L(['Identity verification — through the national rails','التحقق من الهوية — عبر السكك الوطنية'])+'</h2><p class="rg-s">'+L(['Three verification levels, all through Nafath — your data never passes through any outside party','ثلاثة مستويات تحقق، كلها عبر نفاذ — لا تمر بياناتك بأي جهة خارجية'])+'</p><div class="rg-two"><div class="rg-box rg-hl"><div class="rg-nf"><span class="rg-ic">'+IC.id+'</span><span><b>'+L(['Nafath — National Digital Identity','نفاذ — الهوية الرقمية الوطنية'])+'</b><small>'+L(['Unified verification through the national Nafath platform','التحقق الموحد عبر منصة نفاذ الوطنية'])+'</small></span></div>';
+  h+='<div class="rg-code'+(st.busy?' wait':'')+'"><span>'+L(['Verification request number','رقم طلب التحقق'])+'</span><b dir="ltr">'+ad(st.code)+'</b></div>';
+  if(lv>0)h+='<label class="rg-cr" id="rgCrL"><input id="rgCr" inputmode="numeric" maxlength="10" dir="ltr" value="'+st.cr+'" placeholder="'+L(['Commercial registration number (10 digits)','رقم السجل التجاري (١٠ أرقام)'])+'" aria-label="'+L(['Commercial registration number','رقم السجل التجاري'])+'"'+(st.verified||st.busy?' disabled':'')+'></label>';
+  var chk=[['Enter the number in the Nafath app on your phone','أدخل الرقم في تطبيق نفاذ على جوالك'],['Approve sharing your basic identity data','وافق على مشاركة بيانات الهوية الأساسية'],['Verification returns within seconds — and your account is ready','يعود التحقق خلال ثوانٍ — وحسابك جاهز']];
+  if(lv>0)chk.splice(2,0,['Commercial registration linked','ربط السجل التجاري']);
+  if(lv>1)chk.splice(3,0,['Wathq, sanctions and beneficial-owner screening','فحص وثاق والعقوبات والأشخاص ذوي الصفة']);
+  h+='<ul class="rg-chk" id="rgChk" aria-live="polite">';chk.forEach(function(c,i){h+='<li data-i="'+i+'" class="'+(st.verified?'ok':'')+'"><i>'+(st.verified?IC.check:'')+'</i>'+L(c)+'</li>'});h+='</ul>';
+  if(st.verified)h+='<div class="rg-done" role="status">'+IC.shield+L(['Verified through Nafath — ','تم التحقق عبر نفاذ — '])+L(LEVELS[lv].t)+'</div>';
+  h+='</div><div><div class="rg-box">';
+  LEVELS.forEach(function(x,i){h+='<div class="rg-lv'+(i===lv?' on':'')+'"><span>'+ad(i+1)+'</span><div><b>'+L(x.t)+'</b>'+(i===lv?'<span class="rg-you">'+L(['Your level','مستواك'])+'</span>':'')+'<em>'+L(x.w)+'</em><p>'+L(x.d)+'</p></div></div>'});
+  h+='</div><div class="rg-pdpl">'+IC.shield+'<span>'+L(['Your data is handled under the Personal Data Protection Law — retention limited in purpose and time','بياناتك وفق نظام حماية البيانات الشخصية — احتفاظ محدود الغرض والمدة'])+'</span></div></div></div>';
+  $('rgFootNote').textContent=L(['Verification through the national rails ≈ SAR 4.1 million over five years, under 2% of costs','التحقق عبر السكك الوطنية ≈ ٤٫١ مليون ريال على خمس سنوات، أقل من ٢٪ من النفقات']);
+  $('rgGo').textContent=st.verified?L(['Continue','متابعة']):st.busy?L(['Waiting for Nafath…','بانتظار نفاذ…']):L(['Verify now','تحقق الآن']);$('rgGo').disabled=st.busy;
+  $('rgBack').hidden=false;$('rgBack').textContent=L(['Back','رجوع']);$('rgBack').disabled=st.busy;
+ }else{
+  var g=GROUPS[t.group];
+  h='<p class="rg-k">'+L(['Choose your package','اختر باقتك'])+'</p><h2 class="rg-h" id="rgH">'+L(['Subscription: free or paid','الاشتراك: مجانية أو مدفوعة'])+'</h2><p class="rg-s">'+L(['Search and preview stay free on every package. You can upgrade at any time.','البحث والمعاينة مجانيان في كل الباقات، ويمكنك الترقية في أي وقت.'])+'</p>';
+  h+='<div class="rg-grp"><span class="rg-ic'+(t.group==='co'?' v':'')+'">'+IC[g.ic]+'</span><div><b>'+L(g.t)+'</b><p>'+L(g.d)+'</p></div></div><div class="rg-grid" role="radiogroup" aria-labelledby="rgH">';
+  PLANS[t.group].forEach(function(x){h+='<button type="button" class="rg-opt rg-plan" role="radio" data-plan="'+x.id+'" aria-checked="'+(st.plan===x.id)+'"><span class="rg-ic'+(x.id==='free'?'':' v')+'">'+IC[x.ic]+'</span><span><b>'+L(x.t)+'</b><p>'+L(x.d)+'</p><span class="rg-price">'+L(x.p)+'</span></span></button>'});
+  h+='</div>';
+  if(t.id==='entity')h+='<p class="rg-note">'+L(['Annual licences, API access and larger deals are arranged with the partnerships team after sign-up.','التراخيص السنوية والوصول البرمجي والصفقات الكبرى تُرتَّب مع فريق الشراكات بعد التسجيل.'])+'</p>';
+  $('rgFootNote').textContent=L(['Registration in minutes — mobile or email, and the experience is built on your intent from the first moment.','التسجيل خلال دقائق — موبايل أو بريد إلكتروني، وتُبنى التجربة على نية الاستخدام من أول لحظة.']);
+  $('rgGo').textContent=st.mode==='edit'?L(['Save','حفظ']):L(['Create account','إنشاء الحساب']);$('rgGo').disabled=!st.plan;
+  $('rgBack').hidden=false;$('rgBack').textContent=L(['Back','رجوع']);$('rgBack').disabled=false;
+ }
+ B.innerHTML=h;
+}
+$('rgBody').addEventListener('click',function(e){var o=e.target.closest('.rg-opt');if(!o)return;
+ if(o.dataset.type){if(st.type!==o.dataset.type){st.type=o.dataset.type;st.verified=false;st.plan=null;st.cr=''}render();var b=$('rgBody').querySelector('[data-type="'+st.type+'"]');b&&b.focus()}
+ if(o.dataset.plan){st.plan=o.dataset.plan;render();var c=$('rgBody').querySelector('[data-plan="'+st.plan+'"]');c&&c.focus()}});
+$('rgBody').addEventListener('keydown',function(e){var o=e.target.closest('.rg-opt');if(!o||!/^Arrow/.test(e.key))return;var all=[].slice.call(o.parentNode.querySelectorAll('.rg-opt')),i=all.indexOf(o),f=(e.key==='ArrowDown'||e.key===(ar()?'ArrowLeft':'ArrowRight'))?1:-1;var n=all[(i+f+all.length)%all.length];e.preventDefault();n.click()});
+$('rgBody').addEventListener('input',function(e){if(e.target.id==='rgCr'){e.target.value=e.target.value.replace(/[^\d٠-٩]/g,'').replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)});st.cr=e.target.value;$('rgCrL').classList.remove('bad')}});
+function verify(){var t=T();
+ if(t.level>0&&!/^\d{10}$/.test(st.cr)){var l=$('rgCrL');l.classList.add('bad');$('rgCr').focus();say(L(['Enter the 10-digit commercial registration number.','أدخل رقم السجل التجاري المكوّن من ١٠ أرقام.']));return}
+ st.busy=true;render();var items=[].slice.call($('rgChk').children),i=0;
+ (function next(){if(i>0){items[i-1].className='ok';items[i-1].firstChild.innerHTML=IC.check}
+  if(i>=items.length){st.busy=false;st.verified=true;render();say(L(['Identity verified through Nafath','تم التحقق من هويتك عبر نفاذ']));$('rgGo').focus();return}
+  items[i].className='run';i++;later(next,900)})();
+}
+function say(t){if(typeof window.say==='function')window.say(t);else{var lr=document.getElementById('srLive');if(lr)lr.textContent=t}}
+function finish(){var t=T(),a={type:st.type,level:t.level,plan:st.plan,verified:true,cr:st.cr||null,at:Date.now()};save(a);
+ if(st.mode==='edit'){close();say(L(['Account updated','تم تحديث الحساب']));applyProfile();return}
+ close(true);if(pending){pending.go=true;pending.form.requestSubmit()}}
+$('rgGo').addEventListener('click',function(){
+ if(st.step===0){if(!st.type)return;st.step=1;st.code=String(100000+Math.floor(Math.random()*900000));if(!st.plan)st.plan=T().plan;render();$('rgGo').focus()}
+ else if(st.step===1){if(st.verified){st.step=2;render();var c=$('rgBody').querySelector('[aria-checked="true"]');(c||$('rgGo')).focus()}else verify()}
+ else if(st.plan)finish()});
+$('rgBack').addEventListener('click',function(){if(st.busy)return;st.step=Math.max(0,st.step-1);render();$('rgGo').focus()});
+function open(mode){clearT();var a=acct();st={step:0,type:mode==='edit'&&a?a.type:null,plan:mode==='edit'&&a?a.plan:null,verified:false,busy:false,cr:mode==='edit'&&a&&a.cr||'',code:'',mode:mode||'signup'};
+ lastFocus=document.activeElement;render();R.hidden=false;document.body.classList.add('reg-open');void R.offsetWidth;R.classList.add('go');R.scrollTop=0;
+ setTimeout(function(){var f=$('rgBody').querySelector('.rg-opt');f&&f.focus()},rm?0:250)}
+function close(keep){clearT();st.busy=false;R.classList.remove('go');document.body.classList.remove('reg-open');setTimeout(function(){R.hidden=true},rm?0:300);if(!keep&&lastFocus&&lastFocus.focus)lastFocus.focus()}
+$('rgX').addEventListener('click',function(){close();pending=null});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!R.hidden){e.stopImmediatePropagation();close();pending=null}
+ if(e.key==='Tab'&&!R.hidden){var f=[].slice.call(R.querySelectorAll('button:not([disabled]):not([hidden]),input:not([disabled])')).filter(function(x){return x.offsetParent});if(!f.length)return;var a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}},true);
+new MutationObserver(function(){if(!R.hidden)render();applyProfile()}).observe(document.documentElement,{attributes:true,attributeFilter:['dir','lang']});
+
+/* Sign-up form: after the email/password checks pass, run the three steps, then let the original handler create the account. */
+var F=$('auForm');
+F.addEventListener('submit',function(e){
+ var up=$('auT2')&&$('auT2').getAttribute('aria-selected')==='true';if(!up)return;
+ if(pending&&pending.go){pending=null;return}
+ var nm=$('auName'),mail=$('auMail'),pass=$('auPass'),terms=$('auTerms');
+ if(!nm.value.trim()||!/^\S+@\S+\.\S+$/.test(mail.value.trim())||pass.value.length<8||!(terms&&terms.checked))return;
+ e.preventDefault();e.stopImmediatePropagation();pending={form:F,go:false};open('signup')},true);
+
+/* Profile: account type, Nafath level and package, with a way to change them. */
+function applyProfile(){var h=$('pfJoin');if(!h)return;var p=h.closest('.pf-jn');if(!p)return;var box=$('pfAcct');
+ if(!box){box=document.createElement('p');box.className='pf-acct';box.id='pfAcct';p.parentNode.insertBefore(box,p.nextSibling)}
+ var a=acct()||{type:'citizen',level:0,plan:'free',verified:false},t=TYPES.filter(function(x){return x.id===a.type})[0]||TYPES[0];
+ var pl=(PLANS[t.group].filter(function(x){return x.id===a.plan})[0]||PLANS[t.group][0]);
+ box.innerHTML='<span>'+L(t.t)+'</span><span class="'+(a.verified?'ok':'')+'">'+(a.verified?IC.check+' '+L(['Nafath verified','موثّق عبر نفاذ'])+' · '+L(LEVELS[a.level].t):L(['Not verified yet','لم يتم التحقق بعد']))+'</span><span>'+L(pl.t)+'</span><button type="button" id="pfAcctEdit">'+L(a.verified?['Change','تعديل']:['Verify with Nafath','تحقق عبر نفاذ'])+'</button>'}
+document.addEventListener('click',function(e){if(e.target.closest('#pfAcctEdit'))open('edit')});
+if(window.bayanProfile&&window.bayanProfile.open){var po=window.bayanProfile.open;window.bayanProfile.open=function(){var r=po.apply(this,arguments);setTimeout(applyProfile,0);return r}}
+setTimeout(applyProfile,0);
+window.monRegister=open;
+})();
+</script>
 </body></html>
