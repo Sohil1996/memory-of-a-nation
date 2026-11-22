@@ -4,3 +4,4 @@ Textures: patterned_clay_plaster, clay_plaster, clay_block_wall, marble_01, medi
 Sky: qwantani_dusk_2 (puresky)
 Calligraphy fonts: Aref Ruqaa (Ruq'ah), Reem Kufi (Kufi), Amiri — SIL Open Font License 1.1, via Fontsource
 Flag of the Kingdom of Saudi Arabia: public-domain SVG
+Additional CC0 models from Poly Haven (https://polyhaven.com), optimised for the web: jug_01, wooden_bucket_01, carved_wooden_plate, antique_ceramic_vase_01, vintage_oil_lamp, book_encyclopedia_set_01, magnifying_glass_01, brass_candleholders, seadogs_compass, lambis_shell, Camera_01, brass_vase_03, chandelier_02, round_spectacles
