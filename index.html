@@ -4422,6 +4422,66 @@ html[data-bayan="light"] .subtabs button[aria-selected="true"]{background:rgba(1
 .p2-topics h3{margin:0 0 4px;font:500 20px var(--display)}.p2-topics p{margin:0 0 14px;font-size:13px;opacity:.7}
 html:not([data-bayan="light"]) .pgov .p2-topics{background:rgba(8,20,17,.56);-webkit-backdrop-filter:blur(26px) saturate(1.2);backdrop-filter:blur(26px) saturate(1.2)}
 @media (max-width:760px){.pfv-r{flex-wrap:wrap;gap:4px 12px}.pfv-r dt{width:100%}.subtabs button{flex:0 0 auto;padding:0 14px}}
+
+/* v214: conversation setup */
+body.duo-setup #duoChips,body.duo-setup #duoRef,body.duo-setup .dc-h{display:none!important}
+.su2{margin:10px 0 6px;padding:20px 22px 16px;border-radius:24px;border:1px solid rgba(255,255,255,.12);background:rgba(8,20,17,.66);-webkit-backdrop-filter:blur(24px) saturate(1.2);backdrop-filter:blur(24px) saturate(1.2);box-shadow:0 18px 50px rgba(0,0,0,.35);width:100%;box-sizing:border-box;animation:su2In .35s ease both}
+@keyframes su2In{from{opacity:0;transform:translateY(8px)}}
+html[data-bayan="light"] .su2{background:rgba(255,255,255,.78);border-color:rgba(9,28,22,.12);box-shadow:0 18px 50px rgba(15,95,76,.12)}
+.su2-hd{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.su2-who{display:flex;align-items:center;gap:10px;min-width:0;flex:1}.su2-who>span:last-child{min-width:0}
+.su2-av{display:flex;flex:none}.su2-av img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid rgba(8,20,17,.9)}.su2-av img+img{margin-inline-start:-10px}
+.su2-who small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#E2C98D;font-weight:600}
+html[dir=rtl] .su2-who small{letter-spacing:0}
+html[data-bayan="light"] .su2-who small{color:#8A6A28}
+.su2-who b{display:block;font-size:13px;font-weight:500;opacity:.8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.su2-n{flex:none;font-size:12px;opacity:.75}
+.su2-bar{display:flex;gap:4px;margin:14px 0 18px}.su2-bar i{flex:1;height:4px;border-radius:99px;background:rgba(255,255,255,.12)}
+html[data-bayan="light"] .su2-bar i{background:rgba(9,28,22,.1)}
+.su2-bar i.d{background:#5CC4A2}.su2-bar i.c{background:#E2C98D}
+.su2-q{margin:0;font:500 22px/1.3 var(--display)}
+.su2-h{margin:4px 0 0;font-size:13px;opacity:.7}
+.su2-o{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.su2-op{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px 14px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:inherit;font:inherit;font-size:15px;text-align:start;cursor:pointer;transition:border-color .15s,background .15s}
+html[data-bayan="light"] .su2-op{background:rgba(255,255,255,.7);border-color:rgba(9,28,22,.14)}
+.su2-op:hover{border-color:rgba(226,201,141,.5)}
+.su2-op.alt span{opacity:.85}
+.su2-op[aria-checked="true"]{border-color:#E2C98D;background:rgba(226,201,141,.12)}
+.su2-op i{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,.22)}
+html[data-bayan="light"] .su2-op i{border-color:rgba(9,28,22,.2)}
+.su2-op[aria-checked="true"] i{background:#E2C98D;color:#091B16;border-color:#E2C98D}
+.su2-in input{width:100%;box-sizing:border-box;height:50px;margin-top:10px;padding:0 16px;border-radius:14px;border:1px solid rgba(226,201,141,.55);background:rgba(0,0,0,.22);color:inherit;font:inherit;font-size:15px;outline:none}
+html[data-bayan="light"] .su2-in input{background:#fff}
+.su2-in input:focus{box-shadow:0 0 0 3px rgba(226,201,141,.25)}
+.su2-f{display:flex;align-items:center;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08)}
+html[data-bayan="light"] .su2-f{border-top-color:rgba(9,28,22,.08)}
+.su2-sp{flex:1}
+.su2-back,.su2-skip{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px;border-radius:99px;border:1px solid rgba(255,255,255,.16);background:transparent;color:inherit;font:500 14px var(--sans);cursor:pointer}
+html[data-bayan="light"] .su2-back{border-color:rgba(9,28,22,.16)}
+.su2-skip{border-color:transparent;opacity:.75;text-decoration:underline;text-underline-offset:3px}
+.su2-back:disabled{opacity:.3;cursor:default}
+.su2-next,.su2-go{display:inline-flex;align-items:center;gap:6px;height:42px;padding:0 20px;border:0;border-radius:99px;background:#E2C98D;color:#091B16;font:600 14px var(--sans);cursor:pointer}
+.su2-next:disabled{opacity:.4;cursor:not-allowed}
+html[dir=rtl] .su2-fl{transform:scaleX(-1)}
+.su2-sum{margin:12px 0 0}
+.su2-sum div{display:flex;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.su2-sum dt{flex:1;font-size:13px;opacity:.7}.su2-sum dd{flex:1.2;margin:0;font-size:15px}
+.su2-ed{flex:none;border:0;background:transparent;color:#E2C98D;font:500 13px var(--sans);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+html[data-bayan="light"] .su2-ed{color:#8A6A28}
+.su2-scene{margin:10px auto;max-width:560px;padding:14px 18px;border-radius:18px;border:1px dashed rgba(226,201,141,.45);text-align:center}
+.su2-scene small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#E2C98D;font-weight:600}
+html[dir=rtl] .su2-scene small{letter-spacing:0}
+.su2-scene p{margin:4px 0 0;font:italic 500 17px/1.4 var(--display)}
+@media (max-width:760px){.su2-hd{flex-wrap:wrap}.su2-n{order:3;width:100%}.su2{padding:16px}.su2-o{grid-template-columns:1fr}.su2-q{font-size:19px}.su2-skip{padding:0 8px}}
+/* v214: Arabic slider fills from the right */
+html[dir=rtl] .p2-s input[type=range]{background:linear-gradient(270deg,#E2C98D var(--v,50%),rgba(255,255,255,.25) var(--v,50%))}
+html[dir=rtl][data-bayan="light"] .p2-s input[type=range]{background:linear-gradient(270deg,#AA8A45 var(--v,50%),rgba(14,36,30,.2) var(--v,50%))}
+/* v214: Personalization Reset below the content */
+.p2-foot{display:flex;justify-content:flex-end;margin-top:22px}
+/* v214: Data use rows as padded glass panels */
+.p2-u{display:grid;gap:10px;background:none!important;border:0!important;padding:0!important;box-shadow:none!important}
+.p2-u .p2-ur{padding:18px 20px!important;border-radius:20px!important;border:1px solid var(--line)!important;gap:16px}
+html[data-bayan="light"] .p2-u .p2-ur{background:rgba(255,255,255,.72)}
 /* v194: profile on phones = settings list, each item opens its own page */
 .pf-back{display:none}
 @media (max-width:760px){
@@ -5933,26 +5993,79 @@ var DSQ={en:{
  tone:["بأي نبرة يتحدثان؟",["دافئة وقريبة","درامية وشاعرية","بسيطة وعصرية","بلغة عصرهما"]],
  len:["ما طول الردود؟",["قصيرة ومركّزة","متوازنة","غنية ومفصّلة"]],
  ui:{t:"جهّز محادثتك",of:"من",skip:"تخطَّ الإعداد",back:"رجوع",go:"ابدأ المحادثة",sum:"إعدادك",with_:"تتحدث مع"}}};
-function duoSetQs(n){var L=DSQ[AR?'ar':'en'],a=n>1?L.two:L.one;return [a[0],a[1],L.tone,L.len]}
-function duoAfterPick(list){if(duoCfgDone||duoCustom||document.body.classList.contains('duo-custom')){duoIntros(list);return}duoSetupShow()}
-function duoShape(t){if(!duoCfg||document.body.classList.contains('duo-custom'))return t;var l=duoCfg.len;if(l===0){var m=/^(.+?[.!؟?])(\s|$)/.exec(t);if(m&&m[1].length>30)t=m[1]}return t}
-function duoSetupShow(){var old=document.getElementById('duoSU');var names=function(){return duoSel.map(duoById).filter(Boolean).map(function(c){return c.n})};
- if(old){duoSetupHead();return}
- var e=document.getElementById('duoEmpty');if(e)e.remove();
- var box=document.createElement('div');box.id='duoSU';box.className='cv-msg a duo-su';box.innerHTML='<div class="abody"><div class="bub glass"><div class="su-h"><b class="su-t"></b><span class="su-n"></span></div><div class="su-w"></div><p class="su-q" dir="auto"></p><div class="su-o" role="group"></div><div class="su-f"><button type="button" class="su-b">‹</button><button type="button" class="su-s"></button></div></div></div>';
- duoThread.appendChild(box);box._i=0;box._a=[];duoSetupDraw();duoBottom()}
-function duoSetupHead(){var box=document.getElementById('duoSU');if(!box)return;var L=DSQ[AR?'ar':'en'].ui;box.querySelector('.su-w').textContent=L.with_+' '+duoSel.map(duoById).filter(Boolean).map(function(c){return c.n}).join((document.documentElement.dir==='rtl'?' و':' & '));box.querySelector('.su-w').dir='auto'}
-function duoSetupDraw(){var box=document.getElementById('duoSU');if(!box)return;var L=DSQ[AR?'ar':'en'].ui,qs=duoSetQs(duoSel.length),i=box._i;
- box.querySelector('.su-t').textContent=L.t;
- duoSetupHead();
- if(i>=qs.length){var sm=qs.map(function(q,n){return q[1][box._a[n]]}).filter(Boolean);box.querySelector('.su-n').textContent='';box.querySelector('.su-q').textContent=L.sum;var o=box.querySelector('.su-o');o.innerHTML='';var chips=document.createElement('div');chips.className='su-sum';sm.forEach(function(x){var c=document.createElement('span');c.textContent=x;chips.appendChild(c)});o.appendChild(chips);var go=document.createElement('button');go.type='button';go.className='su-go';go.textContent=L.go;go.addEventListener('click',function(){duoSetupDone(box._a)});o.appendChild(go);box.querySelector('.su-s').hidden=true;box.querySelector('.su-b').hidden=false;box.querySelector('.su-b').onclick=function(){box._i=qs.length-1;duoSetupDraw()};return}
- box.querySelector('.su-n').textContent=(i+1)+' '+L.of+' '+qs.length;box.querySelector('.su-q').textContent=qs[i][0];
- var o2=box.querySelector('.su-o');o2.innerHTML='';qs[i][1].forEach(function(t,n){var b=document.createElement('button');b.type='button';b.className='su-op'+(box._a[i]===n?' on':'');b.innerHTML='<i></i><span dir="auto"></span>';b.firstChild.textContent=String.fromCharCode(65+n);b.lastChild.textContent=t;b.addEventListener('click',function(){box._a[i]=n;box._i=i+1;b.classList.add('on');setTimeout(duoSetupDraw,rm?0:220)});o2.appendChild(b)});
- var bb=box.querySelector('.su-b'),sk=box.querySelector('.su-s');bb.hidden=i===0;bb.onclick=function(){box._i=Math.max(0,box._i-1);duoSetupDraw()};sk.hidden=false;sk.textContent=L.skip;sk.onclick=function(){duoSetupDone([])};
- duoBottom()}
-function duoSetupDone(a){var box=document.getElementById('duoSU');if(box)box.remove();duoCfg={style:a[0],focus:a[1],tone:a[2],len:a[3]===undefined?1:a[3]};duoCfgDone=true;var list=duoSel.map(duoById).filter(Boolean);
- if(a.length){var qs=duoSetQs(list.length),sm=qs.map(function(q,n){return q[1][a[n]]}).filter(Boolean),nt=document.createElement('div');nt.className='hist-note';nt.textContent=sm.join(' · ');nt.dir='auto';duoThread.appendChild(nt)}
- duoIntros(list)}
+/* v214: conversation setup — clear steps, Other on every question; duos also set the scene (book only), who starts and the number of turns */
+var duoMode='book',duoPend=null,duoNeed=[];
+function suL(e,a){return AR?a:e}
+function suN(c){if(!c)return '';var t=AR&&typeof trA==='function'&&trA(c.n);return t||c.n}
+var SU_SCENES=[['A quiet majlis after the evening prayer','مجلس هادئ بعد صلاة العشاء'],['A desert camp under the stars','مخيّم في الصحراء تحت النجوم'],['A busy market at dawn','سوق مزدحم عند الفجر'],['An old library by candlelight','مكتبة قديمة على ضوء الشموع'],['A long road between two cities','طريق طويل بين مدينتين']];
+function duoSetQs(n){var D=DSQ[AR?'ar':'en'],cs=duoSel.map(duoById).filter(Boolean),O=function(a){return a.map(function(t,i){return {v:i,t:t}})},Q=[];
+ if(n<2){Q.push({id:'style',q:D.one[0][0],o:O(D.one[0][1])});Q.push({id:'focus',q:D.one[1][0],o:O(D.one[1][1])})}
+ else{
+  Q.push({id:'rel',q:D.two[0][0],o:O(D.two[0][1])});
+  if(duoMode!=='home')Q.push({id:'scene',q:suL('Set the scene','المشهد'),h:suL('Where and when does this conversation take place?','أين ومتى تدور هذه المحادثة؟'),o:[{v:'ai',t:suL('Let AI decide','دع الذكاء الاصطناعي يقرّر')},{v:'me',t:suL('Let me decide','دعني أقرّر'),input:suL('Describe the scene, e.g. “A desert camp at night, waiting for news”','صِف المشهد، مثل: «مخيّم في الصحراء ليلًا بانتظار الأخبار»')}],noOther:1});
+  Q.push({id:'start',q:suL('Who speaks first?','من يبدأ الحديث؟'),o:[{v:0,t:suN(cs[0])},{v:1,t:suN(cs[1])},{v:'ai',t:suL('Let AI decide','دع الذكاء الاصطناعي يقرّر')}]});
+  Q.push({id:'turns',q:suL('How many turns should they take each time?','كم دورًا يتبادلان في كل مرة؟'),h:suL('One turn is one message from one character.','الدور رسالة واحدة من شخصية واحدة.'),o:[{v:2,t:suL('2 turns — one each','دوران — رسالة لكلٍّ منهما')},{v:4,t:suL('4 turns','٤ أدوار')},{v:6,t:suL('6 turns','٦ أدوار')}],num:1});
+ }
+ Q.push({id:'tone',q:D.tone[0],o:O(D.tone[1])});Q.push({id:'len',q:D.len[0],o:O(D.len[1])});return Q}
+function suOpts(q){var o=q.o.slice();if(!q.noOther)o.push({v:'other',t:suL('Other…','أخرى…'),input:q.num?suL('Type a number from 1 to 10','اكتب رقمًا من ١ إلى ١٠'):suL('Type your own answer','اكتب إجابتك')});return o}
+function suAns(q,a){if(!a)return '—';var o=suOpts(q)[a.k];if(!o)return '—';return o.input?(a.txt||'').trim():o.t}
+function suOk(q,a){if(!a)return false;var o=suOpts(q)[a.k];if(!o)return false;if(!o.input)return true;var t=(a.txt||'').trim();if(!t)return false;if(q.num&&o.v==='other'){var n=+t.replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)});return n>=1&&n<=10&&Math.floor(n)===n}return true}
+function duoAfterPick(list){if(duoCfgDone&&duoSel.length===2&&duoCfg&&!('rel' in duoCfg)&&!duoCustom)duoCfgDone=false;
+ if(duoCfgDone||document.body.classList.contains('duo-custom')&&!duoPend){duoIntros(list);return}
+ (list||[]).forEach(function(c){if(c&&duoNeed.indexOf(c)<0)duoNeed.push(c)});duoSetupShow()}
+function duoShape(t){if(!duoCfg)return t;var l=duoCfg.len;if(l===0){var m=/^(.+?[.!؟?])(\s|$)/.exec(t);if(m&&m[1].length>30)t=m[1]}return t}
+function duoOrder(cs){return cs.length===2&&duoCfg&&duoCfg.start===1?[cs[1],cs[0]]:cs}
+function duoSeq(cs,topic,n){var TOP=['ambition','love','trust','fate'],N=cs.length<2?1:Math.max(1,Math.min(10,duoCfg&&duoCfg.turns||2)),out=[];
+ var GEN=[['I hear you, {o}. Where I come from, that question weighs differently.','أسمعك يا {o}. من حيث أتيت، لهذا السؤال وزن مختلف.'],['{o}, would you choose the same if the story were yours?','يا {o}، هل كنت ستختار الشيء نفسه لو كانت الحكاية حكايتك؟'],['Then let me say it plainly: some things are earned slowly and lost in a breath.','إذن دعني أقولها بوضوح: بعض الأشياء تُكسب ببطء وتضيع في لحظة.'],['Perhaps we agree more than it seems, {o}.','ربما نتفق أكثر مما يبدو يا {o}.'],['That is the part people forget — the cost comes later.','هذا ما ينساه الناس — الثمن يأتي لاحقًا.'],['Tell me what you would have done, {o}, and I will tell you if I believe it.','قل لي ماذا كنت ستفعل يا {o}، وسأخبرك إن كنت أصدّقك.']];
+ for(var j=0;j<N;j++){var c=cs[j%cs.length],o=cs[(j+1)%cs.length],r=Math.floor(j/cs.length),tp=r===0?topic:TOP[(Math.max(0,TOP.indexOf(topic))+r)%4],t=duoLine(c,tp,n+r);
+  if(out.some(function(x){return x.t===t})){var g=GEN[(n+j)%GEN.length];t=(AR?g[1]:g[0]).replace('{o}',suN(o))}
+  out.push({c:c,t:t})}return out}
+function duoSetupShow(mode){duoMode=mode||(duoCustom?'home':'book');var e=document.getElementById('duoEmpty');if(e)e.remove();
+ var box=document.getElementById('duoSU');if(box)box.remove();
+ box=document.createElement('section');box.id='duoSU';box.className='su2';box.setAttribute('aria-label',DSQ[AR?'ar':'en'].ui.t);box._i=0;box._a=[];
+ duoThread.appendChild(box);document.body.classList.add('duo-setup');suWire(box);duoSetupDraw();duoBottom()}
+function duoSetupHead(){duoSetupDraw()}
+function suFocus(box){var f=box.querySelector('.su2-op[aria-checked="true"]')||box.querySelector('.su2-op')||box.querySelector('.su2-go');if(f)f.focus({preventScroll:true})}
+function duoSetupDraw(){var box=document.getElementById('duoSU');if(!box)return;var D=DSQ[AR?'ar':'en'].ui,Q=duoSetQs(duoSel.length),i=Math.min(box._i,Q.length),cs=duoSel.map(duoById).filter(Boolean),E=cvEsc,h='',done=i>=Q.length;box._i=i;
+ var nm=cs.map(suN).join(AR?' و':' & '),BK='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="su2-fl"><path d="M15 6l-6 6 6 6"/></svg>',NX='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="su2-fl"><path d="M9 6l6 6-6 6"/></svg>';
+ h+='<div class="su2-hd"><div class="su2-who"><span class="su2-av">'+cs.map(function(c){return '<img alt="" src="'+duoImg(c)+'">'}).join('')+'</span><span><small>'+E(D.t)+'</small><b dir="auto">'+E(D.with_+' '+nm)+'</b></span></div><span class="su2-n" aria-live="polite">'+(done?E(suL('Review your setup','راجع إعدادك')):E(suL('Question ','السؤال '))+(i+1)+' '+E(D.of)+' '+Q.length)+'</span></div>';
+ h+='<div class="su2-bar" aria-hidden="true">'+Q.map(function(q,k){return '<i class="'+(done||k<i?'d':k===i?'c':'')+'"></i>'}).join('')+'</div>';
+ if(!done){var q=Q[i],a=box._a[i],os=suOpts(q),sel=a?os[a.k]:null;
+  h+='<h3 class="su2-q" id="su2Q" dir="auto">'+E(q.q)+'</h3>'+(q.h?'<p class="su2-h" dir="auto">'+E(q.h)+'</p>':'');
+  h+='<div class="su2-o" role="radiogroup" aria-labelledby="su2Q">'+os.map(function(o,k){var on=!!a&&a.k===k;return '<button type="button" role="radio" class="su2-op'+(o.v==='other'||o.input?' alt':'')+'" data-k="'+k+'" aria-checked="'+on+'" tabindex="'+(on||(!a&&k===0)?0:-1)+'"><i>'+String.fromCharCode(65+k)+'</i><span dir="auto">'+E(o.t)+'</span></button>'}).join('')+'</div>';
+  if(sel&&sel.input)h+='<div class="su2-in"><input id="su2In" '+(q.num&&sel.v==='other'?'type="text" inputmode="numeric" maxlength="2"':'type="text" maxlength="160"')+' dir="auto" placeholder="'+E(sel.input)+'" aria-label="'+E(sel.input)+'" value="'+E(a.txt||'')+'"></div>';
+  h+='<div class="su2-f"><button type="button" class="su2-back"'+(i===0?' disabled':'')+'>'+BK+E(D.back)+'</button><span class="su2-sp"></span><button type="button" class="su2-skip">'+E(D.skip)+'</button><button type="button" class="su2-next"'+(suOk(q,a)?'':' disabled')+'>'+E(i===Q.length-1?suL('Review','مراجعة'):suL('Next','التالي'))+NX+'</button></div>';
+ }else{
+  h+='<h3 class="su2-q" dir="auto">'+E(D.sum)+'</h3><dl class="su2-sum">'+Q.map(function(q,k){return '<div><dt dir="auto">'+E(q.q)+'</dt><dd dir="auto">'+E(suAns(q,box._a[k]))+'</dd><button type="button" class="su2-ed" data-i="'+k+'" aria-label="'+E(suL('Edit: ','تعديل: ')+q.q)+'">'+E(suL('Edit','تعديل'))+'</button></div>'}).join('')+'</dl>';
+  h+='<div class="su2-f"><button type="button" class="su2-back">'+BK+E(D.back)+'</button><span class="su2-sp"></span><button type="button" class="su2-go">'+E(D.go)+NX+'</button></div>';
+ }
+ box.innerHTML=h}
+function suGo(box,i,focus){box._i=i;duoSetupDraw();if(focus)suFocus(box);duoBottom()}
+function suWire(box){
+ box.addEventListener('click',function(e){var Q=duoSetQs(duoSel.length),i=box._i,t;
+  if(t=e.target.closest('.su2-op')){var k=+t.dataset.k,q=Q[i],o=suOpts(q)[k],prev=box._a[i];box._a[i]={k:k,txt:prev&&prev.k===k?prev.txt:''};duoSetupDraw();
+   if(o.input){var f=document.getElementById('su2In');if(f)f.focus()}else{var b=box.querySelector('.su2-op[data-k="'+k+'"]');if(b)b.focus();setTimeout(function(){if(box._i===i&&box.isConnected)suGo(box,i+1,true)},rm?0:260)}return}
+  if(e.target.closest('.su2-next')){if(suOk(Q[i],box._a[i]))suGo(box,i+1,true);return}
+  if(e.target.closest('.su2-back')){suGo(box,Math.max(0,i-1),true);return}
+  if(e.target.closest('.su2-skip')){duoSetupDone([]);return}
+  if(t=e.target.closest('.su2-ed')){suGo(box,+t.dataset.i,true);return}
+  if(e.target.closest('.su2-go')){duoSetupDone(box._a);return}});
+ box.addEventListener('input',function(e){if(e.target.id!=='su2In')return;var a=box._a[box._i];if(!a)return;a.txt=e.target.value;var n=box.querySelector('.su2-next');if(n)n.disabled=!suOk(duoSetQs(duoSel.length)[box._i],a)});
+ box.addEventListener('keydown',function(e){if(e.target.id==='su2In'&&e.key==='Enter'){e.preventDefault();var n=box.querySelector('.su2-next');if(n&&!n.disabled)n.click();return}
+  var op=e.target.closest&&e.target.closest('.su2-op');if(!op||!/^Arrow(Up|Down|Left|Right)$/.test(e.key))return;var all=[].slice.call(box.querySelectorAll('.su2-op')),k=all.indexOf(op),f=(e.key==='ArrowDown'||e.key===(AR?'ArrowLeft':'ArrowRight'))?1:-1;e.preventDefault();var nx=all[(k+f+all.length)%all.length];all.forEach(function(x){x.tabIndex=-1});nx.tabIndex=0;nx.focus()})}
+function duoSetupDone(a){var box=document.getElementById('duoSU');if(box)box.remove();document.body.classList.remove('duo-setup');
+ var Q=duoSetQs(duoSel.length),cfg={len:1},sm=[];
+ Q.forEach(function(q,k){var x=a[k];if(!x)return;var o=suOpts(q)[x.k];if(!o)return;var txt=(x.txt||'').trim();cfg[q.id]=o.input?txt:o.v;if(q.id!=='scene')sm.push(o.input?txt:o.t)});
+ if(typeof cfg.len!=='number')cfg.len=1;
+ if('turns' in cfg){var tn=typeof cfg.turns==='number'?cfg.turns:+String(cfg.turns).replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)});cfg.turns=tn>=1&&tn<=10?tn:2}
+ if('start' in cfg&&cfg.start!==0&&cfg.start!==1)cfg.start=Math.random()<.5?0:1;
+ if(cfg.scene==='ai'){var sc=SU_SCENES[Math.floor(Math.random()*SU_SCENES.length)];cfg.scene=AR?sc[1]:sc[0]}
+ duoCfg=cfg;duoCfgDone=true;
+ if(sm.length){var nt=document.createElement('div');nt.className='hist-note';nt.textContent=sm.join(' · ');nt.dir='auto';duoThread.appendChild(nt)}
+ if(cfg.scene){var sn=document.createElement('div');sn.className='su2-scene';sn.innerHTML='<small></small><p dir="auto"></p>';sn.querySelector('small').textContent=suL('The scene','المشهد');sn.querySelector('p').textContent=cfg.scene;duoThread.appendChild(sn)}
+ var list=duoOrder(duoSel.map(duoById).filter(Boolean)),need=duoNeed.length?list.filter(function(c){return duoNeed.some(function(x){return x&&x.n===c.n})}):list;duoNeed=[];
+ if(duoPend){var pd=duoPend;duoPend=null;duoBusy=true;var i=0;(function nx(){if(i>=list.length){duoBusy=false;duoLater(function(){duoAsk(pd.q,pd.tk)},rm?0:350);return}var c=list[i++];duoLater(function(){duoIntro(c,nx)},i>1?250:(rm?0:300))})()}
+ else{duoBusy=false;duoIntros(need.length?need:list)}}
 function duoGreet(){var ar=isAr(CAT[duoBook].t),t=ar?'اختر شخصية أو اثنتين من '+CAT[duoBook].t+' لتتحدث معهما، أو أضف شخصيات من كتب أخرى بزر +.':'Choose a character, or two, to talk to from '+CAT[duoBook].t+'. Tap + to bring in someone from another book.';
   var b=document.createElement('div');b.className='cv-msg a';b.innerHTML='<span class="bav" aria-hidden="true"><img class="bav-em" src="img/emblem-soft.png" alt=""></span><div class="abody"><div class="bub glass"><p dir="auto"></p></div></div>';b.querySelector('p').textContent=t;duoThread.appendChild(b)}
 function duoUser(t){var e=document.getElementById('duoEmpty');if(e)e.remove();var b=document.createElement('div');b.className='cv-msg u';b.innerHTML='<div class="bub"><span class="tx" dir="auto"></span></div><div class="mtools"><time></time></div>';b.querySelector('.tx').textContent=t;b.querySelector('time').textContent=duoTime();duoThread.appendChild(b);duoBottom();return b}
@@ -5973,8 +6086,8 @@ function duoIntro(c,done){var e=document.getElementById('duoEmpty');if(e)e.remov
 function duoIntros(list){if(duoBusy)return;duoBusy=true;var i=0;(function nx(){if(i>=list.length){duoBusy=false;return}var c=list[i++];duoLater(function(){duoIntro(c,nx)},i>1?250:0)})()}
 function duoLine(c,topic,n){var L=DL[c.id];if(L)return L[topic][n%2];if(isAr(c.n)||document.documentElement.dir==='rtl'){var _b=(typeof trA==='function'&&trA(c.bio))||c.bio;return _b+' اسألني عن الحكاية.'}return c.bio+' Ask me more about the story.'}
 function duoAsk(t,topic){t=(t||'').trim();if(!t||duoBusy)return;if(document.getElementById('duoSU')){say(tr('Answer the setup questions first, or skip'));return}if(!duoSel.length){say('Pick a character first');return}duoBusy=true;document.getElementById('duoCont').classList.add('wait');topic=topic||duoTopic(t);duoUser(t);try{if(window.bayanEnc){var _cc2=duoSel.map(function(n){return duoById(n)}).filter(Boolean);if(_cc2.length&&!(document.body.classList.contains('duo-custom')&&_cc2.length===2))window.bayanEnc(_cc2.map(function(c){return c.n}),_cc2.map(function(c){return c.k||(cvCtx&&cvCtx.k)}))}}catch(x){}
-  var n=(duoCnt[topic]=(duoCnt[topic]||0)+1)-1,cs=duoSel.map(function(id){return duoPool.filter(function(x){return x.n===id})[0]});
-  function turn(i){if(i>=cs.length){duoBusy=false;duoQs=(duoQs+1)%3;duoRender();document.getElementById('duoCont').classList.remove('wait');return}var c=cs[i],ty=duoTyping(c);duoLater(function(){ty.remove();duoReply(c,duoLine(c,topic,n),function(){duoLater(function(){turn(i+1)},rm?0:250)})},rm?0:950)}
+  var n=(duoCnt[topic]=(duoCnt[topic]||0)+1)-1,cs=duoSel.map(function(id){return duoPool.filter(function(x){return x.n===id})[0]});cs=duoOrder(cs);var seq=duoSeq(cs,topic,n);
+  function turn(i){if(i>=seq.length){duoBusy=false;duoQs=(duoQs+1)%3;duoRender();document.getElementById('duoCont').classList.remove('wait');return}var c=seq[i].c,ty=duoTyping(c);duoLater(function(){ty.remove();duoReply(c,seq[i].t,function(){duoLater(function(){turn(i+1)},rm?0:250)})},rm?0:950)}
   turn(0)}
 document.getElementById('duoStrip').addEventListener('click',function(e){var b=e.target.closest('.duo-av');if(!b)return;if(b.id==='duoMore'){duoMoreOpen(b);return}
   if(b.id==='duoPlus'){var _cs=duoSel.map(duoById).filter(Boolean),_st={step:1,b:[null,null],c:[null,null],mode:'own',topic:'',tk:''};if(_cs.length>=1){var _l=_cs[_cs.length-1];_st.b[0]=_l.k;_st.c[0]=_l.n}df=_st;duoClose();dfOpen(true);return}
@@ -6060,7 +6173,7 @@ function dfStart(){var cs=[0,1].map(function(i){return dfChar(df.b[i],df.c[i])})
   if(!cl.contains('chat-open')){var k=cs[0].k;cvCtx={k:k,d:chD(k,CH[k]||{kick:'In the story',intro:CAT[k].b,chips:[],qa:[],chars:[]}),t:CAT[k].t,a:CAT[k].a};cvThread.innerHTML='';document.getElementById('cvSugg').innerHTML='';cvBusy=false;cvSetPanel();chatEl.hidden=false;cl.add('chat-open');void chatEl.offsetWidth;chatEl.classList.add('go')}
   dfClose();duoCustom=true;duoBook='__duo';duoPool=cs;duoSel=cs.map(function(c){return c.n});duoCnt={};duoBusy=false;duoTO.forEach(clearTimeout);duoTO=[];duoThread.innerHTML='';duoGreeted=true;
   duoRender();duoEl.hidden=false;cl.add('duo-open','duo-custom');duoRender();void duoEl.offsetWidth;duoEl.classList.add('go');
-  duoBusy=true;var i=0;(function nx(){if(i>=cs.length){duoBusy=false;duoLater(function(){duoAsk(q,tk)},rm?0:350);return}var c=cs[i++];duoLater(function(){duoIntro(c,nx)},i>1?250:(rm?0:500))})()}
+  duoCfgDone=false;duoCfg=null;duoNeed=[];duoPend={q:q,tk:tk};duoLater(function(){duoSetupShow('home')},rm?0:350)}
 document.getElementById('duoStrip').addEventListener('click',function(e){if(e.target.closest('.dm-swap')){duoSel.reverse();duoPool.reverse();duoRender()}else if(e.target.closest('.dm-ch')){dfOpen(true,2)}});
 
 document.querySelector('header.hd a.logo').addEventListener('click',function(){if(!dfEl.hidden)dfClose()},true);
@@ -7268,7 +7381,7 @@ function view(){var u=user(),M=window.monAccount,a=M&&M.get()||{type:'citizen',l
   [L(['Identity','الهوية']),a.verified?'<span class="pfv-ok">'+OK+L(['Verified through Nafath','موثّق عبر نفاذ'])+'</span><small>'+esc(lv?L(lv.t):'')+'</small>':'<span style="opacity:.7">'+L(['Not verified yet','لم يتم التحقق بعد'])+'</span>',a.verified?lock:'<button type="button" class="pfv-a" data-pfv="verify">'+L(['Verify with Nafath','تحقق عبر نفاذ'])+'</button>'],
   [L(['Package','الباقة']),pl?esc(L(pl.t))+'<small>'+esc(L(pl.p))+'</small>':'',top?'':'<button type="button" class="pfv-a" data-pfv="upgrade">'+L(['Upgrade','ترقية'])+'</button>']];
  wrap.innerHTML='<div class="pfv-hd"><h3>'+L(['Your details','بياناتك'])+'</h3><button type="button" class="pfv-edit" id="pfvEdit">'+PEN+L(['Edit','تعديل'])+'</button></div><dl class="pfv">'+rows.map(function(r){return '<div class="pfv-r"><dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'+(r[2]||'')+'</div>'}).join('')+'</dl>'}
-function setEdit(on){card.classList.toggle('pf-editing',!!on);if(on){setTimeout(function(){var n=$('pfName');n&&n.focus()},30)}else{view();var b=$('pfvEdit');b&&document.activeElement===document.body&&b.focus()}}
+function setEdit(on){card.classList.toggle('pf-editing',!!on);var rb=$('pfReset');if(rb)rb.textContent=on?L(['Cancel','إلغاء']):L(['Reset','إعادة تعيين']);if(on){setTimeout(function(){var n=$('pfName');n&&n.focus()},30)}else{view();var b=$('pfvEdit');b&&document.activeElement===document.body&&b.focus()}}
 wrap.addEventListener('click',function(e){
  if(e.target.closest('#pfvEdit')){setEdit(true);return}
  var b=e.target.closest('[data-pfv]');if(!b||!window.monRegister)return;var a=monAccount.get();
@@ -7310,7 +7423,7 @@ function decorateP(){if(!H||busyP||!H.firstElementChild)return;busyP=true;
  var hd=H.querySelector('.p2-hd'),st=H.querySelector('.p2-st');
  topicsText();if(chips)H.insertBefore(tp,st?st.nextSibling:null);
  var b=bar('p2Tabs',PI,pSub,function(k,user){pSub=k;[].forEach.call(b.list.children,function(x){var on=x.dataset.sub===k;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1});show(H,k);seen(b);if(user)toTop(H,b)});
- H.insertBefore(b,hd?hd.nextSibling:H.firstChild);show(H,pSub);busyP=false;seen(b)}
+ H.insertBefore(b,hd?hd.nextSibling:H.firstChild);var hb=H.querySelector('.p2-hd .p2-hb');if(hb){var ft=document.createElement('div');ft.className='p2-foot';ft.appendChild(hb);H.appendChild(ft)}show(H,pSub);busyP=false;seen(b)}
 if(H)new MutationObserver(function(m){if(busyP)return;var bad=!$('p2Tabs')||!H.contains(tp);if(bad)decorateP()}).observe(H,{childList:true});
 /* opening the old "topics" tab now lands on Personalization › Favourite topics */
 var nav=$('pfNav');
