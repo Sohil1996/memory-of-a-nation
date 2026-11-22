@@ -4307,6 +4307,76 @@ html[data-bayan="light"] .rg-plan .rg-price{color:#0F7A60}
 html[data-bayan="light"] .pf-acct .ok{color:#0F7A60}
 .pf-acct button{padding:3px 10px;border-radius:999px;border:0;background:transparent;color:var(--gold);font:inherit;font-size:12px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:760px){.rg-grid,.rg-two{grid-template-columns:1fr}.rg-top{flex-wrap:wrap}.rg-step{order:3;width:100%}.rg-code b{font-size:24px}}
+
+/* v212: credits wallet (DGA deck steps 6–7) */
+.wl{display:grid;gap:18px}
+.wl-h{margin:0;font:500 20px/1.25 var(--display)}
+.wl-k{margin:0 0 4px;color:#5CC4A2;font-size:12px;font-weight:600}
+html[data-bayan="light"] .wl-k{color:#0F7A60}
+.wl-sub{margin:4px 0 0;font-size:13px;opacity:.7}
+.wl-box{border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.04);padding:18px}
+html[data-bayan="light"] .wl-box{background:rgba(255,255,255,.6)}
+.wl-bal{border-color:rgba(92,196,162,.45);background:linear-gradient(135deg,rgba(92,196,162,.1),rgba(185,154,85,.06))}
+.wl-bal small{font-size:13px;opacity:.75}
+.wl-n{display:flex;align-items:baseline;gap:8px;margin:8px 0 2px}
+.wl-n b{font:700 44px/1 var(--sans);color:#5CC4A2}
+html[data-bayan="light"] .wl-n b{color:#0F7A60}
+.wl-n span{font-size:17px;opacity:.85}
+.wl-pk{font-size:14px;opacity:.85}
+.wl-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.1);margin:14px 0 6px;overflow:hidden}
+html[data-bayan="light"] .wl-bar{background:rgba(9,28,22,.1)}
+.wl-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#3FAE8C,#73D0B1)}
+.wl-bm{display:flex;justify-content:space-between;font-size:12px;opacity:.7}
+.wl-note{border-color:rgba(92,196,162,.35);font-size:13px;line-height:1.6}
+.wl-note b{color:#5CC4A2;font-weight:600}
+html[data-bayan="light"] .wl-note b{color:#0F7A60}
+.wl-prices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.wl-prices div{padding:10px 12px;border-radius:14px;border:1px solid var(--line);font-size:13px}
+.wl-prices b{display:block;font-size:18px;color:#E2C98D}
+html[data-bayan="light"] .wl-prices b{color:#8A6A28}
+.wl-prices .free{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;border-color:rgba(92,196,162,.35)}
+.wl-prices .free b{display:inline;font-size:14px;color:#5CC4A2}
+.wl-log{list-style:none;margin:10px 0 0;padding:0}
+.wl-log li{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.wl-log li:last-child{border-bottom:0}
+.wl-log .ic{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:rgba(92,196,162,.12);color:#5CC4A2}
+.wl-log .tx{flex:1;min-width:0}.wl-log .tx b{display:block;font-size:14px;font-weight:500}
+.wl-log .tx small{font-size:12px;opacity:.65}
+.wl-log .am{font-weight:600;font-size:14px;color:#5CC4A2;direction:ltr}
+.wl-log .am.z{opacity:.5;color:inherit}
+.wl-log .am.p{color:#E2C98D}
+.wl-packs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.wl-pack{position:relative;display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.wl-pack.pop{border-color:#5CC4A2;box-shadow:0 0 0 1px #5CC4A2 inset}
+.wl-pack h4{margin:0;font-size:15px;font-weight:600}
+.wl-pack .q{font:700 28px/1 var(--sans)}.wl-pack .q span{font:500 13px var(--sans);opacity:.8;margin-inline-start:4px}
+.wl-pack p{margin:0;font-size:12px;opacity:.75;line-height:1.5;flex:1}
+.wl-pack .pr{font-size:13px;font-weight:600;color:#E2C98D}
+html[data-bayan="light"] .wl-pack .pr{color:#8A6A28}
+.wl-pack .tag{position:absolute;top:-10px;inset-inline-end:12px;padding:2px 9px;border-radius:99px;background:#5CC4A2;color:#06120F;font-size:11px;font-weight:600}
+.wl-btn{height:40px;border-radius:12px;border:1px solid rgba(92,196,162,.5);background:transparent;color:#6FD3B1;font:600 14px var(--sans);cursor:pointer}
+html[data-bayan="light"] .wl-btn{color:#0F7A60}
+.wl-pack.pop .wl-btn,.wl-btn.solid{background:#5CC4A2;border-color:#5CC4A2;color:#06120F}
+.wl-btn[aria-pressed="true"]{box-shadow:0 0 0 3px rgba(92,196,162,.35)}
+.wl-pay{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.wl-pay input{height:46px;padding:0 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:inherit;font:inherit;font-size:15px;outline:none}
+.wl-pay input:focus{border-color:rgba(92,196,162,.6)}
+.wl-pay input[aria-invalid="true"]{border-color:#E57373}
+.wl-pay .full{grid-column:1/-1}
+.wl-pay .go{grid-column:1/-1;height:48px;border:0;border-radius:999px;background:#E2C98D;color:#091B16;font:600 15px var(--sans);cursor:pointer}
+.wl-pay .go:disabled{opacity:.6}
+.wl-pay .err{grid-column:1/-1;margin:0;min-height:18px;font-size:13px;color:#E57373}
+.wl-pay .demo{grid-column:1/-1;margin:0;font-size:12px;opacity:.6}
+.wl-row{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.wl-row b{font-size:15px;font-weight:600}.wl-row small{display:block;font-size:12px;opacity:.7;margin-top:2px}
+.wl-sw{flex:none;display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;color:inherit;font:inherit;font-size:13px;cursor:pointer}
+.wl-sw i{position:relative;width:44px;height:26px;border-radius:99px;background:rgba(255,255,255,.18);transition:background .2s}
+.wl-sw i::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
+.wl-sw[aria-checked="true"] i{background:#3FAE8C}
+.wl-sw[aria-checked="true"] i::after{transform:translateX(18px)}
+html[dir="rtl"] .wl-sw[aria-checked="true"] i::after{transform:translateX(-18px)}
+.wl-soon{padding:2px 9px;border-radius:99px;border:1px solid var(--line);font-size:11px;opacity:.75;white-space:nowrap}
+@media (max-width:760px){.wl-packs{grid-template-columns:1fr}.wl-prices{grid-template-columns:1fr 1fr}.wl-n b{font-size:38px}}
 /* v194: profile on phones = settings list, each item opens its own page */
 .pf-back{display:none}
 @media (max-width:760px){
@@ -4814,20 +4884,7 @@ window.chReal=function(n){var q=document.getElementById('cvQ'),f=document.getEle
     <p class="au-err" id="pfErr" role="alert" hidden></p>
     <div class="pf-act"><button type="submit" class="au-go" id="pfSave"><span>Save changes</span></button><button type="button" class="pf-reset" id="pfReset">Reset</button></div>
    </form>
-   <div class="pf-s" data-s="credit"><div class="cr-wrap">
- <div class="cr-bal"><div class="cr-n" id="crBal"></div><div class="cr-u" id="crUse"></div><div class="cr-bar"><i id="crBar"></i></div></div>
- <h3 class="cr-h" id="crPkH"></h3><div class="cr-packs" id="crPacks"></div>
- <form class="cr-form" id="crForm" novalidate autocomplete="off">
-  <input class="full" id="crName" type="text" autocomplete="off">
-  <input class="full" id="crNum" type="text" inputmode="numeric" autocomplete="off" maxlength="23" placeholder="1234 5678 9012 3456">
-  <input id="crExp" type="text" inputmode="numeric" autocomplete="off" maxlength="5" placeholder="MM/YY">
-  <input id="crCvv" type="password" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="CVV">
-  <p class="cr-err" id="crErr" role="alert"></p>
-  <button type="submit" class="cr-pay" id="crPay"></button>
-  <p class="cr-note" id="crNote"></p>
- </form>
- <h3 class="cr-h" id="crHH"></h3><ul class="cr-hist" id="crHist"></ul>
-</div></div>
+   <div class="pf-s" data-s="credit"><div class="wl" id="wlHost"></div></div>
 <div class="pf-s" data-s="sec"><div class="pf-sec"><div><b>Password</b><small>Send yourself a link to choose a new password.</small></div><button type="button" class="pf-reset" id="pfPw">Reset password</button></div>
 </div>
   </div>
@@ -6734,7 +6791,7 @@ function dt(t){try{return new Date(t).toLocaleDateString(rtl()?'ar-SA-u-nu-latn-
 function pct(d){var tot=d.used+d.bal;return tot?Math.max(2,Math.min(100,Math.round(d.used/tot*100))):0}
 var sel=1;
 function render(){var d=ld(),$=function(i){return document.getElementById(i)};
- if($('pmCrB')){$('pmCrB').textContent=T(nf(d.bal)+' رصيد',nf(d.bal)+' credits');$('pmCrS').textContent=T('استهلكت '+nf(d.used),nf(d.used)+' used');$('pmCrBar').style.width=pct(d)+'%';$('pmCr').setAttribute('aria-label',T('الرصيد والاستهلاك','Credits and usage'))}
+ if(0&&$('pmCrB')){$('pmCrB').textContent=T(nf(d.bal)+' رصيد',nf(d.bal)+' credits');$('pmCrS').textContent=T('استهلكت '+nf(d.used),nf(d.used)+' used');$('pmCrBar').style.width=pct(d)+'%';$('pmCr').setAttribute('aria-label',T('الرصيد والاستهلاك','Credits and usage'))}
  if(!$('crBal'))return;
  $('crBal').textContent=T(nf(d.bal)+' رصيد',nf(d.bal)+' credits');
  $('crUse').textContent=T('استهلكت '+nf(d.used)+' من '+nf(d.used+d.bal)+' هذا الشهر · كل رسالة تستهلك رصيدًا واحدًا',nf(d.used)+' of '+nf(d.used+d.bal)+' used this month · each message uses 1 credit');
@@ -6762,8 +6819,7 @@ function wire(){var f=document.getElementById('crForm');if(!f||f.dataset.w)retur
   err.textContent='';pay.disabled=true;pay.textContent=T('جارٍ المعالجة…','Processing…');
   setTimeout(function(){var d=ld(),p=PK[sel];d.bal+=p[0];d.hist.push({t:Date.now(),a:p[0],k:'top'});sv(d);f.reset();pay.disabled=false;render();
    if(window.bayanToast)bayanToast(T('تمت إضافة '+nf(p[0])+' رصيد','Added '+nf(p[0])+' credits'));else{err.style.color='#7FC8A9';err.textContent=T('تمت إضافة '+nf(p[0])+' رصيد','Added '+nf(p[0])+' credits');setTimeout(function(){err.textContent='';err.style.color=''},3000)}},1200)})}
-/* each message to the assistant or a character uses one credit */
-document.addEventListener('submit',function(e){var f=e.target;if(!f||f.id!=='cvForm')return;var q=document.getElementById('cvQ');if(!q||!q.value.trim())return;var d=ld();if(d.bal>0){d.bal-=1;d.used+=1;var h=d.hist[d.hist.length-1],td=new Date().toDateString();if(h&&h.k==='use'&&new Date(h.t).toDateString()===td)h.a-=1;else d.hist.push({t:Date.now(),a:-1,k:'use'});sv(d);render()}},true);
+/* v212: chat and search are free — credits are used only when an item is used */
 /* menu -> profile credits */
 function goCredits(){var h=document.querySelector('#pmenu .pm-h');if(h)h.click();setTimeout(function(){if(window.bayanProfile)bayanProfile.open('credit');render()},40)}
 var b=document.getElementById('pmCr');if(b)b.addEventListener('click',function(e){e.stopPropagation();goCredits()});
@@ -6970,8 +7026,8 @@ function render(){
   h+='</div>';
   if(t.id==='entity')h+='<p class="rg-note">'+L(['Annual licences, API access and larger deals are arranged with the partnerships team after sign-up.','التراخيص السنوية والوصول البرمجي والصفقات الكبرى تُرتَّب مع فريق الشراكات بعد التسجيل.'])+'</p>';
   $('rgFootNote').textContent=L(['Registration in minutes — mobile or email, and the experience is built on your intent from the first moment.','التسجيل خلال دقائق — موبايل أو بريد إلكتروني، وتُبنى التجربة على نية الاستخدام من أول لحظة.']);
-  $('rgGo').textContent=st.mode==='edit'?L(['Save','حفظ']):L(['Create account','إنشاء الحساب']);$('rgGo').disabled=!st.plan;
-  $('rgBack').hidden=false;$('rgBack').textContent=L(['Back','رجوع']);$('rgBack').disabled=false;
+  $('rgGo').textContent=st.mode==='upgrade'?L(['Upgrade','ترقية']):st.mode==='edit'?L(['Save','حفظ']):L(['Create account','إنشاء الحساب']);$('rgGo').disabled=!st.plan;
+  $('rgBack').hidden=st.mode==='upgrade';$('rgBack').textContent=L(['Back','رجوع']);$('rgBack').disabled=false;
  }
  B.innerHTML=h;
 }
@@ -6989,14 +7045,14 @@ function verify(){var t=T();
 }
 function say(t){if(typeof window.say==='function')window.say(t);else{var lr=document.getElementById('srLive');if(lr)lr.textContent=t}}
 function finish(){var t=T(),a={type:st.type,level:t.level,plan:st.plan,verified:true,cr:st.cr||null,at:Date.now()};save(a);
- if(st.mode==='edit'){close();say(L(['Account updated','تم تحديث الحساب']));applyProfile();return}
+ document.dispatchEvent(new CustomEvent('mon-account',{detail:a}));if(st.mode!=='signup'){close();say(L(st.mode==='upgrade'?['Package upgraded','تمت ترقية الباقة']:['Account updated','تم تحديث الحساب']));applyProfile();return}
  close(true);if(pending){pending.go=true;pending.form.requestSubmit()}}
 $('rgGo').addEventListener('click',function(){
  if(st.step===0){if(!st.type)return;st.step=1;st.code=String(100000+Math.floor(Math.random()*900000));if(!st.plan)st.plan=T().plan;render();$('rgGo').focus()}
  else if(st.step===1){if(st.verified){st.step=2;render();var c=$('rgBody').querySelector('[aria-checked="true"]');(c||$('rgGo')).focus()}else verify()}
  else if(st.plan)finish()});
 $('rgBack').addEventListener('click',function(){if(st.busy)return;st.step=Math.max(0,st.step-1);render();$('rgGo').focus()});
-function open(mode){clearT();var a=acct();st={step:0,type:mode==='edit'&&a?a.type:null,plan:mode==='edit'&&a?a.plan:null,verified:false,busy:false,cr:mode==='edit'&&a&&a.cr||'',code:'',mode:mode||'signup'};
+function open(mode){clearT();var a=acct(),up=mode==='upgrade'&&a;st={step:up?2:0,type:(mode==='edit'||up)&&a?a.type:null,plan:mode==='edit'&&a?a.plan:up?(TYPES.filter(function(x){return x.id===a.type})[0]||TYPES[0]).plan:null,verified:!!(up&&a.verified),busy:false,cr:mode==='edit'&&a&&a.cr||'',code:'',mode:mode||'signup'};
  lastFocus=document.activeElement;render();R.hidden=false;document.body.classList.add('reg-open');void R.offsetWidth;R.classList.add('go');R.scrollTop=0;
  setTimeout(function(){var f=$('rgBody').querySelector('.rg-opt');f&&f.focus()},rm?0:250)}
 function close(keep){clearT();st.busy=false;R.classList.remove('go');document.body.classList.remove('reg-open');setTimeout(function(){R.hidden=true},rm?0:300);if(!keep&&lastFocus&&lastFocus.focus)lastFocus.focus()}
@@ -7024,6 +7080,118 @@ document.addEventListener('click',function(e){if(e.target.closest('#pfAcctEdit')
 if(window.bayanProfile&&window.bayanProfile.open){var po=window.bayanProfile.open;window.bayanProfile.open=function(){var r=po.apply(this,arguments);setTimeout(applyProfile,0);return r}}
 setTimeout(applyProfile,0);
 window.monRegister=open;
+})();
+</script>
+<script>
+/* v212: credits wallet and packages (DGA deck steps 6–7).
+   Credits are prepaid, deducted only when an item is used, and never go past the balance.
+   Search, preview and chat are always free. Demo data lives in this browser; no money is taken. */
+;(function(){
+var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function ar(){return document.documentElement.getAttribute('dir')==='rtl'}
+function L(a){return ar()?a[1]:a[0]}
+function ad(n){return ar()?String(n).replace(/\d/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[d]}):String(n)}
+function nf(n){return ad(Number(n).toLocaleString('en-US'))}
+var SV='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+var IC={dl:SV+'<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>',search:SV+'<circle cx="11" cy="11" r="6.500"/><path d="M20 20l-4-4"/></svg>',eye:SV+'<path d="M2 12s3.600-7 10-7 10 7 10 7-3.600 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+ plus:SV+'<path d="M12 5v14M5 12h14"/></svg>',star:SV+'<path d="M12 3l2.700 5.600 6.100.9-4.400 4.300 1 6.100L12 17l-5.400 2.900 1-6.100L3.200 9.500l6.100-.9z"/></svg>',brief:SV+'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>'};
+/* The deck's published price list (credits per use). */
+var USES={personal:{c:1,t:['Personal download','تنزيل شخصي'],ic:'dl'},hires:{c:2,t:['High resolution','دقة عالية'],ic:'dl'},commercial:{c:10,t:['Commercial use','استخدام تجاري'],ic:'brief'},
+ broadcast:{c:25,t:['Broadcast','بث'],ic:'brief'},exhibit:{c:50,t:['Exhibition','معرض'],ic:'brief'},exclusive:{c:200,t:['Exclusive licence','ترخيص حصري'],ic:'brief'},
+ search:{c:0,t:['AI search','بحث بالذكاء الاصطناعي'],ic:'search'},preview:{c:0,t:['Full preview','معاينة كاملة'],ic:'eye'},top:{c:0,t:['Top-up','شحن رصيد'],ic:'plus'},plan:{c:0,t:['Package credits','رصيد الباقة'],ic:'star'}};
+/* Deck step 7 top-up packs. Prices are demo values (the deck says "published price by account category"); upgrading lowers the price per credit. */
+var PACKS=[{id:'researcher',q:10,t:['Researcher pack','باقة الباحث'],d:['Personal download and high resolution for individual researchers','تنزيل شخصي ودقة عالية للباحثين الأفراد'],price:[50,40]},
+ {id:'institution',q:50,pop:1,t:['Institution pack','باقة المؤسسة'],d:['Commercial use, broadcast and exhibitions for media and events','استخدام تجاري وبث ومعارض للإعلام والفعاليات'],price:[225,180]},
+ {id:'licence',q:200,t:['Licence pack','باقة الترخيص'],d:['Exclusive use and embedding for organisations and platforms','استخدام حصري وتضمين للجهات والمنصات'],price:[800,640]}];
+/* Credits included in each package (demo): the deck's example shows a gold package of 26 credits. */
+var PLAN={free:{c:0,t:['Free package','الباقة المجانية']},paid:{c:26,t:['Gold package','باقة ذهبية']},business:{c:200,t:['Business package','الباقة التجارية']}};
+var K='mon-wallet',D=864e5,YEAR=365*D;
+function acct(){return window.monAccount?monAccount.get():null}
+function load(){var w;try{w=JSON.parse(localStorage.getItem(K)||'null')}catch(e){}
+ var a0=acct(),a=a0||{plan:'free'},pl=a.plan||'free';
+ if(!w&&!a0)return {plan:'free',total:0,used:0,bal:0,exp:Date.now()+YEAR,auto:true,log:[]}; /* no account yet: nothing is stored */
+ if(!w){var n=Date.now();w={plan:pl,total:PLAN[pl].c,used:0,exp:n+YEAR,auto:true,log:[]};
+  if(pl==='paid'){ /* the deck's example account: 14 of 26 left */
+   w.used=12;w.log=[{t:n-D*20,k:'plan',a:26},{t:n-D*1.1,k:'preview',it:['Riyadh map, 1952','خريطة الرياض ١٩٥٢م'],a:0},{t:n-D*1.05,k:'search',it:['Old Riyadh palaces','قصور الرياض القديمة'],a:0},{t:n-D,k:'personal',it:['Photo of Qasr Al-Hukm square','صورة ساحة قصر الحكم'],a:-1},{t:n-D*.2,k:'hires',it:['Manuscript describing the palaces of the neighbourhood','مخطوط وصف قصور الحي'],a:-2},{t:n-D*6,k:'hires',it:['Old Diriyah map','خريطة الدرعية القديمة'],a:-9}]}
+  else if(pl!=='free')w.log=[{t:n-D*3,k:'plan',a:PLAN[pl].c}];
+  save(w)}
+ w.bal=Math.max(0,w.total-w.used);return w}
+function save(w){try{localStorage.setItem(K,JSON.stringify({plan:w.plan,total:w.total,used:w.used,exp:w.exp,auto:w.auto,log:w.log}))}catch(e){}}
+function hij(t){try{var f=new Intl.DateTimeFormat('en-u-ca-islamic-umalqura-nu-latn',{year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(t)),g={};f.forEach(function(x){g[x.type]=x.value});var y=String(g.year).replace(/\D/g,'');return ad(y+'/'+g.month+'/'+g.day)+L([' AH','هـ'])}catch(e){return new Date(t).toLocaleDateString()}}
+function hy(t){try{var f=new Intl.DateTimeFormat('en-u-ca-islamic-umalqura-nu-latn',{year:'numeric'}).formatToParts(new Date(t));var y=f.filter(function(x){return x.type==='year'})[0].value.replace(/\D/g,'');return ad(y)+L([' AH','هـ'])}catch(e){return ''}}
+function when(t){var d0=new Date();d0.setHours(0,0,0,0);var x=t>=d0.getTime()?L(['Today','اليوم']):t>=d0.getTime()-D?L(['Yesterday','أمس']):'';return (x?x+' · ':'')+hij(t)}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function bizRate(){var a=acct();return a&&a.plan&&a.plan!=='free'?1:0}
+
+var sel=-1;
+function render(){
+ var w=load(),H=document.getElementById('wlHost');meter(w);if(!H)return;
+ var pk=PLAN[w.plan]||PLAN.free,pct=w.total?Math.round(w.used/w.total*100):0,h='';
+ /* balance (deck step 6) */
+ h+='<section class="wl-box wl-bal" aria-labelledby="wlBalH"><small id="wlBalH">'+L(['Credits remaining in your account','الرصيد المتبقي في حسابك'])+'</small><div class="wl-n"><b>'+nf(w.bal)+'</b><span>'+L([w.bal===1?'credit':'credits','رصيدًا'])+'</span></div>';
+ h+='<div class="wl-pk">'+L(pk.t)+' · '+L(['valid until ','صلاحية حتى '])+hy(w.exp)+'</div>';
+ h+='<div class="wl-bar" role="progressbar" aria-label="'+L(['Credits used','الرصيد المستخدم'])+'" aria-valuemin="0" aria-valuemax="'+w.total+'" aria-valuenow="'+w.used+'"><i style="width:'+pct+'%"></i></div><div class="wl-bm"><span>'+L(['Used: ','مستخدم: '])+nf(w.used)+'</span><span>'+L(['of ','من أصل '])+nf(w.total)+L([' credits',' رصيدًا'])+'</span></div></section>';
+ h+='<p class="wl-box wl-note"><b>'+L(['No surprises on the bill: ','بلا مفاجآت في الفاتورة: '])+'</b>'+L(['credits are deducted only at the moment of use, and the package is the absolute ceiling. When credits run out, the only options are a new pack or an upgrade — never charges beyond your balance.','الخصم لحظة الاستخدام فقط، والباقة هي السقف المطلق — نهاية الرصيد تعني شراء باقة جديدة أو الترقية، لا رسومًا خارج الرصيد.'])+'</p>';
+ /* price list */
+ h+='<section class="wl-box" aria-labelledby="wlPrH"><h3 class="wl-h" id="wlPrH">'+L(['Published credit prices','سلّم أرصدة معلن'])+'</h3><p class="wl-sub">'+L(['No hidden prices: the licence type sets the cost automatically.','بلا أسعار مخفية: فئة الترخيص تحدد السعر تلقائيًا.'])+'</p><div class="wl-prices">';
+ ['personal','hires','commercial','broadcast','exhibit','exclusive'].forEach(function(k){var u=USES[k];h+='<div><b>'+nf(u.c)+'</b>'+L(u.t)+'</div>'});
+ h+='<div class="free"><span>'+L(['AI search and full preview','البحث بالذكاء الاصطناعي والمعاينة الكاملة'])+'</span><b>'+L(['Always free','مجاني دائمًا'])+'</b></div></div></section>';
+ /* usage log */
+ h+='<section class="wl-box" aria-labelledby="wlLogH"><h3 class="wl-h" id="wlLogH">'+L(['Usage log','سجل الاستخدام'])+'</h3><p class="wl-sub">'+L(['Every operation recorded — complete transparency','كل عملية موثقة — شفافية مطلقة'])+'</p>';
+ var log=w.log.slice().sort(function(a,b){return b.t-a.t}).slice(0,8);
+ if(!log.length)h+='<p class="wl-sub" style="margin-top:12px">'+L(['Nothing yet. Searching and previewing are free and show here once you use an item.','لا عمليات بعد. البحث والمعاينة مجانيان، وتظهر هنا العمليات عند استخدام أي مادة.'])+'</p>';
+ else{h+='<ul class="wl-log">';log.forEach(function(e){var u=USES[e.k]||USES.top,cls=e.a>0?'p':e.a<0?'':'z';h+='<li><span class="ic">'+IC[u.ic]+'</span><span class="tx"><b>'+L(u.t)+(e.it?' — '+esc(L(e.it)):'')+'</b><small>'+when(e.t)+'</small></span><span class="am '+cls+'">'+(e.a>0?'+':e.a<0?'−':'')+nf(Math.abs(e.a))+'</span></li>'});h+='</ul>'}
+ h+='</section>';
+ /* top up (deck step 7) */
+ var b=bizRate();
+ h+='<section class="wl-box" aria-labelledby="wlTopH"><p class="wl-k">'+L(['A closed loop — usage feeds the programme','دورة مغلقة — الاستخدام يغذي البرنامج'])+'</p><h3 class="wl-h" id="wlTopH">'+L(['Top up your credits or upgrade your package','أعد شحن رصيدك أو رقِّ باقتك'])+'</h3><p class="wl-sub">'+L(['Ready-made credit packs at a published price — or upgrade your package for a lower price per credit','حزم أرصدة جاهزة بسعر معلن — أو ترقية الباقة للحصول على سعر أقل للرصيد'])+'</p><div class="wl-packs">';
+ PACKS.forEach(function(p,i){h+='<div class="wl-pack'+(p.pop?' pop':'')+'">'+(p.pop?'<span class="tag">'+L(['Most popular','الأكثر شيوعًا'])+'</span>':'')+'<h4>'+L(p.t)+'</h4><div class="q">'+nf(p.q)+'<span>'+L(['credits',p.q===10?'أرصدة':p.q===50?'رصيدًا':'رصيد'])+'</span></div><p>'+L(p.d)+'</p><div class="pr">'+L(['SAR '+nf(p.price[b]),nf(p.price[b])+' ريال'])+'</div><button type="button" class="wl-btn" data-pack="'+i+'" aria-pressed="'+(sel===i)+'">'+L(['Top up now','شحن الآن'])+'</button></div>'});
+ h+='</div>';
+ if(sel>=0){var P=PACKS[sel];h+='<form class="wl-pay" id="wlPay" novalidate autocomplete="off" aria-label="'+L(['Payment','الدفع'])+'"><input class="full" id="wlName" placeholder="'+L(['Name on card','الاسم على البطاقة'])+'" aria-label="'+L(['Name on card','الاسم على البطاقة'])+'"><input class="full" id="wlNum" inputmode="numeric" maxlength="23" dir="ltr" placeholder="1234 5678 9012 3456" aria-label="'+L(['Card number','رقم البطاقة'])+'"><input id="wlExp" inputmode="numeric" maxlength="5" dir="ltr" placeholder="'+L(['MM/YY','شهر/سنة'])+'" aria-label="'+L(['Expiry date','تاريخ الانتهاء'])+'"><input id="wlCvv" type="password" inputmode="numeric" maxlength="4" dir="ltr" placeholder="'+L(['CVV','رمز التحقق'])+'" aria-label="'+L(['Security code','رمز التحقق'])+'"><p class="err" id="wlErr" role="alert"></p><button type="submit" class="go" id="wlGo">'+L(['Pay SAR '+nf(P.price[b])+' — add '+nf(P.q)+' credits','ادفع '+nf(P.price[b])+' ريال — أضف '+nf(P.q)+' رصيد'])+'</button><p class="demo">'+L(['Demo: no money is charged and card details are not stored. Pack prices are illustrative.','تجريبي: لا يُخصم أي مبلغ ولا تُحفظ بيانات البطاقة. أسعار الحزم توضيحية.'])+'</p></form>'}
+ h+='</section>';
+ /* auto renew */
+ h+='<div class="wl-box wl-row"><div><b>'+L(['Auto-renew — and credits roll over','التجديد التلقائي — والرصيد يرحّل'])+'</b><small>'+L(['Unused credits roll over within the package’s validity (12 months) — with a reminder before renewal','الرصيد غير المستخدم يرحّل داخل صلاحية الباقة (١٢ شهرًا) — وتذكير قبل التجديد'])+'</small></div><button type="button" class="wl-sw" role="switch" id="wlAuto" aria-checked="'+(w.auto!==false)+'" aria-label="'+L(['Auto-renew','التجديد التلقائي'])+'"><span>'+(w.auto!==false?L(['On','مُفعّل']):L(['Off','متوقف']))+'</span><i></i></button></div>';
+ /* upgrade */
+ var a=acct(),top=a&&(a.plan==='paid'||a.plan==='business');
+ h+='<div class="wl-box wl-row"><div><b>'+L(['Upgrading lowers the price per credit','الترقية تخفض سعر الرصيد'])+'</b><small>'+L(['The higher the package, the lower the credit price and the wider the permissions — upgrade at any time without losing your balance.','كلما ارتقت الفئة انخفض سعر الرصيد واتسعت الصلاحيات — الترقية في أي لحظة دون فقدان الرصيد.'])+'</small></div>'+(top?'<span class="wl-soon">'+L(pk.t)+'</span>':'<button type="button" class="wl-btn solid" id="wlUp" style="padding:0 18px">'+L(['Upgrade package','ترقية الباقة'])+'</button>')+'</div>';
+ /* points */
+ h+='<div class="wl-box wl-row"><div><b>'+L(['Turn your points into knowledge','تحويل نقاطك إلى معرفة'])+'</b><small>'+L(['Linked with local and global loyalty programmes, you can convert your points into credits in your Memory of a Nation wallet.','بالربط مع برامج الولاء المحلية والعالمية، يمكن للمستخدم تحويل نقاطه إلى رصيد في محفظة ذاكرة وطن.'])+'</small></div><span class="wl-soon">'+L(['Coming soon','قريبًا'])+'</span></div>';
+ H.innerHTML=h;
+}
+/* Profile menu meter (top-right menu) */
+function meter(w){var b=document.getElementById('pmCrB');if(!b)return;b.textContent=nf(w.bal)+' '+L([w.bal===1?'credit':'credits','رصيد']);var s=document.getElementById('pmCrS');if(s)s.textContent=L(['Used ','استهلكت '])+nf(w.used);var bar=document.getElementById('pmCrBar');if(bar)bar.style.width=(w.total?Math.max(2,Math.round(w.used/w.total*100)):0)+'%'}
+function luhn(n){var s=0,a=false;for(var i=n.length-1;i>=0;i--){var c=+n[i];if(a){c*=2;if(c>9)c-=9}s+=c;a=!a}return s%10===0}
+function say(t){if(typeof window.say==='function')window.say(t)}
+document.addEventListener('click',function(e){
+ var p=e.target.closest('[data-pack]');if(p&&p.closest('#wlHost')){sel=+p.dataset.pack;render();var f=document.getElementById('wlName');f&&f.focus();return}
+ if(e.target.closest('#wlAuto')){var w=load();w.auto=w.auto===false;save(w);render();var t=document.getElementById('wlAuto');t&&t.focus();say(w.auto?L(['Auto-renew on','تم تفعيل التجديد التلقائي']):L(['Auto-renew off','تم إيقاف التجديد التلقائي']));return}
+ if(e.target.closest('#wlUp')&&window.monRegister){var a=acct();monRegister(a&&a.verified?'upgrade':'edit')}});
+document.addEventListener('input',function(e){var x=e.target;if(!x.closest||!x.closest('#wlPay'))return;
+ if(x.id==='wlNum'){var v=x.value.replace(/\D/g,'').slice(0,19);x.value=v.replace(/(\d{4})(?=\d)/g,'$1 ')}
+ if(x.id==='wlExp'){var u=x.value.replace(/\D/g,'').slice(0,4);x.value=u.length>2?u.slice(0,2)+'/'+u.slice(2):u}
+ if(x.id==='wlCvv')x.value=x.value.replace(/\D/g,'').slice(0,4)});
+document.addEventListener('submit',function(e){if(e.target.id!=='wlPay')return;e.preventDefault();
+ var $=function(i){return document.getElementById(i)},nm=$('wlName'),num=$('wlNum'),exp=$('wlExp'),cvv=$('wlCvv'),err=$('wlErr');[nm,num,exp,cvv].forEach(function(x){x.removeAttribute('aria-invalid')});
+ var n=num.value.replace(/\D/g,''),m=exp.value.match(/^(\d{2})\/(\d{2})$/),bad=null;
+ if(nm.value.trim().length<2)bad=[nm,L(['Enter the name as it appears on the card.','اكتب الاسم كما هو على البطاقة.'])];
+ else if(n.length<13||!luhn(n))bad=[num,L(['The card number is not valid.','رقم البطاقة غير صحيح.'])];
+ else if(!m||+m[1]<1||+m[1]>12||new Date(2000+ +m[2],+m[1],1)<=new Date())bad=[exp,L(['The expiry date is not valid.','تاريخ الانتهاء غير صحيح.'])];
+ else if(!/^\d{3,4}$/.test(cvv.value))bad=[cvv,L(['The security code is not valid.','رمز التحقق غير صحيح.'])];
+ if(bad){bad[0].setAttribute('aria-invalid','true');err.textContent=bad[1];bad[0].focus();return}
+ var go=$('wlGo');go.disabled=true;go.textContent=L(['Processing…','جارٍ المعالجة…']);
+ setTimeout(function(){var w=load(),P=PACKS[sel];w.total+=P.q;w.exp=Math.max(w.exp,Date.now()+YEAR);w.log.push({t:Date.now(),k:'top',it:P.t,a:P.q});save(w);sel=-1;render();say(L(['Added '+P.q+' credits','تمت إضافة '+P.q+' رصيد']));var b=document.getElementById('wlBalH');b&&b.scrollIntoView({block:'center',behavior:rm?'auto':'smooth'})},rm?0:1100)});
+/* Package changes (sign-up or upgrade) add that package's credits. */
+document.addEventListener('mon-account',function(ev){var a=ev.detail||{},w;try{w=JSON.parse(localStorage.getItem(K)||'null')}catch(e){}
+ if(!w){render();return}
+ if(a.plan&&a.plan!==w.plan){var c=PLAN[a.plan].c;w.plan=a.plan;if(c){w.total+=c;w.log.push({t:Date.now(),k:'plan',it:PLAN[a.plan].t,a:c})}w.exp=Date.now()+YEAR;save(w)}render()});
+/* Public API for using an item (used by the archive preview in the next step). Never goes below zero. */
+window.monWallet={uses:USES,load:load,render:render,spend:function(kind,item){var u=USES[kind];if(!u)return {ok:false};var w=load();
+ if(u.c>w.bal)return {ok:false,need:u.c,bal:w.bal};w.used+=u.c;w.log.push({t:Date.now(),k:kind,it:item||null,a:-u.c});save(w);render();return {ok:true,bal:w.bal-u.c}}};
+new MutationObserver(function(){render()}).observe(document.documentElement,{attributes:true,attributeFilter:['dir','lang']});
+var nav=document.getElementById('pfNav');if(nav)nav.addEventListener('click',function(){setTimeout(render,0)});
+if(window.bayanProfile&&window.bayanProfile.open){var po=window.bayanProfile.open;window.bayanProfile.open=function(){var r=po.apply(this,arguments);setTimeout(render,0);return r}}
+var pm=document.getElementById('pmenu');if(pm)new MutationObserver(function(){if(!pm.hidden)meter(load())}).observe(pm,{attributes:true,attributeFilter:['hidden','class']});
+render();
 })();
 </script>
 </body></html>
