@@ -4719,6 +4719,11 @@ html[data-bayan="light"] .ax-none{color:#4C5C57}
 .axv .axv-fr{white-space:nowrap}
 @media (max-width:520px){.axv-fr{display:none}}
 
+
+/* v219: answers message + Continue / Customize pills */
+.cv-msg.u.su-ans .tx{white-space:pre-line;text-align:start}
+.su-pills{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 18px;padding-top:4px}
+.su-pills .cv-chip{display:inline-flex;align-items:center;gap:7px;cursor:pointer}
 /* v194: profile on phones = settings list, each item opens its own page */
 .pf-back{display:none}
 @media (max-width:760px){
@@ -6257,12 +6262,12 @@ function duoSetQs(n){var D=DSQ[AR?'ar':'en'],cs=duoSel.map(duoById).filter(Boole
 function suOpts(q){var o=q.o.slice(0,q.noOther?4:3);if(!q.noOther)o.push({v:'other',t:suL('Other…','أخرى…'),input:q.num?suL('Type a number from 1 to 10','اكتب رقمًا من ١ إلى ١٠'):suL('Type your own answer','اكتب إجابتك')});return o}
 function suAns(q,a){if(!a)return '—';var o=suOpts(q)[a.k];if(!o)return '—';return o.input?(a.txt||'').trim():o.t}
 function suOk(q,a){if(!a)return false;var o=suOpts(q)[a.k];if(!o)return false;if(!o.input)return true;var t=(a.txt||'').trim();if(!t)return false;if(q.num&&o.v==='other'){var n=+t.replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)});return n>=1&&n<=10&&Math.floor(n)===n}return true}
-function duoAfterPick(list){if(duoCfgDone&&duoSel.length===2&&duoCfg&&!('rel' in duoCfg)&&!duoCustom)duoCfgDone=false;
+function duoAfterPick(list){/* v219: one character chats straight away */if(duoSel.length<2&&!duoCustom&&!duoPend){var _s=document.getElementById('duoSU');if(_s)_s.remove();document.body.classList.remove('duo-setup');if(!duoCfgDone||!duoCfg){duoCfgDone=true;duoCfg={len:1}}duoIntros(list||[]);return}if(duoCfgDone&&duoSel.length===2&&duoCfg&&!('rel' in duoCfg)&&!duoCustom)duoCfgDone=false;
  if(duoCfgDone||document.body.classList.contains('duo-custom')&&!duoPend){duoIntros(list);return}
  (list||[]).forEach(function(c){if(c&&duoNeed.indexOf(c)<0)duoNeed.push(c)});duoSetupShow()}
 function duoShape(t){if(!duoCfg)return t;var l=duoCfg.len;if(l===0){var m=/^(.+?[.!؟?])(\s|$)/.exec(t);if(m&&m[1].length>30)t=m[1]}return t}
 function duoOrder(cs){return cs.length===2&&duoCfg&&duoCfg.start===1?[cs[1],cs[0]]:cs}
-function duoSeq(cs,topic,n){var TOP=['ambition','love','trust','fate'],N=cs.length<2?1:Math.max(1,Math.min(10,duoCfg&&duoCfg.turns||2)),out=[];
+function duoSeq(cs,topic,n){var TOP=['ambition','love','trust','fate'],N=cs.length<2?1:Math.max(1,Math.min(10,duoCfg&&duoCfg._once||duoCfg&&duoCfg.turns||2)),out=[];if(duoCfg)delete duoCfg._once;
  var GEN=[['I hear you, {o}. Where I come from, that question weighs differently.','أسمعك يا {o}. من حيث أتيت، لهذا السؤال وزن مختلف.'],['{o}, would you choose the same if the story were yours?','يا {o}، هل كنت ستختار الشيء نفسه لو كانت الحكاية حكايتك؟'],['Then let me say it plainly: some things are earned slowly and lost in a breath.','إذن دعني أقولها بوضوح: بعض الأشياء تُكسب ببطء وتضيع في لحظة.'],['Perhaps we agree more than it seems, {o}.','ربما نتفق أكثر مما يبدو يا {o}.'],['That is the part people forget — the cost comes later.','هذا ما ينساه الناس — الثمن يأتي لاحقًا.'],['Tell me what you would have done, {o}, and I will tell you if I believe it.','قل لي ماذا كنت ستفعل يا {o}، وسأخبرك إن كنت أصدّقك.']];
  for(var j=0;j<N;j++){var c=cs[j%cs.length],o=cs[(j+1)%cs.length],r=Math.floor(j/cs.length),tp=r===0?topic:TOP[(Math.max(0,TOP.indexOf(topic))+r)%4],t=duoLine(c,tp,n+r);
   if(out.some(function(x){return x.t===t})){var g=GEN[(n+j)%GEN.length];t=(AR?g[1]:g[0]).replace('{o}',suN(o))}
@@ -6302,13 +6307,13 @@ function suWire(box){
   var op=e.target.closest&&e.target.closest('.su2-op');if(!op||!/^Arrow(Up|Down|Left|Right)$/.test(e.key))return;var all=[].slice.call(box.querySelectorAll('.su2-op')),k=all.indexOf(op),f=(e.key==='ArrowDown'||e.key===(AR?'ArrowLeft':'ArrowRight'))?1:-1;e.preventDefault();var nx=all[(k+f+all.length)%all.length];all.forEach(function(x){x.tabIndex=-1});nx.tabIndex=0;nx.focus()})}
 function duoSetupDone(a){var box=document.getElementById('duoSU');if(box)box.remove();document.body.classList.remove('duo-setup');
  var Q=duoSetQs(duoSel.length),cfg={len:1},sm=[];
- Q.forEach(function(q,k){var x=a[k];if(!x)return;var o=suOpts(q)[x.k];if(!o)return;var txt=(x.txt||'').trim();cfg[q.id]=o.input?txt:o.v;if(q.id!=='scene')sm.push(o.input?txt:o.t)});
+ Q.forEach(function(q,k){var x=a[k];if(!x)return;var o=suOpts(q)[x.k];if(!o)return;var txt=(x.txt||'').trim();cfg[q.id]=o.input?txt:o.v;sm.push([q.q,o.input?txt:o.t])});
  if(typeof cfg.len!=='number')cfg.len=1;
  if('turns' in cfg){var tn=typeof cfg.turns==='number'?cfg.turns:+String(cfg.turns).replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)});cfg.turns=tn>=1&&tn<=10?tn:2}
  if('start' in cfg&&cfg.start!==0&&cfg.start!==1)cfg.start=Math.random()<.5?0:1;
  if(cfg.scene==='ai'){var sc=SU_SCENES[Math.floor(Math.random()*SU_SCENES.length)];cfg.scene=AR?sc[1]:sc[0]}
  duoCfg=cfg;duoCfgDone=true;
- if(sm.length){var nt=document.createElement('div');nt.className='hist-note';nt.textContent=sm.join(' · ');nt.dir='auto';duoThread.appendChild(nt)}
+ if(sm.length)duoAnsMsg(sm);
  if(cfg.scene)suScene(cfg.scene);
  var list=duoOrder(duoSel.map(duoById).filter(Boolean)),need=duoNeed.length?list.filter(function(c){return duoNeed.some(function(x){return x&&x.n===c.n})}):list;duoNeed=[];
  if(duoPend){var pd=duoPend;duoPend=null;duoBusy=true;var i=0;(function nx(){if(i>=list.length){duoBusy=false;duoLater(function(){duoAsk(pd.q,pd.tk)},rm?0:350);return}var c=list[i++];duoLater(function(){duoIntro(c,nx)},i>1?250:(rm?0:300))})()}
@@ -6359,9 +6364,9 @@ function duoContQs(){var cur=duoCfg&&duoCfg.scene;return [
  {id:'turns',q:suL('How many turns this time?','كم دورًا هذه المرة؟'),o:[{v:2,t:suL('2 turns — one each','دوران — رسالة لكلٍّ منهما')},{v:4,t:suL('4 turns','٤ أدوار')},{v:6,t:suL('6 turns','٦ أدوار')}],num:1},
  {id:'next',q:suL('Same scene or a different one?','المشهد نفسه أم مشهد مختلف؟'),o:[{v:'same',t:suL('Stay in the same scene','البقاء في المشهد نفسه'),d:cur||''},{v:'ai',t:suL('Let AI choose a new scene','دع الذكاء الاصطناعي يختار مشهدًا جديدًا')},{v:'me',t:suL('A different scene','مشهد مختلف'),input:suL('Describe a different scene…','صِف مشهدًا مختلفًا…')}],noOther:1}]}
 function duoContinueSetup(){duoSetupShow(null,{label:suL('Continue the conversation','أكمل المحادثة'),qs:duoContQs,cancel:duoAfterCard,done:function(a){var Q=duoContQs(),sm=[],sc=null;duoCfg=duoCfg||{len:1};
-  var t=a[0]&&suOpts(Q[0])[a[0].k];if(t){var tn=t.input?+String(a[0].txt).trim().replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)}):t.v;if(tn>=1&&tn<=10){duoCfg.turns=tn;sm.push(t.input?(AR?tn+' أدوار':tn+' turns'):t.t)}}
-  var o=a[1]&&suOpts(Q[1])[a[1].k];if(o){if(o.v==='ai'){var x=SU_SCENES.filter(function(z){return (AR?z[1]:z[0])!==duoCfg.scene});x=x[Math.floor(Math.random()*x.length)]||SU_SCENES[0];sc=AR?x[1]:x[0]}else if(o.input)sc=(a[1].txt||'').trim()||null;else sm.push(o.t)}
-  if(sm.length){var nt=document.createElement('div');nt.className='hist-note';nt.dir='auto';nt.textContent=sm.join(' · ');duoThread.appendChild(nt)}
+  var t=a[0]&&suOpts(Q[0])[a[0].k];if(t){var tn=t.input?+String(a[0].txt).trim().replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)}):t.v;if(tn>=1&&tn<=10){duoCfg.turns=tn;sm.push([Q[0].q,t.input?(AR?tn+' أدوار':tn+' turns'):t.t])}}
+  var o=a[1]&&suOpts(Q[1])[a[1].k];if(o){if(o.v==='ai'){var x=SU_SCENES.filter(function(z){return (AR?z[1]:z[0])!==duoCfg.scene});x=x[Math.floor(Math.random()*x.length)]||SU_SCENES[0];sc=AR?x[1]:x[0];sm.push([Q[1].q,o.t])}else if(o.input){sc=(a[1].txt||'').trim()||null;if(sc)sm.push([Q[1].q,sc])}else sm.push([Q[1].q,o.t])}
+  if(sm.length)duoAnsMsg(sm);
   if(sc){duoCfg.scene=sc;suScene(sc)}
   duoSilent=true;duoAsk(duoLastQ||'…',duoLastTopic)}});suFocus(document.getElementById('duoSU'))}
 
@@ -6384,6 +6389,14 @@ function suReply(v){var box=document.getElementById('duoSU');v=(v||'').trim();if
  var a={k:ki,txt:v};if(!suOk(q,a)){if(window.say)window.say(suL('Type a number from 1 to 10','اكتب رقمًا من ١ إلى ١٠'));return false}
  box._a[i]=a;var qi=duoIn();if(qi)qi.value='';suNext(box);return true}
 window.suReply=suReply;
+
+/* v219: your setup answers as one message; Continue / Customize pills after each round */
+function duoAnsMsg(sm){var b=duoUser(sm.map(function(x){return x[0]+' — '+x[1]}).join('\n'));b.classList.add('su-ans');return b}
+function duoAfterCard(){var old=document.getElementById('duoAfter');if(old)old.remove();var E=cvEsc,box=document.createElement('div');box.id='duoAfter';box.className='su-pills';box.setAttribute('role','group');box.setAttribute('aria-label',suL('What next?','ماذا بعد؟'));
+ box.innerHTML='<button type="button" class="cv-chip" data-after="go"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.500v13l10.500-6.500z"/></svg>'+E(suL('Continue','أكمل'))+'</button><button type="button" class="cv-chip" data-after="cz"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>'+E(suL('Customize','تخصيص'))+'</button>';
+ box.addEventListener('click',function(e){var b=e.target.closest('[data-after]');if(!b||duoBusy)return;box.remove();
+  if(b.dataset.after==='go'){duoCfg=duoCfg||{len:1};duoCfg._once=duoSel.length||2;duoSilent=true;duoAsk(duoLastQ||'…',duoLastTopic)}else duoContinueSetup()});
+ duoThread.appendChild(box);duoBottom()}
 
 function duoGreet(){var ar=isAr(CAT[duoBook].t),t=ar?'اختر شخصية أو اثنتين من '+CAT[duoBook].t+' لتتحدث معهما، أو أضف شخصيات من كتب أخرى بزر +.':'Choose a character, or two, to talk to from '+CAT[duoBook].t+'. Tap + to bring in someone from another book.';
   var b=document.createElement('div');b.className='cv-msg a';b.innerHTML='<span class="bav" aria-hidden="true"><img class="bav-em" src="img/emblem-soft.png" alt=""></span><div class="abody"><div class="bub glass"><p dir="auto"></p></div></div>';b.querySelector('p').textContent=t;duoThread.appendChild(b)}
