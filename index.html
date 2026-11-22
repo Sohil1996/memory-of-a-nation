@@ -8057,7 +8057,7 @@ var st={tab:'all',era:'all',ri:'all',view:'grid',res:null,busy:false},EX=[['وش
 function acct(){return window.monAccount?monAccount.get():null}
 function grp(){var a=acct();if(!a)return null;var tid=a.type||a.t||a.id,ty=(monAccount.types||[]).filter(function(t){return t.id===tid})[0];return ty?ty.group:(a.group||'ind')}
 function wallet(){return window.monWallet?monWallet.load():{bal:0}}
-function logFree(kind,what){if(!acct()||!window.monWallet)return;try{monWallet.spend(kind,what)}catch(e){}}
+function logFree(kind,what){if(!acct()||!window.monWallet)return;if(typeof what==='string')what=[what,what];try{monWallet.spend(kind,what)}catch(e){}}
 var UNK='mon-arch-unlocks';function unl(){try{return JSON.parse(localStorage.getItem(UNK)||'{}')}catch(e){return {}}}function setUnl(id,k){var u=unl();u[id]=u[id]||[];if(u[id].indexOf(k)<0)u[id].push(k);try{localStorage.setItem(UNK,JSON.stringify(u))}catch(e){}}
 /* ---------- page: same layout and filters as Books ---------- */
 var SE=E.querySelector('.ex-side');E.classList.add('bksV','ax-on');if(SE)SE.classList.add('bk-side');M.classList.add('bk-main');
@@ -8108,7 +8108,7 @@ var V=document.createElement('div');V.className='axv';V.id='axv';V.hidden=true;V
 var cur=null,z=1,px=0,py=0,ret=null,seen={},pick=null,rt=null;
 function wm(){var t='Memory of a Nation · ذاكرة وطن · '+T('PREVIEW','معاينة');var s='<svg xmlns="http://www.w3.org/2000/svg" width="620" height="340"><text x="310" y="170" text-anchor="middle" transform="rotate(-22 310 170)" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="700" fill="rgba(255,255,255,.55)" stroke="rgba(20,14,6,.45)" stroke-width="1" paint-order="stroke">'+t.replace(/&/g,'&amp;')+'</text></svg>';return "url('data:image/svg+xml;charset=utf-8,"+encodeURIComponent(s)+"')"}
 function view(id,from){var x=BY[id];if(!x)return;cur=x;z=1;px=py=0;pick=null;ret=from||document.activeElement;clearInterval(rt);
- if(!seen[id]){seen[id]=1;logFree('preview',L(x.t))}
+ if(!seen[id]){seen[id]=1;logFree('preview',x.t)}
  var zoomable=x.ty!=='vid'&&x.ty!=='rec',stage;
  if(x.ty==='vid')stage='<div class="axv-z"><video src="img/'+x.vid+'" poster="img/'+x.img+'.jpg" controls playsinline muted loop preload="metadata" controlslist="nodownload noplaybackrate" disablepictureinpicture></video><i class="axv-wm" style="background-image:'+wm()+'"></i></div>';
  else if(x.ty==='rec')stage='<div class="axv-rec"><img src="img/'+x.img+'.jpg" alt=""><div class="axv-pl"><button type="button" class="axv-play" aria-label="'+esc(T('Play preview','تشغيل المعاينة'))+'">▶</button><span class="axv-tl"><i></i></span><small>'+N('0:30')+' '+T('free preview','معاينة مجانية')+'</small></div><p class="axv-tr" dir="auto"><b>'+T('Transcript','النص')+' · '+esc(L(x.dl))+'</b>'+esc(ar()?x.tr[1]:x.tr[0])+(ar()?'':'<span class="axv-orig" dir="rtl">'+esc(x.tr[1])+'</span>')+'</p><i class="axv-wm" style="background-image:'+wm()+'"></i></div>';
