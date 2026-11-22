@@ -4714,6 +4714,49 @@ html[dir=rtl] .axu-r{padding:10px 14px 10px 10px}
 .axv .axv-fr{white-space:nowrap}
 @media (max-width:520px){.axv-fr{display:none}}
 
+/* v222: accessible side filters (Books and Explore) */
+html body .bk-fg b{opacity:1!important;color:rgba(255,255,255,.86)}
+html body .bk-fg button{display:inline-flex;align-items:center;gap:6px;background:rgba(6,18,15,.8);border:1px solid rgba(255,255,255,.3);color:#F6F3EC;font-weight:500;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+html body .bk-fg button:hover{border-color:#E2C98D;background:rgba(6,18,15,.92)}
+html body .bk-fg button:focus-visible{outline:2px solid #73D0B1;outline-offset:2px}
+html body .bk-fg button.on{background:#E2C98D;border-color:#E2C98D;color:#1A1208;font-weight:600;box-shadow:0 0 0 3px rgba(226,201,141,.25)}
+html body .bk-fg button.on:not(.ax-tb)::before{content:"";flex:none;width:13px;height:13px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.200' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.500l4.500 4.500L19 7.500'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.200' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.500l4.500 4.500L19 7.500'/%3E%3C/svg%3E") center/contain no-repeat}
+html body .ax-fl .ax-tb i{background:rgba(255,255,255,.16);color:#F6F3EC}
+html body .ax-fl .ax-tb.on i{background:rgba(26,18,8,.16);color:#1A1208}
+html body .bk-clr{color:#ECDBAF;font-weight:500}
+html[data-bayan="light"] body .bk-fg b{color:#0E241E}
+html[data-bayan="light"] body .bk-fg button{background:rgba(255,255,255,.9);border-color:rgba(14,36,30,.3);color:#0E241E}
+html[data-bayan="light"] body .bk-fg button:hover{border-color:#0E5B49;background:#fff}
+html[data-bayan="light"] body .bk-fg button.on{background:#0E5B49;border-color:#0E5B49;color:#fff;box-shadow:0 0 0 3px rgba(14,91,73,.18)}
+html[data-bayan="light"] body .ax-fl .ax-tb i{background:rgba(14,36,30,.08);color:#0E241E}
+html[data-bayan="light"] body .ax-fl .ax-tb.on i{background:rgba(255,255,255,.22);color:#fff}
+html[data-bayan="light"] body .bk-clr{color:#0E5B49}
+/* v222: Explore input like the chat input */
+#exp .bk-bar{align-items:center}
+#exp .ax-q{flex:1;min-width:0;height:64px;border-radius:999px;display:flex;align-items:center;gap:14px;padding:0 9px 0 22px;margin:0;color:#F6F3EC;box-shadow:0 0 36px rgba(226,201,141,.08),0 14px 40px rgba(0,0,0,.35)}
+html[dir=rtl] #exp .ax-q{padding:0 22px 0 9px}
+#exp .ax-q input{flex:1;min-width:0;height:100%;border:0;background:none;color:inherit;font:400 16px var(--sans);outline:0}
+#exp .ax-q input::placeholder{color:rgba(255,255,255,.6)}
+#exp .ax-q .ax-send{width:46px;height:46px;background:var(--coral);color:var(--coral-ink)}
+#exp .ax-q .ax-send:hover{background:#E8D298}
+#exp .ax-q:focus-within{box-shadow:0 0 0 2px rgba(226,201,141,.55),0 14px 40px rgba(0,0,0,.35)}
+#exp .bk-vw{padding:6px;border-radius:999px}#exp .bk-vw button{width:46px;height:46px;border-radius:50%}
+html[data-bayan="light"] #exp .ax-q{color:#0E241E;background:rgba(253,251,248,.85);border:1px solid rgba(14,36,30,.16);box-shadow:0 10px 30px rgba(14,36,30,.1)}
+html[data-bayan="light"] #exp .ax-q input::placeholder{color:rgba(14,36,30,.55)}
+html[data-bayan="light"] #exp .ax-q .ax-send:hover{background:#0B4A3B}
+@media (max-width:900px){#exp .ax-q{height:56px;gap:10px}#exp .ax-q input{font-size:16px}#exp .bk-vw button{width:40px;height:40px}}
+/* v222: recording cards */
+.ax-rim{display:flex!important;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 30%,#1F3A33,#0B1714 75%)!important}
+.ax-rc{display:flex;flex-direction:column;align-items:center;gap:16px;width:78%}
+.ax-rpl{width:58px;height:58px;border-radius:50%;background:#E2C98D;color:#1A1208;display:grid;place-items:center;box-shadow:0 0 0 9px rgba(226,201,141,.14),0 0 30px rgba(226,201,141,.25);transition:transform .25s}
+
+.ax-c:hover .ax-rpl{transform:scale(1.06)}
+.ax-wv{display:flex;align-items:center;justify-content:center;gap:3px;height:46px;width:100%}
+.ax-wv i{flex:1;max-width:4px;border-radius:2px;background:linear-gradient(#E2C98D,#73D0B1);opacity:.8}
+.ax-rm{font:600 12px var(--sans);color:rgba(255,255,255,.8);letter-spacing:.02em}
+.ax-list.list .ax-rim .ax-wv,.ax-list.list .ax-rim .ax-rm{display:none}
+.ax-list.list .ax-rim .ax-rpl{width:40px;height:40px;box-shadow:0 0 0 6px rgba(226,201,141,.14)}
+
 
 /* v219: answers message + Continue / Customize pills */
 .cv-msg.u.su-ans .tx{white-space:pre-line;text-align:start}
@@ -7863,12 +7906,14 @@ function fl(){var c=counts();FL.innerHTML='<div class="bk-fg"><b>'+T('Content ty
  '<button type="button" class="bk-clr" data-clr="1">'+T('Clear filters','مسح التصفية')+'</button>'+bal()}
 function bal(){var a=acct();if(!a)return '<p class="ax-bal">'+T('Search and preview are free. Sign in to use credits.','البحث والمعاينة مجانيان. سجّل الدخول لاستخدام الأرصدة.')+'</p>';var w=wallet();return '<p class="ax-bal"><b>'+N(w.bal||0)+'</b> '+T('credits available','رصيد متاح')+'</p>'}
 var CHEV='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="su2-fl"><path d="M9 6l6 6-6 6"/></svg>';
-function card(x){var tag=x.ty==='rec'||x.ty==='vid'?'<i class="ax-pl">'+(x.ty==='vid'?'▶ ':'♪ ')+N(x.dur)+'</i>':'';
+function recArt(x){var seed=0;for(var i=0;i<x.id.length;i++)seed+=x.id.charCodeAt(i)*7;var b='';for(var j=0;j<26;j++){var hh=18+((seed+j*37)%23)*2.4+(j%5===2?14:0);b+='<i style="height:'+Math.round(Math.min(100,hh))+'%"></i>'}
+ return '<span class="ax-rc"><span class="ax-rpl"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.500v13l10.500-6.500z"/></svg></span><span class="ax-wv" aria-hidden="true">'+b+'</span><span class="ax-rm">'+N(x.dur)+' · '+esc(L(x.dl))+'</span></span>'}
+function card(x){var tag=x.ty==='vid'?'<i class="ax-pl">▶ '+N(x.dur)+'</i>':'';if(x.ty==='rec')return '<button type="button" class="ax-c ax-rec" data-id="'+x.id+'"><span class="ax-im ax-rim"><i class="ax-ty">'+ic(x.ty,13)+esc(L(TY1[x.ty]))+'</i>'+recArt(x)+'</span><span class="ax-b"><span class="ax-mt">'+ic(x.ty,13)+esc(L(TY1[x.ty]))+'<em>·</em>'+esc(era(x))+'</span><b dir="auto">'+esc(L(x.t))+'</b><small>'+esc(era(x))+'</small><p dir="auto">'+esc(L(x.d))+'</p><em dir="auto">'+esc(L(x.s))+'</em><span class="ax-ri ri-'+x.ri+'">'+esc(L(RI[x.ri][0]))+'</span></span><span class="ax-ar">'+CHEV+'</span></button>';
  return '<button type="button" class="ax-c ax-'+x.ty+'" data-id="'+x.id+'"><span class="ax-im"><img src="img/'+x.img+'.jpg" alt="" loading="lazy" draggable="false"><i class="ax-ty">'+ic(x.ty,13)+esc(L(TY1[x.ty]))+'</i>'+tag+'</span><span class="ax-b"><span class="ax-mt">'+ic(x.ty,13)+esc(L(TY1[x.ty]))+'<em>·</em>'+esc(era(x))+'</span><b dir="auto">'+esc(L(x.t))+'</b><small>'+esc(era(x))+'</small><p dir="auto">'+esc(L(x.d))+'</p><em dir="auto">'+esc(L(x.s))+'</em><span class="ax-ri ri-'+x.ri+'">'+esc(L(RI[x.ri][0]))+'</span></span><span class="ax-ar">'+CHEV+'</span></button>'}
 function list(){var ids=st.res?st.res.ids:IT.map(function(x){return x.id});return ids.map(function(i){return BY[i]}).filter(function(x){return (st.tab==='all'||x.ty===st.tab)&&inEra(x,st.era)&&(st.ri==='all'||x.ri===st.ri)})}
 function counts(){var ids=st.res?st.res.ids:IT.map(function(x){return x.id}),c={all:0};ids.forEach(function(i){var x=BY[i];if(!inEra(x,st.era)||(st.ri!=='all'&&x.ri!==st.ri))return;c.all++;c[x.ty]=(c[x.ty]||0)+1});return c}
 function render(){side();var ls=list();
- var h='<div class="bk-bar"><form class="sp-search ex-q ax-q" id="axF" autocomplete="off" role="search">'+SPARK+'<input id="axQ" type="search" dir="auto" placeholder="'+esc(T('Ask the archive in Najdi, Hijazi, formal Arabic or English…','اسأل الأرشيف بالنجدية أو الحجازية أو الفصحى أو الإنجليزية…'))+'" aria-label="'+esc(T('Search the archive','ابحث في الأرشيف'))+'" value="'+esc(st.res?st.res.q:'')+'"><button type="submit" class="ax-go" aria-label="'+esc(T('Search','ابحث'))+'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5.500 11.500L12 5l6.500 6.500"/></svg></button></form>'+
+ var h='<div class="bk-bar"><form class="lg2 ax-q" id="axF" autocomplete="off" role="search"><svg class="cv-star" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l1.500 9.500L23 12l-9.500 1.500L12 23l-1.500-9.500L1 12l9.500-1.500z"/></svg>'+'<input id="axQ" type="search" dir="auto" placeholder="'+esc(T('Ask the archive in Najdi, Hijazi, formal Arabic or English…','اسأل الأرشيف بالنجدية أو الحجازية أو الفصحى أو الإنجليزية…'))+'" aria-label="'+esc(T('Search the archive','ابحث في الأرشيف'))+'" value="'+esc(st.res?st.res.q:'')+'"><button type="submit" class="cv-send ax-send" aria-label="'+esc(T('Search','ابحث'))+'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5.500 11.500L12 5l6.500 6.500"/></svg></button></form>'+
   '<div class="bk-vw" role="group" aria-label="'+esc(T('View','العرض'))+'"><button type="button" data-v="grid" class="'+(st.view==='grid'?'on':'')+'" aria-pressed="'+(st.view==='grid')+'" aria-label="'+esc(T('Grid view','عرض شبكي'))+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.700" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6.500" height="6.500" rx="1.500"/><rect x="13.500" y="4" width="6.500" height="6.500" rx="1.500"/><rect x="4" y="13.500" width="6.500" height="6.500" rx="1.500"/><rect x="13.500" y="13.500" width="6.500" height="6.500" rx="1.500"/></svg></button><button type="button" data-v="list" class="'+(st.view==='list'?'on':'')+'" aria-pressed="'+(st.view==='list')+'" aria-label="'+esc(T('List view','عرض قائمة'))+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.700" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div>';
  h+='<div class="ax-ex">'+EX.map(function(e){return '<button type="button" data-ex="'+esc(e[0])+'"><small>'+esc(e[1]==='naj'?T('Najdi','نجدي'):e[1]==='hij'?T('Hijazi','حجازي'):e[1]==='fus'?T('Formal','فصحى'):T('English','إنجليزي'))+'</small><span dir="auto">'+esc(e[0])+'</span></button>'}).join('')+'</div>';
  h+='<div id="axAns"></div><p class="bk-n">'+(st.res?N(ls.length)+' '+T(ls.length===1?'result':'results',ls.length===1?'نتيجة':'نتائج'):N(ls.length)+' '+T(ls.length===1?'item':'items','مادة'))+'</p>';
