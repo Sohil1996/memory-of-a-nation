@@ -4559,6 +4559,16 @@ html[data-bayan="light"] .df-ch.on{border-width:2px!important;box-shadow:0 0 0 4
 .df-ch.on img{box-shadow:0 0 0 2px #E2C98D}
 /* v216: Continue stays in view while browsing many books */
 .df-go{position:sticky;bottom:18px;z-index:6;box-shadow:0 12px 32px rgba(0,0,0,.45),0 0 28px rgba(226,201,141,.25)!important}
+
+/* v217: docked glass question panel, aligned with the chat box */
+.su3.su3-dock{position:absolute;z-index:30;margin:0;max-width:none;box-sizing:border-box;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;
+ background:rgba(16,28,25,.74);-webkit-backdrop-filter:blur(30px) saturate(1.35);backdrop-filter:blur(30px) saturate(1.35);border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 48px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.08);
+ animation:su3In .22s ease-out}
+@keyframes su3In{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.su3.su3-dock{animation:none}}
+html[data-bayan="light"] .su3.su3-dock{background:rgba(255,255,255,.84);border-color:rgba(14,36,30,.12);box-shadow:0 18px 44px rgba(14,36,30,.16)}
+.su3-spacer{flex:none;pointer-events:none}
+body.duo-setup .cv-sugg,body.duo-setup #cvSugg,body.duo-setup .dc-c,body.duo-setup #duoChips{visibility:hidden!important}
 /* v194: profile on phones = settings list, each item opens its own page */
 .pf-back{display:none}
 @media (max-width:760px){
@@ -6127,7 +6137,7 @@ function duoSetupDraw(){var box=document.getElementById('duoSU');if(!box)return;
   h+='<div class="su2-f"><button type="button" class="su2-back">'+BK+E(D.back)+'</button><span class="su2-sp"></span><button type="button" class="su2-go">'+E(D.go)+NX+'</button></div>';
  }
  box.innerHTML=h}
-function suGo(box,i,focus){box._i=i;duoSetupDraw();if(focus)suFocus(box);duoBottom()}
+function suGo(box,i,focus){box._i=i;duoSetupDraw();suPlace(box);if(focus)suFocus(box);duoBottom()}
 function suWire(box){
  box.addEventListener('click',function(e){var Q=duoSetQs(duoSel.length),i=box._i,t;
   if(t=e.target.closest('.su2-op')){var k=+t.dataset.k,q=Q[i],o=suOpts(q)[k],prev=box._a[i];box._a[i]={k:k,txt:prev&&prev.k===k?prev.txt:''};duoSetupDraw();
@@ -6160,7 +6170,7 @@ var SU_PEN='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="
 function duoSetupShow(mode,opt){if(!opt)duoMode=mode||(duoCustom?'home':'book');var e=document.getElementById('duoEmpty');if(e)e.remove();
  var box=document.getElementById('duoSU');if(box)box.remove();
  box=document.createElement('section');box.id='duoSU';box.className='su3';box.setAttribute('aria-label',opt&&opt.label||DSQ[AR?'ar':'en'].ui.t);box._i=0;box._a=[];if(opt){box._qs=opt.qs;box._done=opt.done;box._cancel=opt.cancel}
- duoThread.appendChild(box);document.body.classList.add('duo-setup');suWire(box);duoSetupDraw();duoBottom()}
+ document.body.classList.add('duo-setup');suWire(box);suMount(box);duoSetupDraw();suPlace(box);duoBottom()}
 function suFocus(box){var f=box.querySelector('.su3-op[aria-checked="true"]')||box.querySelector('.su3-op')||document.getElementById('su2In');if(f)f.focus({preventScroll:true})}
 function suInIdx(os){var r=-1;os.forEach(function(o,k){if(o.input)r=k});return r}
 function suPh(q,o){return o.v==='other'?(q.num?suL('Another number, 1 to 10','رقم آخر، من ١ إلى ١٠'):suL('Something else','شيء آخر')):o.input}
@@ -6174,7 +6184,7 @@ function duoSetupDraw(){var box=document.getElementById('duoSU');if(!box)return;
  if(inp){var ph=suPh(q,inp);h+='<div class="su3-other'+(txt.trim()?' on':'')+'"><span class="su3-pen">'+SU_PEN+'</span><input id="su2In" type="text" '+(q.num?'inputmode="numeric" maxlength="2"':'maxlength="160"')+' dir="auto" autocomplete="off" placeholder="'+E(ph)+'" aria-label="'+E(ph)+'" value="'+E(txt)+'"><button type="button" class="su3-skip">'+E(sk)+'</button></div>'}
  else h+='<div class="su3-other nf"><span class="su3-sp"></span><button type="button" class="su3-skip">'+E(sk)+'</button></div>';
  box.innerHTML=h}
-function suGo(box,i,focus){box._i=i;duoSetupDraw();if(focus)suFocus(box);duoBottom()}
+function suGo(box,i,focus){box._i=i;duoSetupDraw();suPlace(box);if(focus)suFocus(box);duoBottom()}
 function suFinish(box){var a=box._a,f=box._done;if(f){box.remove();document.body.classList.remove('duo-setup');f(a)}else duoSetupDone(a)}
 function suNext(box){var n=suQs(box).length;if(box._i+1>=n)suFinish(box);else suGo(box,box._i+1,true)}
 function suWire(box){
@@ -6205,6 +6215,26 @@ function duoContinueSetup(){duoSetupShow(null,{label:suL('Continue the conversat
   if(sc){duoCfg.scene=sc;suScene(sc)}
   duoSilent=true;duoAsk(duoLastQ||'…',duoLastTopic)}});suFocus(document.getElementById('duoSU'))}
 
+/* v217: dock the question panel above the chat box */
+function suForm(){var q=duoIn();return q&&q.closest('form')}
+function suPlace(box){box=box||document.getElementById('duoSU');if(!box||!box.classList.contains('su3-dock'))return;var f=box._form;if(!f||!f.isConnected)return;var par=f.offsetParent||f.parentNode,ph=par.clientHeight;
+ box.style.left=f.offsetLeft+'px';box.style.width=f.offsetWidth+'px';box.style.bottom=Math.max(0,ph-f.offsetTop+10)+'px';box.style.maxHeight=Math.max(220,f.offsetTop-150)+'px';
+ var sp=box._spacer;if(sp)sp.style.height=(box.offsetHeight+14)+'px';var qq=box._q,R=suL('Or reply directly…','أو أجب مباشرة…');if(qq&&qq.placeholder!==R){box._ph0=qq.placeholder;qq.dataset.ph2='1';qq.placeholder=R}}
+function suMount(box){var f=suForm();if(!f||!f.parentNode){duoThread.appendChild(box);return}
+ box.classList.add('su3-dock');box._form=f;f.parentNode.insertBefore(box,f);
+ var sp=document.createElement('div');sp.className='su3-spacer';sp.setAttribute('aria-hidden','true');duoThread.appendChild(sp);box._spacer=sp;
+ var q=duoIn();if(q){box._q=q;box._ph0=q.placeholder;q.dataset.ph2='1';q.placeholder=suL('Or reply directly…','أو أجب مباشرة…')}
+ setTimeout(function(){suPlace(box)},60);var ro=window.ResizeObserver?new ResizeObserver(function(){suPlace(box)}):null;if(ro){ro.observe(box);ro.observe(f)}
+ function onR(){suPlace(box)}window.addEventListener('resize',onR);
+ var mo=new MutationObserver(function(){if(box.isConnected)return;mo.disconnect();if(ro)ro.disconnect();window.removeEventListener('resize',onR);if(sp.parentNode)sp.remove();
+  var qq=box._q;if(qq&&qq.placeholder===suL('Or reply directly…','أو أجب مباشرة…')){qq.placeholder=box._ph0;delete qq.dataset.ph2}});mo.observe(f.parentNode,{childList:true})}
+/* typing in the chat box answers the current question, like "Or reply directly" */
+function suReply(v){var box=document.getElementById('duoSU');v=(v||'').trim();if(!box||!v)return false;var Q=suQs(box),i=box._i,q=Q[i],ki=suInIdx(suOpts(q));
+ if(ki<0){if(window.say)window.say(suL('Pick one of the options, or skip','اختر أحد الخيارات أو تخطَّ'));return false}
+ var a={k:ki,txt:v};if(!suOk(q,a)){if(window.say)window.say(suL('Type a number from 1 to 10','اكتب رقمًا من ١ إلى ١٠'));return false}
+ box._a[i]=a;var qi=duoIn();if(qi)qi.value='';suNext(box);return true}
+window.suReply=suReply;
+
 function duoGreet(){var ar=isAr(CAT[duoBook].t),t=ar?'اختر شخصية أو اثنتين من '+CAT[duoBook].t+' لتتحدث معهما، أو أضف شخصيات من كتب أخرى بزر +.':'Choose a character, or two, to talk to from '+CAT[duoBook].t+'. Tap + to bring in someone from another book.';
   var b=document.createElement('div');b.className='cv-msg a';b.innerHTML='<span class="bav" aria-hidden="true"><img class="bav-em" src="img/emblem-soft.png" alt=""></span><div class="abody"><div class="bub glass"><p dir="auto"></p></div></div>';b.querySelector('p').textContent=t;duoThread.appendChild(b)}
 function duoUser(t){var e=document.getElementById('duoEmpty');if(e)e.remove();var b=document.createElement('div');b.className='cv-msg u';b.innerHTML='<div class="bub"><span class="tx" dir="auto"></span></div><div class="mtools"><time></time></div>';b.querySelector('.tx').textContent=t;b.querySelector('time').textContent=duoTime();duoThread.appendChild(b);duoBottom();return b}
@@ -6224,7 +6254,7 @@ function duoTopic(t){var l=t.toLowerCase();if(/طموح|سلطة|تاج|عرش/.
 function duoIntro(c,done){var e=document.getElementById('duoEmpty');if(e)e.remove();var ar=isAr(c.n),t=ar?'أنا '+c.n+'، '+c.role+'. '+c.bio:'I’m '+c.n+', '+c.role+'. '+c.bio;duoReply(c,t,done)}
 function duoIntros(list){if(duoBusy)return;duoBusy=true;var i=0;(function nx(){if(i>=list.length){duoBusy=false;return}var c=list[i++];duoLater(function(){duoIntro(c,nx)},i>1?250:0)})()}
 function duoLine(c,topic,n){var L=DL[c.id];if(L)return L[topic][n%2];if(isAr(c.n)||document.documentElement.dir==='rtl'){var _b=(typeof trA==='function'&&trA(c.bio))||c.bio;return _b+' اسألني عن الحكاية.'}return c.bio+' Ask me more about the story.'}
-function duoAsk(t,topic){t=(t||'').trim();if(!t||duoBusy)return;if(duoAwait&&!duoSilent&&!document.getElementById('duoSU')){duoAwait=false;var _af0=document.getElementById('duoAfter');if(_af0)_af0.remove();duoUser(t);if(duoCfg)duoCfg.scene=t;suScene(t);duoPh(false);duoSilent=true;t=duoLastQ||t;topic=duoLastTopic||topic}if(document.getElementById('duoSU')){say(tr('Answer the setup questions first, or skip'));return}if(!duoSel.length){say('Pick a character first');return}duoBusy=true;document.getElementById('duoCont').classList.add('wait');topic=topic||duoTopic(t);if(!duoSilent)duoUser(t);duoSilent=false;duoLastQ=t;duoLastTopic=topic;var _af=document.getElementById('duoAfter');if(_af)_af.remove();try{if(window.bayanEnc){var _cc2=duoSel.map(function(n){return duoById(n)}).filter(Boolean);if(_cc2.length&&!(document.body.classList.contains('duo-custom')&&_cc2.length===2))window.bayanEnc(_cc2.map(function(c){return c.n}),_cc2.map(function(c){return c.k||(cvCtx&&cvCtx.k)}))}}catch(x){}
+function duoAsk(t,topic){t=(t||'').trim();if(!t||duoBusy)return;if(duoAwait&&!duoSilent&&!document.getElementById('duoSU')){duoAwait=false;var _af0=document.getElementById('duoAfter');if(_af0)_af0.remove();duoUser(t);if(duoCfg)duoCfg.scene=t;suScene(t);duoPh(false);duoSilent=true;t=duoLastQ||t;topic=duoLastTopic||topic}if(document.getElementById('duoSU')){suReply(t);return}if(!duoSel.length){say('Pick a character first');return}duoBusy=true;document.getElementById('duoCont').classList.add('wait');topic=topic||duoTopic(t);if(!duoSilent)duoUser(t);duoSilent=false;duoLastQ=t;duoLastTopic=topic;var _af=document.getElementById('duoAfter');if(_af)_af.remove();try{if(window.bayanEnc){var _cc2=duoSel.map(function(n){return duoById(n)}).filter(Boolean);if(_cc2.length&&!(document.body.classList.contains('duo-custom')&&_cc2.length===2))window.bayanEnc(_cc2.map(function(c){return c.n}),_cc2.map(function(c){return c.k||(cvCtx&&cvCtx.k)}))}}catch(x){}
   var n=(duoCnt[topic]=(duoCnt[topic]||0)+1)-1,cs=duoSel.map(function(id){return duoPool.filter(function(x){return x.n===id})[0]});cs=duoOrder(cs);var seq=duoSeq(cs,topic,n);
   function turn(i){if(i>=seq.length){duoBusy=false;duoQs=(duoQs+1)%3;duoRender();document.getElementById('duoCont').classList.remove('wait');if(cs.length===2)duoAfterCard();return}var c=seq[i].c,ty=duoTyping(c);duoLater(function(){ty.remove();duoReply(c,seq[i].t,function(){duoLater(function(){turn(i+1)},rm?0:250)})},rm?0:950)}
   turn(0)}
@@ -6979,7 +7009,7 @@ var _dfS=dfStart;dfStart=function(){chOff(false);return _dfS.apply(this,argument
 var _dAsk=duoAsk;duoAsk=function(t,topic){var v=(t||'').trim();if(chActive()&&v&&!duoBusy&&!document.getElementById('duoSU')&&duoSel.length&&window.bxC){window.__bxUserTs=bxC.push({r:'u',t:v,title:v})}return _dAsk.apply(this,arguments)};
 var _dRep=duoReply;duoReply=function(c,text,done){if(chActive()&&window.bxC&&bxC.id()){try{bxC.push({r:'c',t:text,n:c.n,k:c.k,img:c.img})}catch(e){}}return _dRep.apply(this,arguments)};
 cvForm.addEventListener('submit',function(e){if(!chActive()||!duoSel.length)return;e.preventDefault();e.stopImmediatePropagation();var v=cvQ.value.trim();if(!v)return;
- if(document.getElementById('duoSU')){say('Answer the setup questions first, or skip');return}if(duoBusy)return;duoAsk(v);cvQ.value=''},true);
+ if(document.getElementById('duoSU')){if(window.suReply&&suReply(v))cvQ.value='';return}if(duoBusy)return;duoAsk(v);cvQ.value=''},true);
 /* reopened from My Library: scroll to where the character conversation started and continue with them */
 window.bxRestored=function(at,list){var el=at&&cvThread.querySelector('[data-ts="'+at+'"]');if(el){cvScroll.scrollTo({top:Math.max(0,el.offsetTop-140),behavior:'auto'});el.classList.add('cvx-hl');setTimeout(function(){el.classList.remove('cvx-hl')},2600)}if(list&&list.length)chResume(list)};
 
