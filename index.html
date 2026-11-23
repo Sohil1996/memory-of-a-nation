@@ -4960,6 +4960,46 @@ html[dir=rtl] #gl canvas#glMap{right:auto;left:max(16px,env(safe-area-inset-left
  html[dir=rtl] body #prf .pf-back svg{transform:scaleX(-1)}
  html[data-bayan="light"] body #prf .pf-back{color:#0E2A22}
 }
+
+/* v229: Nafath, as it really works */
+.rg-fld{display:flex;flex-direction:column;gap:6px;margin:4px 0 12px}
+.rg-fld span{font-size:13px;opacity:.8}
+.rg-fld input{height:48px;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.18);color:inherit;padding:0 14px;font:600 18px/1 var(--sans);letter-spacing:.12em;text-align:left}
+html.light .rg-fld input{background:#fff}
+.rg-fld input:focus{outline:2px solid #5CC4A2;outline-offset:1px}
+.rg-fld small{font-size:12px;opacity:.65}
+.rg-fld.bad input{border-color:#E0705C;box-shadow:0 0 0 3px rgba(224,112,92,.18)}
+.nf-how{margin:4px 0 0;padding-inline-start:20px;display:flex;flex-direction:column;gap:6px;font-size:13.5px;opacity:.85}
+.nf-row{display:flex;gap:16px;align-items:stretch;margin-bottom:14px}
+.nf-num{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px 12px;border-radius:16px;border:1px dashed rgba(255,255,255,.22);background:rgba(0,0,0,.18);text-align:center}
+html.light .nf-num{background:rgba(255,255,255,.7);border-color:rgba(9,28,22,.2)}
+.nf-num>span{font-size:13px;opacity:.85;max-width:220px}
+.nf-num b{font:700 64px/1 var(--sans);color:#5CC4A2;letter-spacing:.04em}
+html.light .nf-num b{color:#0F7A60}
+.nf-num.wait b{animation:rgPulse 1.6s ease-in-out infinite}
+.nf-num.exp b{opacity:.35;text-decoration:line-through}
+.nf-num em{font-style:normal;font-size:13px;font-variant-numeric:tabular-nums;color:#E2C98D}
+.nf-again{background:none;border:0;color:inherit;font:500 13px var(--sans);text-decoration:underline;text-underline-offset:3px;cursor:pointer;opacity:.85;padding:2px}
+.nf-id{font-size:12px;opacity:.6}
+.nf-ph{flex:none;width:122px;border-radius:22px;padding:7px;background:#0a0a0a;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.nf-scr{height:100%;min-height:200px;border-radius:16px;background:#f5f7f6;color:#0c3b2e;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;position:relative;overflow:hidden}
+.nf-top img{height:20px;display:block}
+.nf-req{margin:0;font:600 11px/1.3 var(--sans);text-align:center;opacity:0;transform:translateY(6px);transition:.4s}
+.nf-req small{display:block;font-weight:400;opacity:.7}
+.nf-nums{display:flex;gap:5px;opacity:0;transition:.4s}
+.nf-nums span{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font:700 12px var(--sans);border:1px solid #cfdad6;background:#fff;transition:.3s}
+.nf-pin{display:flex;gap:5px;opacity:0;transition:.3s}
+.nf-pin i{width:8px;height:8px;border-radius:50%;border:1.5px solid #0c3b2e;transition:background .2s}
+.nf-okk{position:absolute;inset:0;display:grid;place-items:center;background:#0F7A60;color:#fff;opacity:0;transition:.4s}
+.nf-okk svg{width:34px;height:34px}
+.nf-ph.s1 .nf-req,.nf-ph.s2 .nf-req,.nf-ph.s3 .nf-req{opacity:1;transform:none}
+.nf-ph.s1 .nf-nums,.nf-ph.s2 .nf-nums,.nf-ph.s3 .nf-nums{opacity:1}
+.nf-ph.s2 .nf-nums span.m,.nf-ph.s3 .nf-nums span.m{background:#0F7A60;color:#fff;border-color:#0F7A60;transform:scale(1.08)}
+.nf-ph.s3 .nf-pin{opacity:1}.nf-ph.s3 .nf-pin i{background:#0c3b2e}
+.nf-ph.s4 .nf-okk{opacity:1}
+.rg-done{flex-wrap:wrap}.rg-done small{display:block;flex-basis:100%;font-size:12.5px;opacity:.8;margin-top:2px;font-weight:400}
+@media (max-width:640px){.nf-row{flex-direction:column}.nf-ph{width:100%;max-width:240px;align-self:center}.nf-scr{min-height:150px}}
+@media (prefers-reduced-motion:reduce){.nf-num.wait b{animation:none}}
 </style>
 <script>
 /* v183: Arabic book conversations (Arabic mode answers in Arabic) */
@@ -7698,7 +7738,7 @@ var $=function(id){return document.getElementById(id)};
 var st={step:0,type:null,plan:null,verified:false,busy:false,cr:'',code:'',mode:'signup'};
 var pending=null,lastFocus=null,timers=[];
 function later(f,ms){timers.push(setTimeout(f,rm?0:ms))}
-function clearT(){timers.forEach(clearTimeout);timers=[]}
+function clearT(){timers.forEach(clearTimeout);timers=[];if(st&&st.iv){clearInterval(st.iv);st.iv=null}}
 function T(){return TYPES.filter(function(x){return x.id===st.type})[0]}
 
 function render(){
@@ -7715,21 +7755,33 @@ function render(){
   $('rgFootNote').textContent=L(['You can change your identity later from your account settings','يمكنك تعديل هويتك لاحقًا من إعدادات حسابك']);
   $('rgGo').textContent=L(['Continue','متابعة']);$('rgGo').disabled=!st.type;$('rgBack').hidden=true;
  }else if(st.step===1){
-  var lv=t.level;
-  h='<p class="rg-k">'+L(['By intended use — not by spend','حسب نية الاستخدام — لا حجم الصرف'])+'</p><h2 class="rg-h">'+L(['Identity verification — through the national rails','التحقق من الهوية — عبر السكك الوطنية'])+'</h2><p class="rg-s">'+L(['Three verification levels, all through Nafath — your data never passes through any outside party','ثلاثة مستويات تحقق، كلها عبر نفاذ — لا تمر بياناتك بأي جهة خارجية'])+'</p><div class="rg-two"><div class="rg-box rg-hl"><div class="rg-nf"><span class="rg-ic rg-nfl"><img src="img/nafath.png" alt="'+L(['Nafath','نفاذ'])+'"></span><span><b>'+L(['Nafath — National Digital Identity','نفاذ — الهوية الرقمية الوطنية'])+'</b><small>'+L(['Unified verification through the national Nafath platform','التحقق الموحد عبر منصة نفاذ الوطنية'])+'</small></span></div>';
-  h+='<div class="rg-code'+(st.busy?' wait':'')+'"><span>'+L(['Verification request number','رقم طلب التحقق'])+'</span><b dir="ltr">'+ad(st.code)+'</b></div>';
-  if(lv>0)h+='<label class="rg-cr" id="rgCrL"><input id="rgCr" inputmode="numeric" maxlength="10" dir="ltr" value="'+st.cr+'" placeholder="'+L(['Commercial registration number (10 digits)','رقم السجل التجاري (١٠ أرقام)'])+'" aria-label="'+L(['Commercial registration number','رقم السجل التجاري'])+'"'+(st.verified||st.busy?' disabled':'')+'></label>';
-  var chk=[['Enter the number in the Nafath app on your phone','أدخل الرقم في تطبيق نفاذ على جوالك'],['Approve sharing your basic identity data','وافق على مشاركة بيانات الهوية الأساسية'],['Verification returns within seconds — and your account is ready','يعود التحقق خلال ثوانٍ — وحسابك جاهز']];
-  if(lv>0)chk.splice(2,0,['Commercial registration linked','ربط السجل التجاري']);
-  if(lv>1)chk.splice(3,0,['Wathq, sanctions and beneficial-owner screening','فحص وثاق والعقوبات والأشخاص ذوي الصفة']);
-  h+='<ul class="rg-chk" id="rgChk" aria-live="polite">';chk.forEach(function(c,i){h+='<li data-i="'+i+'" class="'+(st.verified?'ok':'')+'"><i>'+(st.verified?IC.check:'')+'</i>'+L(c)+'</li>'});h+='</ul>';
-  if(st.verified)h+='<div class="rg-done" role="status"><img class="nf-mk" src="img/nafath.png" alt="">'+L(['Verified through Nafath — ','تم التحقق عبر نفاذ — '])+L(LEVELS[lv].t)+'</div>';
+  var lv=t.level,nf=st.nf||'id';
+  h='<p class="rg-k">'+L(['Verify with Nafath','التحقق عبر نفاذ'])+'</p><h2 class="rg-h">'+L(['Confirm your identity with Nafath','أكّد هويتك عبر نفاذ'])+'</h2><p class="rg-s">'+L(['Your identity is confirmed by the national Nafath platform. We never see your Absher password.','تُؤكَّد هويتك عبر منصة نفاذ الوطنية، ولا نطّلع على كلمة مرور أبشر.'])+'</p><div class="rg-two"><div class="rg-box rg-hl"><div class="rg-nf"><span class="rg-ic rg-nfl"><img src="img/nafath.png" alt="'+L(['Nafath','نفاذ'])+'"></span><span><b>'+L(['Nafath — National Digital Identity','نفاذ — الهوية الرقمية الوطنية'])+'</b><small>'+L(['Sign in with the Nafath app on your phone','سجّل عبر تطبيق نفاذ على جوالك'])+'</small></span></div>';
+  if(nf==='id'){
+   h+='<label class="rg-fld" id="rgNidL"><span>'+L(['National ID or Iqama number','رقم الهوية الوطنية أو الإقامة'])+'</span><input id="rgNid" inputmode="numeric" autocomplete="off" maxlength="10" dir="ltr" value="'+st.nid+'" placeholder="1XXXXXXXXX" aria-describedby="rgNidH"><small id="rgNidH">'+L(['10 digits, starting with 1 for citizens or 2 for residents','١٠ أرقام، تبدأ بـ ١ للمواطنين أو ٢ للمقيمين'])+'</small></label>';
+   if(lv>0)h+='<label class="rg-fld" id="rgCrL"><span>'+L(['Commercial registration number','رقم السجل التجاري'])+'</span><input id="rgCr" inputmode="numeric" maxlength="10" dir="ltr" value="'+st.cr+'" placeholder="'+L(['10 digits','١٠ أرقام'])+'" aria-label="'+L(['Commercial registration number','رقم السجل التجاري'])+'"></label>';
+   h+='<ol class="nf-how"><li>'+L(['Enter your ID number and send the request','أدخل رقم هويتك وأرسل الطلب'])+'</li><li>'+L(['Open the Nafath app and choose the number shown here','افتح تطبيق نفاذ واختر الرقم الظاهر هنا'])+'</li><li>'+L(['Confirm with your Nafath PIN or a face scan','أكّد برمز نفاذ السري أو بصمة الوجه'])+'</li></ol>';
+  }else{
+   var left=Math.max(0,st.left|0);
+   h+='<div class="nf-row"><div class="nf-num'+(nf==='wait'?' wait':'')+(nf==='expired'?' exp':'')+'"><span>'+(nf==='ok'?L(['Request approved','تمت الموافقة على الطلب']):nf==='expired'?L(['Request expired','انتهت صلاحية الطلب']):L(['Open the Nafath app and choose this number','افتح تطبيق نفاذ واختر هذا الرقم']))+'</span><b dir="ltr">'+ad(st.code)+'</b>';
+   if(nf==='wait')h+='<em id="rgLeft" aria-live="off">'+L(['Expires in ','ينتهي خلال '])+'<span dir="ltr">'+ad('0:'+(left<10?'0':'')+left)+'</span></em>';
+   if(nf==='wait'||nf==='expired')h+='<button type="button" class="nf-again" id="rgAgain">'+(nf==='expired'?L(['Send a new request','أرسل طلبًا جديدًا']):L(['Didn’t get it? Send again','لم يصلك؟ أعد الإرسال']))+'</button>';
+   h+='<small class="nf-id">'+L(['ID ','الهوية '])+'<span dir="ltr">'+ad(st.nid.slice(0,1)+'••••••'+st.nid.slice(-3))+'</span></small></div>';
+   var ph=st.ph||0,o=st.opts||[];
+   h+='<div class="nf-ph s'+ph+'" aria-hidden="true"><div class="nf-scr"><div class="nf-top"><img src="img/nafath.png" alt=""></div><p class="nf-req">'+L(['New request','طلب جديد'])+'<small>'+L(['Memory of a Nation','ذاكرة وطن'])+'</small></p><div class="nf-nums">'+o.map(function(n){return '<span class="'+(n===st.code?'m':'')+'">'+ad(n)+'</span>'}).join('')+'</div><div class="nf-pin"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="nf-okk">'+IC.check+'</div></div></div></div>';
+   var chk=[['Request sent to Nafath','أُرسل الطلب إلى نفاذ'],['Matching number chosen in the Nafath app','اختير الرقم المطابق في تطبيق نفاذ'],['Confirmed with PIN or face scan','تم التأكيد بالرمز السري أو بصمة الوجه']];
+   if(lv>0)chk.push(['Commercial registration checked with Wathq','التحقق من السجل التجاري عبر وثق']);
+   if(lv>1)chk.push(['Sanctions and beneficial-owner screening','فحص العقوبات والمستفيد الحقيقي']);
+   chk.push(['Identity details received from Nafath','استلام بيانات الهوية من نفاذ']);
+   h+='<ul class="rg-chk" id="rgChk" aria-live="polite">';chk.forEach(function(c,i){var cl=nf==='ok'||i<(st.done||0)?'ok':(nf==='wait'&&i===(st.done||0)?'run':'');h+='<li data-i="'+i+'" class="'+cl+'"><i>'+(cl==='ok'?IC.check:'')+'</i>'+L(c)+'</li>'});h+='</ul>';
+   if(nf==='ok')h+='<div class="rg-done" role="status"><img class="nf-mk" src="img/nafath.png" alt="">'+L(['Verified through Nafath — ','تم التحقق عبر نفاذ — '])+L(LEVELS[lv].t)+(st.who?'<small>'+L(['Name on record: ','الاسم المسجّل: '])+esc_(st.who)+'</small>':'')+'</div>';
+  }
   h+='</div><div><div class="rg-box">';
   LEVELS.forEach(function(x,i){h+='<div class="rg-lv'+(i===lv?' on':'')+'"><span>'+ad(i+1)+'</span><div><b>'+L(x.t)+'</b>'+(i===lv?'<span class="rg-you">'+L(['Your level','مستواك'])+'</span>':'')+'<em>'+L(x.w)+'</em><p>'+L(x.d)+'</p></div></div>'});
   h+='</div><div class="rg-pdpl">'+IC.shield+'<span>'+L(['Your data is handled under the Personal Data Protection Law — retention limited in purpose and time','بياناتك وفق نظام حماية البيانات الشخصية — احتفاظ محدود الغرض والمدة'])+'</span></div></div></div>';
-  $('rgFootNote').textContent=L(['Verification through the national rails ≈ SAR 4.1 million over five years, under 2% of costs','التحقق عبر السكك الوطنية ≈ ٤٫١ مليون ريال على خمس سنوات، أقل من ٢٪ من النفقات']);
-  $('rgGo').textContent=st.verified?L(['Continue','متابعة']):st.busy?L(['Waiting for Nafath…','بانتظار نفاذ…']):L(['Verify now','تحقق الآن']);$('rgGo').disabled=st.busy;
-  $('rgBack').hidden=false;$('rgBack').textContent=L(['Back','رجوع']);$('rgBack').disabled=st.busy;
+  $('rgFootNote').textContent=L(['Prototype: Nafath is simulated here, no real request is sent.','نموذج تجريبي: نفاذ هنا محاكاة، ولا يُرسل أي طلب حقيقي.']);
+  $('rgGo').textContent=nf==='ok'?L(['Continue','متابعة']):nf==='wait'?L(['Waiting for Nafath…','بانتظار نفاذ…']):nf==='expired'?L(['Send a new request','أرسل طلبًا جديدًا']):L(['Send request to Nafath','أرسل الطلب إلى نفاذ']);$('rgGo').disabled=nf==='wait';
+  $('rgBack').hidden=false;$('rgBack').textContent=L(['Back','رجوع']);$('rgBack').disabled=nf==='wait';
  }else{
   var g=GROUPS[t.group];
   h='<p class="rg-k">'+L(['Choose your package','اختر باقتك'])+'</p><h2 class="rg-h" id="rgH">'+L(['Subscription: free or paid','الاشتراك: مجانية أو مدفوعة'])+'</h2><p class="rg-s">'+L(['Search and preview stay free on every package. You can upgrade at any time.','البحث والمعاينة مجانيان في كل الباقات، ويمكنك الترقية في أي وقت.'])+'</p>';
@@ -7744,27 +7796,35 @@ function render(){
  B.innerHTML=h;
 }
 $('rgBody').addEventListener('click',function(e){var o=e.target.closest('.rg-opt');if(!o)return;
- if(o.dataset.type){if(st.type!==o.dataset.type){st.type=o.dataset.type;st.verified=false;st.plan=null;st.cr=''}render();var b=$('rgBody').querySelector('[data-type="'+st.type+'"]');b&&b.focus()}
+ if(o.dataset.type){if(st.type!==o.dataset.type){st.type=o.dataset.type;st.verified=false;st.plan=null;st.cr='';st.nf='id'}render();var b=$('rgBody').querySelector('[data-type="'+st.type+'"]');b&&b.focus()}
  if(o.dataset.plan){st.plan=o.dataset.plan;render();var c=$('rgBody').querySelector('[data-plan="'+st.plan+'"]');c&&c.focus()}});
-$('rgBody').addEventListener('keydown',function(e){var o=e.target.closest('.rg-opt');if(!o||!/^Arrow/.test(e.key))return;var all=[].slice.call(o.parentNode.querySelectorAll('.rg-opt')),i=all.indexOf(o),f=(e.key==='ArrowDown'||e.key===(ar()?'ArrowLeft':'ArrowRight'))?1:-1;var n=all[(i+f+all.length)%all.length];e.preventDefault();n.click()});
-$('rgBody').addEventListener('input',function(e){if(e.target.id==='rgCr'){e.target.value=e.target.value.replace(/[^\d٠-٩]/g,'').replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)});st.cr=e.target.value;$('rgCrL').classList.remove('bad')}});
+$('rgBody').addEventListener('click',function(e){if(e.target.closest('#rgAgain'))send()});
+$('rgBody').addEventListener('keydown',function(e){if(e.key==='Enter'&&(e.target.id==='rgNid'||e.target.id==='rgCr')){e.preventDefault();verify();return}var o=e.target.closest('.rg-opt');if(!o||!/^Arrow/.test(e.key))return;var all=[].slice.call(o.parentNode.querySelectorAll('.rg-opt')),i=all.indexOf(o),f=(e.key==='ArrowDown'||e.key===(ar()?'ArrowLeft':'ArrowRight'))?1:-1;var n=all[(i+f+all.length)%all.length];e.preventDefault();n.click()});
+function digits(v){return v.replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)}).replace(/\D/g,'')}
+function esc_(x){return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+$('rgBody').addEventListener('input',function(e){if(e.target.id==='rgNid'){e.target.value=digits(e.target.value).slice(0,10);st.nid=e.target.value;$('rgNidL').classList.remove('bad')}if(e.target.id==='rgCr'){e.target.value=e.target.value.replace(/[^\d٠-٩]/g,'').replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)});st.cr=e.target.value;$('rgCrL').classList.remove('bad')}});
 function verify(){var t=T();
- if(t.level>0&&!/^\d{10}$/.test(st.cr)){var l=$('rgCrL');l.classList.add('bad');$('rgCr').focus();say(L(['Enter the 10-digit commercial registration number.','أدخل رقم السجل التجاري المكوّن من ١٠ أرقام.']));return}
- st.busy=true;render();var items=[].slice.call($('rgChk').children),i=0;
- (function next(){if(i>0){items[i-1].className='ok';items[i-1].firstChild.innerHTML=IC.check}
-  if(i>=items.length){st.busy=false;st.verified=true;render();say(L(['Identity verified through Nafath','تم التحقق من هويتك عبر نفاذ']));$('rgGo').focus();return}
-  items[i].className='run';i++;later(next,900)})();
-}
+ if(st.nf==='expired'){send();return}
+ if(!/^[12]\d{9}$/.test(st.nid)){var l=$('rgNidL');l&&l.classList.add('bad');$('rgNid')&&$('rgNid').focus();say(L(['Enter a 10-digit ID number starting with 1 or 2.','أدخل رقم هوية من ١٠ أرقام يبدأ بـ ١ أو ٢.']));return}
+ if(t.level>0&&!/^\d{10}$/.test(st.cr)){var c=$('rgCrL');c&&c.classList.add('bad');$('rgCr')&&$('rgCr').focus();say(L(['Enter the 10-digit commercial registration number.','أدخل رقم السجل التجاري المكوّن من ١٠ أرقام.']));return}
+ send()}
+function send(){clearT();var n=10+Math.floor(Math.random()*90),o=[n];while(o.length<3){var m=10+Math.floor(Math.random()*90);if(o.indexOf(m)<0)o.push(m)}o.sort(function(){return Math.random()-.5});
+ st.code=String(n);st.opts=o.map(String);st.nf='wait';st.ph=0;st.done=0;st.left=60;st.busy=true;render();$('rgGo').focus();say(L(['Request sent. Open the Nafath app and choose ','أُرسل الطلب. افتح تطبيق نفاذ واختر الرقم '])+ad(st.code));
+ st.iv=setInterval(function(){st.left--;var e=$('rgLeft');if(e)e.innerHTML=L(['Expires in ','ينتهي خلال '])+'<span dir="ltr">'+ad('0:'+(st.left<10?'0':'')+st.left)+'</span>';if(st.left<=0){clearT();st.nf='expired';st.busy=false;render();say(L(['The request expired. Send a new one.','انتهت صلاحية الطلب. أرسل طلبًا جديدًا.']))}},1000);
+ var t=T(),extra=(t.level>0?1:0)+(t.level>1?1:0),seq=[[1300,function(){st.ph=1;st.done=1}],[2800,function(){st.ph=2;st.done=2}],[4300,function(){st.ph=3}],[5600,function(){st.ph=4;st.done=3}]];
+ for(var i=0;i<extra;i++)(function(k){seq.push([6400+k*900,function(){st.done=4+k}])})(i);
+ seq.push([6500+extra*900,function(){clearT();st.nf='ok';st.busy=false;st.verified=true;st.done=99;var f=document.getElementById('auName'),u=null;try{u=JSON.parse(localStorage.getItem('bayan-user')||'null')}catch(x){}st.who=(f&&f.value)||(u&&u.name)||'';say(L(['Identity verified through Nafath','تم التحقق من هويتك عبر نفاذ']))}]);
+ seq.forEach(function(q){later(function(){if(st.nf!=='wait')return;q[1]();render();if(st.nf==='ok')$('rgGo').focus()},q[0])})}
 function say(t){if(typeof window.say==='function')window.say(t);else{var lr=document.getElementById('srLive');if(lr)lr.textContent=t}}
-function finish(){var t=T(),a={type:st.type,level:t.level,plan:st.plan,verified:true,cr:st.cr||null,at:Date.now()};save(a);
+function finish(){var t=T(),a={type:st.type,level:t.level,plan:st.plan,verified:true,cr:st.cr||null,nid:st.nid?st.nid.slice(0,1)+'••••••'+st.nid.slice(-3):null,at:Date.now()};save(a);
  document.dispatchEvent(new CustomEvent('mon-account',{detail:a}));if(st.mode!=='signup'){close();say(L(st.mode==='upgrade'?['Package upgraded','تمت ترقية الباقة']:['Account updated','تم تحديث الحساب']));applyProfile();return}
  close(true);if(pending){pending.go=true;pending.form.requestSubmit()}}
 $('rgGo').addEventListener('click',function(){
- if(st.step===0){if(!st.type)return;st.step=1;st.code=String(100000+Math.floor(Math.random()*900000));if(!st.plan)st.plan=T().plan;render();$('rgGo').focus()}
+ if(st.step===0){if(!st.type)return;st.step=1;if(!st.verified){st.nf='id';st.code=''}if(!st.plan)st.plan=T().plan;render();var ni=$('rgNid');(ni||$('rgGo')).focus()}
  else if(st.step===1){if(st.verified){st.step=2;render();var c=$('rgBody').querySelector('[aria-checked="true"]');(c||$('rgGo')).focus()}else verify()}
  else if(st.plan)finish()});
-$('rgBack').addEventListener('click',function(){if(st.busy)return;st.step=Math.max(0,st.step-1);render();$('rgGo').focus()});
-function open(mode){clearT();var a=acct(),up=mode==='upgrade'&&a;st={step:up?2:0,type:(mode==='edit'||up)&&a?a.type:null,plan:mode==='edit'&&a?a.plan:up?(TYPES.filter(function(x){return x.id===a.type})[0]||TYPES[0]).plan:null,verified:!!(up&&a.verified),busy:false,cr:mode==='edit'&&a&&a.cr||'',code:'',mode:mode||'signup'};
+$('rgBack').addEventListener('click',function(){if(st.busy)return;if(st.step===1&&st.nf==='expired'){st.nf='id'}st.step=Math.max(0,st.step-1);render();$('rgGo').focus()});
+function open(mode){clearT();var a=acct(),up=mode==='upgrade'&&a;st={step:up?2:0,type:(mode==='edit'||up)&&a?a.type:null,plan:mode==='edit'&&a?a.plan:up?(TYPES.filter(function(x){return x.id===a.type})[0]||TYPES[0]).plan:null,verified:!!(up&&a.verified),busy:false,cr:mode==='edit'&&a&&a.cr||'',code:'',mode:mode||'signup',nid:'',nf:up&&a.verified?'ok':'id'};
  lastFocus=document.activeElement;render();R.hidden=false;document.body.classList.add('reg-open');void R.offsetWidth;R.classList.add('go');R.scrollTop=0;
  setTimeout(function(){var f=$('rgBody').querySelector('.rg-opt');f&&f.focus()},rm?0:250)}
 function close(keep){clearT();st.busy=false;R.classList.remove('go');document.body.classList.remove('reg-open');setTimeout(function(){R.hidden=true},rm?0:300);if(!keep&&lastFocus&&lastFocus.focus)lastFocus.focus()}
