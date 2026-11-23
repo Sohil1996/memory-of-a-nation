@@ -4985,6 +4985,17 @@ html.light .vf-card{background:#fff}
 .vf-card b{font-size:17px}.vf-card span{font-size:13.5px;opacity:.8}.vf-card em{font-style:normal;color:#5CC4A2}
 .vf-spin{width:34px;height:34px;border-radius:50%;border:3px solid rgba(92,196,162,.25);border-top-color:#5CC4A2;animation:rgSpin .9s linear infinite}
 @media (prefers-reduced-motion:reduce){.vf-num,.vf-spin{animation:none}}
+
+.vf-seg{display:inline-flex;padding:4px;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.18);margin-bottom:6px}
+html.light .vf-seg{background:#fff}
+.vf-seg button{border:0;background:none;color:inherit;font:500 14px var(--sans);padding:8px 20px;border-radius:999px;cursor:pointer;opacity:.75}
+.vf-seg button[aria-selected="true"]{background:#5CC4A2;color:#06120F;opacity:1}
+.vf-mob{display:flex;align-items:center;width:100%;max-width:320px;height:60px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.2);overflow:hidden}
+html.light .vf-mob{background:#fff}
+.vf-mob span{padding:0 14px;font:600 18px var(--sans);opacity:.7;border-inline-end:1px solid var(--line);height:100%;display:grid;place-items:center}
+.vf-mob input{flex:1;min-width:0;height:100%;border:0;background:none;color:inherit;font:600 21px var(--sans);letter-spacing:.12em;padding:0 14px;outline:none}
+.vf-mob:focus-within{outline:2px solid #5CC4A2;outline-offset:2px}
+.vf-mob.bad{border-color:#E0705C}
 </style>
 <script>
 /* v183: Arabic book conversations (Arabic mode answers in Arabic) */
@@ -7712,8 +7723,8 @@ var PLANS={ind:[{id:'free',ic:'gift',t:['Free package','الباقة المجا�
  co:[{id:'free',ic:'gift',t:['Free package','الباقة المجانية'],p:['SAR 0 / forever','٠ ريال / دائمًا'],d:['Browsing, search and free preview of all the platform’s material.','تتيح مزايا التصفح والبحث والمعاينة المجانية لجميع مواد المنصة']},
   {id:'business',ic:'brief',t:['Business package','الباقة التجارية'],p:['SAR 10,000 / month','١٠٠٠٠ ريال / شهريًا'],d:['Lets companies download and use the platform’s content commercially, such as advertising material and events.','تتيح للشركات تحميل واستخدام محتويات المنصة في الاستخدام التجاري مثل المواد الإعلانية والفعاليات']}]};
 var STEPN=[['Registration','التسجيل'],['Verification','التحقق'],['Subscription','الاشتراك']];
-var VN={email:['Email code','رمز البريد'],nafath:['Nafath','نفاذ'],cr:['Company','المنشأة'],review:['Review','المراجعة']};
-var FLOWS={citizen:['email'],researcher:['email','nafath'],media:['email','nafath','cr'],entity:['email','nafath','cr','review']};
+var VN={contact:['Mobile or email','الجوال أو البريد'],email:['Email code','رمز البريد'],nafath:['Nafath','نفاذ'],cr:['Company','المنشأة'],review:['Review','المراجعة']};
+var FLOWS={citizen:['contact'],researcher:['contact'],media:['contact','nafath','cr'],entity:['contact','nafath','cr','review']};
 var COS={media:{n:['Al-Rawi Media Production Co.','شركة الراوي للإنتاج الإعلامي'],c:['Media production · Riyadh','إنتاج إعلامي · الرياض']},entity:{n:['Heritage Digital Platforms Co.','شركة منصات التراث الرقمية'],c:['Information technology · Riyadh','تقنية المعلومات · الرياض']}};
 
 function acct(){try{return JSON.parse(localStorage.getItem('mon-account')||'null')}catch(e){return null}}
@@ -7725,7 +7736,7 @@ R.innerHTML='<div class="rg-bg" aria-hidden="true"></div><div class="rg-wrap"><d
 document.body.appendChild(R);
 var $=function(id){return document.getElementById(id)};
 var st={step:0,type:null,plan:null,verified:false,busy:false,cr:'',code:'',mode:'signup'};
-var pending=null,lastFocus=null,timers=[];
+var pending=null,lastFocus=null,timers=[],retry=null;
 function later(f,ms){timers.push(setTimeout(f,rm?0:ms))}
 function clearT(){timers.forEach(clearTimeout);timers=[];if(st&&st.iv){clearInterval(st.iv);st.iv=null}}
 function T(){return TYPES.filter(function(x){return x.id===st.type})[0]}
@@ -7734,7 +7745,7 @@ function render(){
  var t=T();R.setAttribute('aria-label',L(['Create your account','إنشاء حسابك']));
  $('rgPlat').textContent=L(['· The Kingdom’s memory platform','· منصة ذاكرة المملكة']);
  $('rgX').setAttribute('aria-label',L(['Close','إغلاق']));
- var fl=flow(),tot=fl.length+2,cur=st.step===0?1:st.step===1?2+st.vi:tot,nm=st.step===0?['Your identity','هويتك']:st.step===2?['Package','الباقة']:VN[fl[st.vi]],dots='';for(var i=0;i<tot;i++)dots+='<i class="'+(i<cur?'on':'')+'"></i>';
+ var fl=flow(),pst=needPost()?1:0,tot=st.mode==='nafath'?1:fl.length+2+pst,cur=st.mode==='nafath'?1:st.step===0?1:st.step===1?2+st.vi:st.step===2?2+fl.length:3+fl.length,nm=st.step===0?['Your identity','هويتك']:st.step===2?['Package','الباقة']:VN[list()[idx()]],dots='';for(var i=0;i<tot;i++)dots+='<i class="'+(i<cur?'on':'')+'"></i>';
  $('rgStep').innerHTML='<span>'+L(['Step ','الخطوة '])+ad(cur)+L([' of ',' من '])+ad(tot)+' — '+L(nm)+'</span><span class="rg-dots" aria-hidden="true">'+dots+'</span>';
  var B=$('rgBody'),h='';
  if(st.step===0){
@@ -7743,18 +7754,20 @@ function render(){
   h+='</div>';
   $('rgFootNote').textContent=L(['You can change your identity later from your account settings','يمكنك تعديل هويتك لاحقًا من إعدادات حسابك']);
   $('rgGo').textContent=L(['Continue','متابعة']);$('rgGo').disabled=!st.type;$('rgBack').hidden=true;
- }else if(st.step===1){
-  var k=flow()[st.vi],go='',dis=false,note='';
+ }else if(st.step===1||st.step===3){
+  var k=list()[idx()],go='',dis=false,note='';
   h='<div class="vf">';
-  if(k==='email'){
-   h+='<span class="vf-ic">'+IC.mail_+'</span><h2 class="rg-h vf-h">'+L(['Check your email','تحقق من بريدك'])+'</h2><p class="vf-p">'+L(['Enter the 6-digit code we sent to','أدخل الرمز المكوّن من ٦ أرقام المرسل إلى'])+' <b dir="ltr">'+esc_(mail())+'</b></p>';
-   h+='<input class="vf-code'+(st.bad?' bad':'')+'" id="vfCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" dir="ltr" value="'+st.otp+'" aria-label="'+L(['Verification code','رمز التحقق'])+'" placeholder="••••••">';
-   h+=st.bad?'<p class="vf-err" role="alert">'+L(['That code isn’t right. Try again.','الرمز غير صحيح. حاول مرة أخرى.'])+'</p>':'<p class="vf-hint">'+L(['Prototype: use code 123456','نموذج تجريبي: استخدم الرمز 123456'])+'</p>';
-   go=L(['Verify','تحقق']);
+  if(k==='contact'){
+   var cm=st.cm||'email',ask=cm==='mobile'&&!st.sent;
+   h+='<div class="vf-seg" role="tablist"><button type="button" role="tab" data-cm="email" aria-selected="'+(cm==='email')+'">'+L(['Email','البريد'])+'</button><button type="button" role="tab" data-cm="mobile" aria-selected="'+(cm==='mobile')+'">'+L(['Mobile','الجوال'])+'</button></div>';
+   if(ask){h+='<h2 class="rg-h vf-h">'+L(['Your mobile number','رقم جوالك'])+'</h2><p class="vf-p">'+L(['We’ll text you a 6-digit code.','سنرسل لك رمزًا من ٦ أرقام.'])+'</p><div class="vf-mob'+(st.bad?' bad':'')+'" dir="ltr"><span>+966</span><input id="vfMob" inputmode="numeric" maxlength="9" value="'+st.mob+'" placeholder="5XXXXXXXX" aria-label="'+L(['Mobile number','رقم الجوال'])+'"></div>'+(st.bad?'<p class="vf-err" role="alert">'+L(['Enter a Saudi mobile number starting with 5.','أدخل رقم جوال سعودي يبدأ بـ ٥.'])+'</p>':'');go=L(['Send code','أرسل الرمز'])}
+   else{h+='<h2 class="rg-h vf-h">'+(cm==='mobile'?L(['Check your messages','تحقق من رسائلك']):L(['Check your email','تحقق من بريدك']))+'</h2><p class="vf-p">'+L(['Enter the 6-digit code we sent to','أدخل الرمز المكوّن من ٦ أرقام المرسل إلى'])+' <b dir="ltr">'+(cm==='mobile'?'+966 '+esc_(st.mob):esc_(mail()))+'</b></p>';
+    h+='<input class="vf-code'+(st.bad?' bad':'')+'" id="vfCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" dir="ltr" value="'+st.otp+'" aria-label="'+L(['Verification code','رمز التحقق'])+'" placeholder="••••••">';
+    h+=st.bad?'<p class="vf-err" role="alert">'+L(['That code isn’t right. Try again.','الرمز غير صحيح. حاول مرة أخرى.'])+'</p>':'<p class="vf-hint">'+L(['Prototype: use code 123456','نموذج تجريبي: استخدم الرمز 123456'])+'</p>';go=L(['Verify','تحقق'])}
   }else if(k==='nafath'){
    var nf=st.nf||'id';
    h+='<span class="vf-ic vf-nf"><img src="img/nafath.png" alt="'+L(['Nafath','نفاذ'])+'"></span>';
-   if(nf==='id'){h+='<h2 class="rg-h vf-h">'+L(['Verify with Nafath','التحقق عبر نفاذ'])+'</h2><p class="vf-p">'+L(['Enter your National ID or Iqama number. We’ll send a request to your Nafath app.','أدخل رقم الهوية الوطنية أو الإقامة، وسنرسل طلبًا إلى تطبيق نفاذ.'])+'</p><input class="vf-in'+(st.bad?' bad':'')+'" id="vfNid" inputmode="numeric" autocomplete="off" maxlength="10" dir="ltr" value="'+st.nid+'" placeholder="1XXXXXXXXX" aria-label="'+L(['National ID or Iqama number','رقم الهوية الوطنية أو الإقامة'])+'">'+(st.bad?'<p class="vf-err" role="alert">'+L(['Enter a 10-digit number starting with 1 or 2.','أدخل رقمًا من ١٠ أرقام يبدأ بـ ١ أو ٢.'])+'</p>':'');go=L(['Send to Nafath','أرسل إلى نفاذ'])}
+   if(nf==='id'){h+='<h2 class="rg-h vf-h">'+(st.step===3?L(['One quick Nafath check','تحقق واحد سريع عبر نفاذ']):L(['Verify with Nafath','التحقق عبر نفاذ']))+'</h2><p class="vf-p">'+(st.step===3?L(['Needed once to download, use credits or buy a paid package. Enter your National ID or Iqama number.','مطلوب مرة واحدة للتحميل أو استخدام الأرصدة أو الاشتراك المدفوع. أدخل رقم الهوية الوطنية أو الإقامة.']):L(['Enter your National ID or Iqama number. We’ll send a request to your Nafath app.','أدخل رقم الهوية الوطنية أو الإقامة، وسنرسل طلبًا إلى تطبيق نفاذ.']))+'</p><input class="vf-in'+(st.bad?' bad':'')+'" id="vfNid" inputmode="numeric" autocomplete="off" maxlength="10" dir="ltr" value="'+st.nid+'" placeholder="1XXXXXXXXX" aria-label="'+L(['National ID or Iqama number','رقم الهوية الوطنية أو الإقامة'])+'">'+(st.bad?'<p class="vf-err" role="alert">'+L(['Enter a 10-digit number starting with 1 or 2.','أدخل رقمًا من ١٠ أرقام يبدأ بـ ١ أو ٢.'])+'</p>':'');go=L(['Send to Nafath','أرسل إلى نفاذ'])}
    else if(nf==='wait'){var left=Math.max(0,st.left|0);h+='<p class="vf-p">'+L(['Open the Nafath app and choose this number','افتح تطبيق نفاذ واختر هذا الرقم'])+'</p><b class="vf-num" dir="ltr">'+st.code+'</b><p class="vf-hint" id="vfLeft">'+L(['Expires in ','ينتهي خلال '])+'<span dir="ltr">'+ad('0:'+(left<10?'0':'')+left)+'</span></p><button type="button" class="vf-link" id="vfAgain">'+L(['Send a new request','أرسل طلبًا جديدًا'])+'</button>';go=L(['Waiting for Nafath…','بانتظار نفاذ…']);dis=true}
    else if(nf==='expired'){h+='<h2 class="rg-h vf-h">'+L(['The request expired','انتهت صلاحية الطلب'])+'</h2><p class="vf-p">'+L(['Send a new request and choose the number in the Nafath app within a minute.','أرسل طلبًا جديدًا واختر الرقم في تطبيق نفاذ خلال دقيقة.'])+'</p>';go=L(['Send a new request','أرسل طلبًا جديدًا'])}
    else{h+='<span class="vf-ok">'+IC.check+'</span><h2 class="rg-h vf-h">'+L(['Verified through Nafath','تم التحقق عبر نفاذ'])+'</h2>'+(st.who?'<p class="vf-p">'+esc_(st.who)+'</p>':'');go=L(['Continue','متابعة'])}
@@ -7771,7 +7784,7 @@ function render(){
   h+='</div>';
   $('rgFootNote').textContent=note||L(['Your data is handled under the Personal Data Protection Law.','بياناتك وفق نظام حماية البيانات الشخصية.']);
   $('rgGo').textContent=go;$('rgGo').disabled=dis;
-  $('rgBack').hidden=false;$('rgBack').textContent=L(['Back','رجوع']);$('rgBack').disabled=dis;
+  $('rgBack').hidden=st.mode==='nafath';$('rgBack').textContent=L(['Back','رجوع']);$('rgBack').disabled=dis;
  }else{
   var g=GROUPS[t.group];
   h='<p class="rg-k">'+L(['Choose your package','اختر باقتك'])+'</p><h2 class="rg-h" id="rgH">'+L(['Subscription: free or paid','الاشتراك: مجانية أو مدفوعة'])+'</h2><p class="rg-s">'+L(['Search and preview stay free on every package. You can upgrade at any time.','البحث والمعاينة مجانيان في كل الباقات، ويمكنك الترقية في أي وقت.'])+'</p>';
@@ -7780,7 +7793,7 @@ function render(){
   h+='</div>';
   if(t.id==='entity')h+='<p class="rg-note">'+L(['Annual licences, API access and larger deals are arranged with the partnerships team after sign-up.','التراخيص السنوية والوصول البرمجي والصفقات الكبرى تُرتَّب مع فريق الشراكات بعد التسجيل.'])+'</p>';
   $('rgFootNote').textContent=L(['Registration in minutes — mobile or email, and the experience is built on your intent from the first moment.','التسجيل خلال دقائق — موبايل أو بريد إلكتروني، وتُبنى التجربة على نية الاستخدام من أول لحظة.']);
-  $('rgGo').textContent=st.mode==='upgrade'?L(['Upgrade','ترقية']):st.mode==='edit'?L(['Save','حفظ']):L(['Create account','إنشاء الحساب']);$('rgGo').disabled=!st.plan;
+  $('rgGo').textContent=needPost()?L(['Continue','متابعة']):st.mode==='upgrade'?L(['Upgrade','ترقية']):st.mode==='edit'?L(['Save','حفظ']):L(['Create account','إنشاء الحساب']);$('rgGo').disabled=!st.plan;
   $('rgBack').hidden=st.mode==='upgrade';$('rgBack').textContent=L(['Back','رجوع']);$('rgBack').disabled=false;
  }
  B.innerHTML=h;
@@ -7789,33 +7802,38 @@ $('rgBody').addEventListener('click',function(e){var o=e.target.closest('.rg-opt
  if(o.dataset.type){if(st.type!==o.dataset.type){st.type=o.dataset.type;st.verified=false;st.plan=null;st.cr='';st.co=null;st.nf='id';st.reviewed=false}render();var b=$('rgBody').querySelector('[data-type="'+st.type+'"]');b&&b.focus()}
  if(o.dataset.plan){st.plan=o.dataset.plan;render();var c=$('rgBody').querySelector('[data-plan="'+st.plan+'"]');c&&c.focus()}});
 $('rgBody').addEventListener('keydown',function(e){if(e.key==='Enter'&&/^vf/.test(e.target.id||'')){e.preventDefault();vGo();return}var o=e.target.closest('.rg-opt');if(!o||!/^Arrow/.test(e.key))return;var all=[].slice.call(o.parentNode.querySelectorAll('.rg-opt')),i=all.indexOf(o),f=(e.key==='ArrowDown'||e.key===(ar()?'ArrowLeft':'ArrowRight'))?1:-1;var n=all[(i+f+all.length)%all.length];e.preventDefault();n.click()});
-function flow(){var t=T(),f=(FLOWS[t&&t.id]||['email']).slice();if(st.mode!=='signup')f=f.filter(function(x){return x!=='email'});if(!f.length)f=['nafath'];return f}
+function flow(){var t=T(),f=(FLOWS[t&&t.id]||['contact']).slice();if(st.mode!=='signup')f=f.filter(function(x){return x!=='contact'});if(st.mode!=='signup'&&t&&t.group==='co'&&hasNf(acct()))f=f.filter(function(x){return x!=='nafath'});return f}
+function hasNf(a){return !!(a&&(a.nafath===true||(a.nafath===undefined&&a.verified&&a.type!=='citizen')))}
+function needPost(){var t=T();if(st.mode==='nafath')return true;return !!(t&&t.group==='ind'&&(st.plan==='paid')&&!hasNf(acct())&&!st.nafathOk)}
+function list(){return st.step===3?['nafath']:flow()}
+function idx(){return st.step===3?0:st.vi}
 function mail(){var m=document.getElementById('auMail'),u=null;try{u=JSON.parse(localStorage.getItem('bayan-user')||'null')}catch(x){}return (m&&m.value)||(u&&u.mail)||'you@example.com'}
 function digits(v){return v.replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)}).replace(/\D/g,'')}
 function esc_(x){return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function focusIn(){var f=$('rgBody').querySelector('input:not([disabled])');(f||$('rgGo')).focus()}
-function nextV(){clearT();st.bad=false;st.busy=false;if(st.vi<flow().length-1){st.vi++;st.nf='id';render();focusIn()}else{st.verified=true;st.step=2;render();var c=$('rgBody').querySelector('[aria-checked="true"]');(c||$('rgGo')).focus()}}
-function vGo(){var k=flow()[st.vi];
- if(k==='email'){if(st.otp!=='123456'){st.bad=true;render();focusIn();say(L(['That code isn’t right.','الرمز غير صحيح.']));return}st.mailOk=true;nextV();return}
+function nextV(){clearT();st.bad=false;st.busy=false;if(st.step===3){st.nafathOk=true;finish();return}if(st.vi<flow().length-1){st.vi++;st.nf='id';render();focusIn()}else{st.verified=true;st.step=2;render();var c=$('rgBody').querySelector('[aria-checked="true"]');(c||$('rgGo')).focus()}}
+function vGo(){var k=list()[idx()];
+ if(k==='contact'){if(st.cm==='mobile'&&!st.sent){if(!/^5\d{8}$/.test(st.mob)){st.bad=true;render();focusIn();return}st.bad=false;st.sent=true;st.otp='';render();focusIn();return}if(st.otp!=='123456'){st.bad=true;render();focusIn();say(L(['That code isn’t right.','الرمز غير صحيح.']));return}st.mailOk=true;nextV();return}
  if(k==='nafath'){if(st.nf==='ok'){nextV();return}if(st.nf==='expired'){send();return}if(!/^[12]\d{9}$/.test(st.nid)){st.bad=true;render();focusIn();return}st.bad=false;send();return}
  if(k==='cr'){if(st.co){nextV();return}if(!/^\d{10}$/.test(st.cr)){st.bad=true;render();focusIn();return}st.bad=false;st.busy=true;render();later(function(){st.busy=false;st.co=COS[T().id]||COS.media;render();$('rgGo').focus()},1400);return}
  if(k==='review'){if(st.reviewed){nextV();return}st.busy=true;render();later(function(){st.busy=false;st.reviewed=true;render();$('rgGo').focus()},1800)}}
 function send(){clearT();st.code=String(10+Math.floor(Math.random()*90));st.nf='wait';st.left=60;render();$('rgGo').blur();say(L(['Open the Nafath app and choose ','افتح تطبيق نفاذ واختر الرقم '])+ad(st.code));
  st.iv=setInterval(function(){st.left--;var e=$('vfLeft');if(e)e.innerHTML=L(['Expires in ','ينتهي خلال '])+'<span dir="ltr">'+ad('0:'+(st.left<10?'0':'')+st.left)+'</span>';if(st.left<=0){clearT();st.nf='expired';render()}},1000);
  later(function(){if(st.nf!=='wait')return;clearT();st.nf='ok';var f=document.getElementById('auName'),u=null;try{u=JSON.parse(localStorage.getItem('bayan-user')||'null')}catch(x){}st.who=(f&&f.value)||(u&&u.name)||'';render();$('rgGo').focus();say(L(['Verified through Nafath','تم التحقق عبر نفاذ']))},5200)}
-$('rgBody').addEventListener('click',function(e){if(e.target.closest('#vfAgain'))send()});
-$('rgBody').addEventListener('input',function(e){var id=e.target.id;if(id==='vfCode'||id==='vfNid'||id==='vfCr'){var v=digits(e.target.value).slice(0,id==='vfCode'?6:10);e.target.value=v;if(id==='vfCode')st.otp=v;if(id==='vfNid')st.nid=v;if(id==='vfCr')st.cr=v;if(st.bad){st.bad=false;e.target.classList.remove('bad');var er=$('rgBody').querySelector('.vf-err');er&&er.remove()}if(id==='vfCode'&&v.length===6)vGo()}
+$('rgBody').addEventListener('click',function(e){if(e.target.closest('#vfAgain'))send();var c=e.target.closest('[data-cm]');if(c){st.cm=c.dataset.cm;st.sent=false;st.otp='';st.bad=false;render();focusIn()}});
+$('rgBody').addEventListener('input',function(e){var id=e.target.id;if(id==='vfCode'||id==='vfNid'||id==='vfCr'||id==='vfMob'){var v=digits(e.target.value).slice(0,id==='vfCode'?6:id==='vfMob'?9:10);e.target.value=v;if(id==='vfMob')st.mob=v;if(id==='vfCode')st.otp=v;if(id==='vfNid')st.nid=v;if(id==='vfCr')st.cr=v;if(st.bad){st.bad=false;e.target.classList.remove('bad');var er=$('rgBody').querySelector('.vf-err');er&&er.remove()}if(id==='vfCode'&&v.length===6)vGo()}
  if(e.target.id==='rgCr'){e.target.value=e.target.value.replace(/[^\d٠-٩]/g,'').replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)});st.cr=e.target.value;$('rgCrL').classList.remove('bad')}});
 function say(t){if(typeof window.say==='function')window.say(t);else{var lr=document.getElementById('srLive');if(lr)lr.textContent=t}}
-function finish(){var t=T(),a={type:st.type,level:t.level,plan:st.plan,verified:true,nafath:flow().indexOf('nafath')>=0||!!(acct()&&acct().nafath),review:t.id==='entity'?'pending':null,cr:st.cr||null,nid:st.nid?st.nid.slice(0,1)+'••••••'+st.nid.slice(-3):(acct()&&acct().nid)||null,at:Date.now()};save(a);
- document.dispatchEvent(new CustomEvent('mon-account',{detail:a}));if(st.mode!=='signup'){close();say(L(st.mode==='upgrade'?['Package upgraded','تمت ترقية الباقة']:['Account updated','تم تحديث الحساب']));applyProfile();return}
+function finish(){var t=T(),a={type:st.type,level:t.level,plan:st.plan,verified:true,nafath:st.nafathOk||flow().indexOf('nafath')>=0||hasNf(acct()),contact:st.cm==='mobile'?'mobile':'email',review:t.id==='entity'?'pending':null,cr:st.cr||null,nid:st.nid?st.nid.slice(0,1)+'••••••'+st.nid.slice(-3):(acct()&&acct().nid)||null,at:Date.now()};save(a);
+ document.dispatchEvent(new CustomEvent('mon-account',{detail:a}));if(st.mode==='nafath'){close();applyProfile();say(L(['Verified through Nafath','تم التحقق عبر نفاذ']));var rt=retry;retry=null;if(rt)setTimeout(function(){var el=document.querySelector(rt);el&&el.click()},350);return}if(st.mode!=='signup'){close();say(L(st.mode==='upgrade'?['Package upgraded','تمت ترقية الباقة']:['Account updated','تم تحديث الحساب']));applyProfile();return}
  close(true);if(pending){pending.go=true;pending.form.requestSubmit()}}
 $('rgGo').addEventListener('click',function(){
- if(st.step===0){if(!st.type)return;if(!st.plan)st.plan=T().plan;if(st.verified&&st.mode!=='signup'){st.step=2;render();$('rgGo').focus();return}st.step=1;st.vi=0;st.nf='id';st.co=null;st.reviewed=false;render();focusIn()}
- else if(st.step===1){vGo()}
+ if(st.step===0){if(!st.type)return;if(!st.plan)st.plan=T().plan;if((st.verified&&st.mode!=='signup')||!flow().length){st.step=2;render();$('rgGo').focus();return}st.step=1;st.vi=0;st.nf='id';st.co=null;st.reviewed=false;render();focusIn()}
+ else if(st.step===1||st.step===3){vGo()}
+ else if(st.step===2&&st.plan&&needPost()){st.step=3;st.nf='id';st.bad=false;render();focusIn()}
  else if(st.plan)finish()});
-$('rgBack').addEventListener('click',function(){if(st.busy)return;clearT();st.bad=false;if(st.step===1&&st.nf==='wait'){st.nf='id';render();focusIn();return}if(st.step===1&&st.vi>0){st.vi--;if(flow()[st.vi]==='nafath')st.nf='ok';render();focusIn();return}if(st.step===2&&!(st.verified&&st.mode!=='signup')){st.step=1;st.vi=flow().length-1;render();focusIn();return}st.step=Math.max(0,st.step-1);render();$('rgGo').focus()});
-function open(mode){clearT();var a=acct(),up=mode==='upgrade'&&a;st={step:up?2:0,type:(mode==='edit'||up)&&a?a.type:null,plan:mode==='edit'&&a?a.plan:up?(TYPES.filter(function(x){return x.id===a.type})[0]||TYPES[0]).plan:null,verified:!!(up&&a.verified),busy:false,cr:mode==='edit'&&a&&a.cr||'',code:'',mode:mode||'signup',vi:0,nf:'id',nid:'',otp:'',bad:false,co:null,reviewed:false};
+$('rgBack').addEventListener('click',function(){if(st.busy)return;clearT();st.bad=false;if(st.step===3){if(st.nf==='wait'){st.nf='id';render();focusIn();return}st.step=2;render();$('rgGo').focus();return}if(st.step===1&&st.cm==='mobile'&&st.sent&&flow()[st.vi]==='contact'){st.sent=false;render();focusIn();return}if(st.step===1&&st.nf==='wait'){st.nf='id';render();focusIn();return}if(st.step===1&&st.vi>0){st.vi--;if(flow()[st.vi]==='nafath')st.nf='ok';render();focusIn();return}if(st.step===2&&flow().length&&!(st.verified&&st.mode!=='signup')){st.step=1;st.vi=flow().length-1;render();focusIn();return}st.step=Math.max(0,st.step-1);render();$('rgGo').focus()});
+function open(mode){clearT();var a=acct(),up=mode==='upgrade'&&a;st={step:up?2:0,type:(mode==='edit'||up)&&a?a.type:null,plan:mode==='edit'&&a?a.plan:up?(TYPES.filter(function(x){return x.id===a.type})[0]||TYPES[0]).plan:null,verified:!!(up&&a.verified),busy:false,cr:mode==='edit'&&a&&a.cr||'',code:'',mode:mode||'signup',vi:0,nf:'id',nid:'',otp:'',bad:false,co:null,reviewed:false,cm:'email',mob:'',sent:false,nafathOk:false};if(mode==='nafath'&&a){st.type=a.type;st.plan=a.plan;st.verified=true;st.step=3}
  lastFocus=document.activeElement;render();R.hidden=false;document.body.classList.add('reg-open');void R.offsetWidth;R.classList.add('go');R.scrollTop=0;
  setTimeout(function(){var f=$('rgBody').querySelector('.rg-opt');f&&f.focus()},rm?0:250)}
 function close(keep){clearT();st.busy=false;R.classList.remove('go');document.body.classList.remove('reg-open');setTimeout(function(){R.hidden=true},rm?0:300);if(!keep&&lastFocus&&lastFocus.focus)lastFocus.focus()}
@@ -7838,11 +7856,16 @@ function applyProfile(){var h=$('pfJoin');if(!h)return;var p=h.closest('.pf-jn')
  if(!box){box=document.createElement('p');box.className='pf-acct';box.id='pfAcct';p.parentNode.insertBefore(box,p.nextSibling)}
  var a=acct()||{type:'citizen',level:0,plan:'free',verified:false},t=TYPES.filter(function(x){return x.id===a.type})[0]||TYPES[0];
  var pl=(PLANS[t.group].filter(function(x){return x.id===a.plan})[0]||PLANS[t.group][0]);
- box.innerHTML='<span>'+L(t.t)+'</span><span class="'+(a.verified?'ok':'')+'">'+(a.review==='pending'?L(['Under review','قيد المراجعة']):a.verified&&(a.nafath||a.type!=='citizen')?'<img class="nf-mk" src="img/nafath.png" alt=""> '+L(['Nafath verified','موثّق عبر نفاذ']):a.verified?L(['Email verified','بريد موثّق']):L(['Not verified yet','لم يتم التحقق بعد']))+'</span><span>'+L(pl.t)+'</span><button type="button" id="pfAcctEdit">'+L(a.verified?['Change','تعديل']:['Verify','تحقق'])+'</button>'}
+ box.innerHTML='<span>'+L(t.t)+'</span><span class="'+(a.verified?'ok':'')+'">'+(a.review==='pending'?L(['Under review','قيد المراجعة']):hasNf(a)?'<img class="nf-mk" src="img/nafath.png" alt=""> '+L(['Nafath verified','موثّق عبر نفاذ']):a.verified?(a.contact==='mobile'?L(['Mobile verified','الجوال موثّق']):L(['Email verified','البريد موثّق'])):L(['Not verified yet','لم يتم التحقق بعد']))+'</span><span>'+L(pl.t)+'</span><button type="button" id="pfAcctEdit">'+L(a.verified?['Change','تعديل']:['Verify','تحقق'])+'</button>'}
 document.addEventListener('click',function(e){if(e.target.closest('#pfAcctEdit'))open('edit')});
 if(window.bayanProfile&&window.bayanProfile.open){var po=window.bayanProfile.open;window.bayanProfile.open=function(){var r=po.apply(this,arguments);setTimeout(applyProfile,0);return r}}
 setTimeout(applyProfile,0);
-window.monRegister=open;
+window.monRegister=open;window.monAccount.hasNf=hasNf;
+/* individuals: Nafath once, at the moment they raise the limit */
+document.addEventListener('click',function(e){var a=acct();if(!a||R.hidden===false)return;var t=TYPES.filter(function(x){return x.id===a.type})[0];
+ var v=e.target.closest('[data-pfv="verify"]');if(v){e.preventDefault();e.stopImmediatePropagation();retry=null;open('nafath');return}
+ if(!t||t.group!=='ind'||hasNf(a))return;
+ var g=e.target.closest('[data-cf="yes"],#wlHost [data-pack]');if(!g)return;e.preventDefault();e.stopImmediatePropagation();retry=g.dataset.pack!=null?'#wlHost [data-pack="'+g.dataset.pack+'"]':'[data-cf="yes"]';open('nafath')},true);
 })();
 </script>
 <script>
@@ -7983,7 +8006,7 @@ function view(){var u=user(),M=window.monAccount,a=M&&M.get()||{type:'citizen',l
   [L(['Bio','نبذة']),u.bio?esc(u.bio):'<span style="opacity:.5">'+L(['Not added','لم تُضف'])+'</span>'],
   [L(['Joined','تاريخ الانضمام']),esc(jd),lock],
   [L(['Account type','نوع الحساب']),T?esc(L(T.t))+'<small>'+esc(L(T.tag))+'</small>':'','<button type="button" class="pfv-a" data-pfv="type">'+L(['Change','تغيير'])+'</button>'],
-  [L(['Identity','الهوية']),a.review==='pending'?'<span class="pfv-ok"><img class="nf-mk" src="img/nafath.png" alt="">'+L(['Verified through Nafath','موثّق عبر نفاذ'])+'</span><small>'+L(['Organisation under review','الجهة قيد المراجعة'])+'</small>':a.verified&&(a.nafath||a.type!=='citizen')?'<span class="pfv-ok"><img class="nf-mk" src="img/nafath.png" alt="">'+L(['Verified through Nafath','موثّق عبر نفاذ'])+'</span>'+(a.nid?'<small dir="ltr">'+esc(a.nid)+'</small>':''):a.verified?'<span>'+L(['Email verified','بريد موثّق'])+'</span><small>'+L(['Nafath is only needed for downloads and paid use','نفاذ مطلوب فقط للتحميل والاستخدام المدفوع'])+'</small>':'<span style="opacity:.7">'+L(['Not verified yet','لم يتم التحقق بعد'])+'</span>',a.verified&&(a.nafath||a.type!=='citizen')?lock:'<button type="button" class="pfv-a" data-pfv="verify">'+L(['Verify with Nafath','تحقق عبر نفاذ'])+'</button>'],
+  [L(['Identity','الهوية']),a.review==='pending'?'<span class="pfv-ok"><img class="nf-mk" src="img/nafath.png" alt="">'+L(['Verified through Nafath','موثّق عبر نفاذ'])+'</span><small>'+L(['Organisation under review','الجهة قيد المراجعة'])+'</small>':monAccount.hasNf(a)?'<span class="pfv-ok"><img class="nf-mk" src="img/nafath.png" alt="">'+L(['Verified through Nafath','موثّق عبر نفاذ'])+'</span>'+(a.nid?'<small dir="ltr">'+esc(a.nid)+'</small>':''):a.verified?'<span>'+(a.contact==='mobile'?L(['Mobile verified','الجوال موثّق']):L(['Email verified','البريد موثّق']))+'</span><small>'+L(['Nafath is needed once, when you download, use credits or upgrade','نفاذ مطلوب مرة واحدة عند التحميل أو استخدام الأرصدة أو الترقية'])+'</small>':'<span style="opacity:.7">'+L(['Not verified yet','لم يتم التحقق بعد'])+'</span>',monAccount.hasNf(a)?lock:'<button type="button" class="pfv-a" data-pfv="verify">'+L(['Verify with Nafath','تحقق عبر نفاذ'])+'</button>'],
   [L(['Package','الباقة']),pl?esc(L(pl.t))+'<small>'+esc(L(pl.p))+'</small>':'',top?'':'<button type="button" class="pfv-a" data-pfv="upgrade">'+L(['Upgrade','ترقية'])+'</button>']];
  wrap.innerHTML='<div class="pfv-hd"><h3>'+L(['Your details','بياناتك'])+'</h3><button type="button" class="pfv-edit" id="pfvEdit">'+PEN+L(['Edit','تعديل'])+'</button></div><dl class="pfv">'+rows.map(function(r){return '<div class="pfv-r"><dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'+(r[2]||'')+'</div>'}).join('')+'</dl>'}
 function setEdit(on){card.classList.toggle('pf-editing',!!on);var rb=$('pfReset');if(rb)rb.textContent=on?L(['Cancel','إلغاء']):L(['Reset','إعادة تعيين']);if(on){setTimeout(function(){var n=$('pfName');n&&n.focus()},30)}else{view();var b=$('pfvEdit');b&&document.activeElement===document.body&&b.focus()}}
