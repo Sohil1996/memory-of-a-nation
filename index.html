@@ -5295,6 +5295,52 @@ html[data-bayan="light"] .ax .ax-list:not(.list) .ax-rec.ru .ri-lic{background:r
 .ax-rec.ru .ru-top,.ax-rec.ru .ax-b em,.ax-rec.ru .ax-b p,.ax-rec.ru .ax-ri{display:none!important}
 html body .ax-list:not(.list) .ax-rec.ru .ax-im{padding-top:16px}
 @media (prefers-reduced-motion:reduce){.ax-list:not(.list) .ax-c,.ax-list:not(.list) .ax-c .ax-im img{transition:none}.ax-list:not(.list) .ax-c:hover .ax-im img{transform:none}.ax-list:not(.list) .ax-rec.ru:hover{transform:none}}
+
+/* v242 QA */
+#pwSave:not(:disabled){opacity:1!important;filter:none!important;background:#E2C98D!important;color:#0E241E!important;cursor:pointer}
+#pwSave:not(:disabled):hover{background:#EAD49C!important}
+.pf-pw .pf-pw-fg{align-self:flex-end;margin:-6px 0 2px!important;padding:2px 0;font-size:13px;white-space:nowrap}
+.pf-pw-act{gap:12px}
+@media (max-width:600px){.pf-pw .pf-pw-fg{margin:-6px 0 2px!important}}
+#pfChips button{display:inline-flex;align-items:center;gap:6px}
+#pfChips button.on::before{content:"";width:13px;height:13px;flex:none;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/contain no-repeat}
+html body #pfChips button.on{border-color:#E2C98D!important;background:rgba(226,201,141,.2)!important;color:#F0DFB4!important;box-shadow:none!important}
+html[data-bayan="light"] body #pfChips button.on{border-color:#0E5B49!important;background:#0E5B49!important;color:#fff!important}
+html[data-bayan="light"] body #pfChips button:not(.on):hover{border-color:rgba(14,91,73,.45)!important}
+/* 04 archive viewer: calmer spacing, Arabic gets more line height */
+.axv-side .axv-ty{margin:4px 0 12px}
+.axv-side h2{margin-bottom:14px!important;line-height:1.3}
+.axv-side .axv-free{margin:0 0 18px}
+.axv-side .axv-d{margin:0 0 24px;line-height:1.75}
+.axv-side .axv-m{margin:0 0 28px}
+.axv-side .axv-m>div{gap:16px;padding:14px 0;align-items:start}
+.axv-side .axv-m dd{line-height:1.6}
+.axv-side .axv-m dd small{margin-top:6px;line-height:1.65}
+.axv-side .axv-m dd .ax-ri{display:inline-block;margin-bottom:2px}
+.axv-side .axv-m dd .ax-ri+small{margin-top:8px}
+.axv-side .axu>h3{margin-bottom:8px}
+.axv-side .axu-bal{margin-bottom:18px}
+.axv-side .axu-l{display:flex;flex-direction:column;gap:12px}
+.axv-side .axu-rule,.axv-side .axu-msg{margin-top:18px;line-height:1.75}
+html[dir=rtl] .axv-side h2{line-height:1.45}
+.axv-side .axu-r{padding-top:14px!important;padding-bottom:14px!important;gap:14px}
+.axv-side .axu-r>span small{display:block;margin-top:5px;line-height:1.6}
+html[dir=rtl] .axv-side .axu-r>span small{line-height:1.8}
+html[dir=rtl] .axv-side .axv-d{font-size:15px;line-height:1.95}
+html[dir=rtl] .axv-side .axv-m dd{line-height:1.8}
+html[dir=rtl] .axv-side .axv-m dd small{line-height:1.85}
+html[dir=rtl] .axv-side .axv-m dt{line-height:1.8}
+html[dir=rtl] .axv-side .axu-rule,html[dir=rtl] .axv-side .axu-msg{line-height:1.9}
+/* 05 light home: same still background whether recommendations are on or off */
+html[data-bayan="light"] body:not(.rec-off) .hero{background:#F4EEE2 var(--bgL) left center/cover no-repeat!important}
+html[data-bayan="light"] body:not(.rec-off) .hero::after{display:none!important}
+html[data-bayan="light"] body:not(.rec-off) .hero .hl{display:none!important}
+html[data-bayan="light"] body:not(.rec-off) .hero .hero-shade,html[data-bayan="light"] body:not(.rec-off) .hero .hero-dim,html[data-bayan="light"] body:not(.rec-off) .hero .hero-grain{display:none!important}
+html[dir=rtl][data-bayan="light"] body:not(.rec-off) .hero{background-image:none!important}
+html[dir=rtl][data-bayan="light"] body:not(.rec-off) .hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:#F4EEE2 var(--bgL) left center/cover no-repeat;transform:scaleX(-1)}
+/* 06 search bars follow the 16px input radius */
+html body .sp-search,html body form.ax-q,html body #ask.pill{border-radius:16px!important}
+html body #ask.pill::before,html body #ask.pill::after{border-radius:16px!important}
 </style>
 <script>
 /* v183: Arabic book conversations (Arabic mode answers in Arabic) */
@@ -5782,7 +5828,7 @@ window.chReal=function(n){var q=document.getElementById('cvQ'),f=document.getEle
     <div class="pf-act"><button type="submit" class="au-go" id="pfSave"><span>Save changes</span></button><button type="button" class="pf-reset" id="pfReset">Reset</button></div>
    </form>
    <div class="pf-s" data-s="credit"><div class="wl" id="wlHost"></div></div>
-<div class="pf-s" data-s="sec"><div class="pf-sec"><div><b>Password</b><small>Change the password you use to sign in.</small></div><button type="button" class="pf-reset" id="pfPw" aria-expanded="false" aria-controls="pfPwF">Change password</button></div><form class="pf-pw" id="pfPwF" novalidate hidden><label class="au-f" id="pwOldL"><span class="au-i"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></span><input id="pwOld" type="password" placeholder="Current password" autocomplete="current-password" dir="ltr"><button type="button" class="au-eye" data-eye="pwOld" aria-label="Show password"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></label><label class="au-f" id="pwNewL"><span class="au-i"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></span><input id="pwNew" type="password" placeholder="New password" autocomplete="new-password" dir="ltr" aria-describedby="pwRules"><button type="button" class="au-eye" data-eye="pwNew" aria-label="Show password"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></label><ul class="rs-rules" id="pwRules" aria-label="Password requirements"><li data-r="len"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg><span>At least 8 characters</span></li><li data-r="case"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg><span>An uppercase and a lowercase letter</span></li><li data-r="num"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg><span>A number or a symbol</span></li></ul><label class="au-f" id="pwConL"><span class="au-i"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></span><input id="pwCon" type="password" placeholder="Confirm new password" autocomplete="new-password" dir="ltr"><button type="button" class="au-eye" data-eye="pwCon" aria-label="Show password"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></label><p class="au-err" id="pwErr" role="alert" hidden></p><div class="pf-pw-act"><button type="submit" class="au-go" id="pwSave" disabled><span>Update password</span></button><button type="button" class="pf-reset" id="pwCancel">Cancel</button><button type="button" class="au-link pf-pw-fg" id="pwForgot">Forgot your current password?</button></div></form>
+<div class="pf-s" data-s="sec"><div class="pf-sec"><div><b>Password</b><small>Change the password you use to sign in.</small></div><button type="button" class="pf-reset" id="pfPw" aria-expanded="false" aria-controls="pfPwF">Change password</button></div><form class="pf-pw" id="pfPwF" novalidate hidden><label class="au-f" id="pwOldL"><span class="au-i"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></span><input id="pwOld" type="password" placeholder="Current password" autocomplete="current-password" dir="ltr"><button type="button" class="au-eye" data-eye="pwOld" aria-label="Show password"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></label><button type="button" class="au-link pf-pw-fg" id="pwForgot">Forgot your current password?</button><label class="au-f" id="pwNewL"><span class="au-i"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></span><input id="pwNew" type="password" placeholder="New password" autocomplete="new-password" dir="ltr" aria-describedby="pwRules"><button type="button" class="au-eye" data-eye="pwNew" aria-label="Show password"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></label><ul class="rs-rules" id="pwRules" aria-label="Password requirements"><li data-r="len"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg><span>At least 8 characters</span></li><li data-r="case"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg><span>An uppercase and a lowercase letter</span></li><li data-r="num"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg><span>A number or a symbol</span></li></ul><label class="au-f" id="pwConL"><span class="au-i"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></span><input id="pwCon" type="password" placeholder="Confirm new password" autocomplete="new-password" dir="ltr"><button type="button" class="au-eye" data-eye="pwCon" aria-label="Show password"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></label><p class="au-err" id="pwErr" role="alert" hidden></p><div class="pf-pw-act"><button type="submit" class="au-go" id="pwSave"><span>Update password</span></button><button type="button" class="pf-reset" id="pwCancel">Cancel</button></div></form>
 </div>
   </div>
  </div>
@@ -7111,6 +7157,7 @@ var AD={"Optional — or pick two characters from the same book":"اختياري
 AD['Show all']='عرض الكل';AD['Show less']='عرض أقل';AD['Duo conversation']=AD['Duo conversation']||'محادثة ثنائية';
 AD['Forgot your current password?']='نسيت كلمة المرور الحالية؟';
 AD["Show me 3D objects from Saudi heritage"]=AD["Show me 3D objects from Saudi heritage"]||"أرني مجسّمات ثلاثية الأبعاد من التراث السعودي";AD["Show me some manuscripts"]=AD["Show me some manuscripts"]||"أرني بعض المخطوطات";AD["Enter the virtual gallery"]=AD["Enter the virtual gallery"]||"ادخل المعرض الافتراضي";
+AD['Your new password doesn’t meet the requirements below.']='كلمة المرور الجديدة لا تستوفي الشروط أدناه.';
 function trA(s){if(Object.prototype.hasOwnProperty.call(AD,s))return AD[s];var m;
   var t=function(x){var r=trA(x);return r===null?x:r};
   if(m=/^Character from (.+)$/.exec(s))return 'شخصية من '+t(m[1]);
@@ -7248,7 +7295,7 @@ document.getElementById('dcb').addEventListener('click',function(e){e.preventDef
   function edMode(){var e=$('pfEd');if(!e)return;var has=!!tmpAv,pl='<path d="M12 5v14M5 12h14"/>',pe='<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/>';e.classList.toggle('plus',!has);e.firstElementChild.innerHTML=has?pe:pl;e.setAttribute('aria-label',has?'Edit photo':'Add photo');e.setAttribute('aria-haspopup',has?'menu':'false');if(!has){$('pfMenu').hidden=true}}
   function paint(){edMode();var u=user||{};var h=$('pfNameH');if(h)h.textContent=$('pfName').value||u.name||'';var im=$('pfImg');if(tmpAv){im.style.backgroundImage='url('+tmpAv+')';im.textContent=''}else{im.style.backgroundImage='';im.textContent=ini($('pfName').value||u.name)}}
   function fill(){load();if(!user)return;if(!user.joined){user.joined=Date.now();try{localStorage.setItem('bayan-user',JSON.stringify(user))}catch(e){}}$('pfMailH').textContent=user.mail||'';try{$('pfJoin').textContent=new Date(user.joined).toLocaleDateString(document.documentElement.lang==='ar'?'ar':'en-US',{year:'numeric',month:'long',day:'numeric'})}catch(e){}pfTab('info');$('pfName').value=user.name||'';$('pfMail').value=user.mail||'';$('pfBio').value=user.bio||'';genres=(user.genres||[]).slice();spo=!!user.spo;tmpAv=user.avatar||null;
-    [].forEach.call($('pfChips').children,function(b){b.classList.toggle('on',genres.indexOf(b.dataset.g)>-1)});$('pfSpo').setAttribute('aria-checked',spo);$('pfErr').hidden=true;paint()}
+    [].forEach.call($('pfChips').children,function(b){var on_=genres.indexOf(b.dataset.g)>-1;b.classList.toggle('on',on_);b.setAttribute('aria-pressed',on_)});$('pfSpo').setAttribute('aria-checked',spo);$('pfErr').hidden=true;paint()}
   function open(tab){if(typeof tab!=='string')tab=null;load();if(!user)return;if(window.bayanBooks)bayanBooks.close(true);if(window.bayanSkel)bayanSkel('profile');if(window.bayanExplore)bayanExplore.close(true);document.body.classList.remove('dflow-open');if(window.bayanSpace&&bayanSpace.hideQuick)bayanSpace.hideQuick();fill();if(tab)pfTab(tab);P.hidden=false;document.body.classList.add('auth-open','page-open');if(window.bayanDock)bayanDock('dprof');void P.offsetWidth;P.classList.add('go')}
   function close(){P.classList.remove('go');document.body.classList.remove('auth-open','page-open');if(window.bayanDock)bayanDock('');setTimeout(function(){P.hidden=true},rm?0:300)}
   function applyAv(){load();var u=user||{},b=$('prof'),pa=document.querySelector('#pmenu .pm-av');var a=u.avatar;
@@ -7262,7 +7309,7 @@ document.getElementById('dcb').addEventListener('click',function(e){e.preventDef
   $('pfRm').onclick=function(){pmc();tmpAv=null;paint()};
   $('pfFile').onchange=function(){var f=this.files&&this.files[0];if(!f)return;if(!/^image\//.test(f.type)){say('Please choose an image');return}var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var c=document.createElement('canvas'),s=Math.min(im.width,im.height),S=256;c.width=c.height=S;c.getContext('2d').drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,S,S);tmpAv=c.toDataURL('image/jpeg',.85);paint()};im.src=r.result};r.readAsDataURL(f);this.value=''};
   $('pfName').addEventListener('input',function(){if(!tmpAv)paint()});
-  $('pfChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var g=b.dataset.g,i=genres.indexOf(g);if(i>-1)genres.splice(i,1);else genres.push(g);b.classList.toggle('on',i<0)});
+  $('pfChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var g=b.dataset.g,i=genres.indexOf(g);if(i>-1)genres.splice(i,1);else genres.push(g);b.classList.toggle('on',i<0);b.setAttribute('aria-pressed',i<0)});
   $('pfSpo').onclick=function(){spo=!spo;this.setAttribute('aria-checked',spo)};
   $('pfReset').onclick=function(){fill();say('Changes discarded')};
 
@@ -7273,14 +7320,14 @@ document.getElementById('dcb').addEventListener('click',function(e){e.preventDef
   function pwCheck(){var o=$('pwOld').value,a=$('pwNew').value,b=$('pwCon').value,r=pwRules(a),ok=r.len&&r['case']&&r.num;
    PWF.querySelectorAll('#pwRules li').forEach(function(li){li.classList.toggle('ok',!!r[li.dataset.r])});
    if(b&&a!==b&&b.length>=a.length)pwMsg('Passwords don’t match.',$('pwConL'));else if(a&&o&&a===o)pwMsg('Choose a password different from your current one.',$('pwNewL'));else pwMsg('');
-   $('pwSave').disabled=!(o&&ok&&a===b&&a!==o)}
+   PWF._ok=!!(o&&ok&&a===b&&a!==o)}
   function pwShow(on){PWF.hidden=!on;$('pfPw').setAttribute('aria-expanded',on);$('pfPw').hidden=on;if(on){PWF.reset();pwCheck();pwMsg('');PWF.querySelectorAll('[data-eye]').forEach(function(y){$(y.dataset.eye).type='password';y.innerHTML=pwOn;y.setAttribute('aria-label','Show password')});setTimeout(function(){$('pwOld').focus()},60)}else $('pfPw').focus()}
   $('pfPw').onclick=function(){pwShow(true)};
   $('pwCancel').onclick=function(){pwShow(false)};
   $('pwForgot').onclick=function(){load();pwShow(false);if(window.bayanReset)bayanReset(user&&user.mail||'')};
   PWF.addEventListener('input',pwCheck);
   PWF.addEventListener('click',function(e){var y=e.target.closest('[data-eye]');if(!y)return;var i=$(y.dataset.eye),sh=i.type==='password';i.type=sh?'text':'password';y.innerHTML=sh?pwOff:pwOn;y.setAttribute('aria-label',sh?'Hide password':'Show password')});
-  PWF.addEventListener('submit',function(e){e.preventDefault();e.stopPropagation();var o=$('pwOld').value;if(!o){pwMsg('Enter your current password.',$('pwOldL'));$('pwOld').focus();return}pwCheck();if($('pwSave').disabled)return;pwShow(false);say('Password updated')});
+  PWF.addEventListener('submit',function(e){e.preventDefault();e.stopPropagation();var o=$('pwOld').value;if(!o){pwMsg('Enter your current password.',$('pwOldL'));$('pwOld').focus();return}pwCheck();if(!PWF._ok){var na=$('pwNew').value,nb=$('pwCon').value,nr=pwRules(na);if(!(nr.len&&nr['case']&&nr.num)){pwMsg('Your new password doesn’t meet the requirements below.',$('pwNewL'));$('pwNew').focus()}else if(na===o){pwMsg('Choose a password different from your current one.',$('pwNewL'));$('pwNew').focus()}else{pwMsg('Passwords don’t match.',$('pwConL'));$('pwCon').focus()}return}pwShow(false);say('Password updated')});
 
   function err(t){var e=$('pfErr');e.hidden=!t;e.textContent=t||''}
   $('pfForm').addEventListener('submit',function(e){e.preventDefault();var n=$('pfName').value.trim(),m=$('pfMail').value.trim();
