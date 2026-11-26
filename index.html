@@ -9193,8 +9193,9 @@ function build(){var tb_=performance.now();setTimeout(function(){(window.__glT=w
  var pts=new T.Points(geo,new T.PointsMaterial({size:.025,map:dot,transparent:true,opacity:.35,depthWrite:false,blending:T.AdditiveBlending}));scene.add(pts);anim.dust={p:pts,v:v,n:n};
  /* a soft light that follows your hands when you hold something */
  var hand=new T.PointLight(0xfff1de,0,2.5,2);scene.add(hand);anim.hand=hand;
- var veil=new T.Mesh(new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({color:0x050302,transparent:true,opacity:0,depthWrite:false,fog:false}));veil.visible=false;veil.renderOrder=5;veil.userData.noAO=1;scene.add(veil);anim.veil=veil;
+ var veil=new T.Mesh(new T.PlaneGeometry(1,1),new T.MeshBasicMaterial({color:0x050302,transparent:true,opacity:0,depthWrite:false,depthTest:false,fog:false}));veil.visible=false;veil.renderOrder=5;veil.userData.noAO=1;scene.add(veil);anim.veil=veil;
  fixStands();ready=true;loadFX()}
+function fgSet(o,on){if(!!o.userData.fg===on)return;o.userData.fg=on;o.traverse(function(m){if(!m.isMesh)return;if(on){m.userData.ro=m.renderOrder;m.renderOrder=10}else m.renderOrder=m.userData.ro||0;(Array.isArray(m.material)?m.material:[m.material]).forEach(function(t){if(!t)return;if(on){if(t.userData.tr0===undefined)t.userData.tr0=t.transparent;t.transparent=true}else if(t.userData.tr0!==undefined){t.transparent=t.userData.tr0;delete t.userData.tr0}})})}
 function freeNear(x,z){if(!hitObs(x,z))return{x:x,z:z};for(var r=.1;r<2;r+=.1)for(var a=0;a<16;a++){var X=x+Math.cos(a/16*Math.PI*2)*r,Z=z+Math.sin(a/16*Math.PI*2)*r;if(!hitObs(X,Z))return{x:X,z:Z}}return{x:x,z:z}}
 function fixStands(){Object.keys(EX).forEach(function(k){var e=EX[k];if(hitObs(e.stand.x,e.stand.z))e.stand=freeNear(e.stand.x,e.stand.z)})}
 
@@ -9328,8 +9329,8 @@ function animate(t,dt){var s=t*.001,hold=0,hd=1,hr=.2;if(!_v)_v={p:new T.Vector3
  if(anim.fire)anim.fire.intensity=anim.fire.userData.b*(.85+Math.sin(s*9)*.08+Math.sin(s*23)*.05+Math.random()*.04);
  var d=anim.dust;if(d){var p=d.p.geometry.attributes.position.array;for(var i=0;i<d.n;i++){p[i*3]+=d.v[i][0]*dt;p[i*3+1]+=d.v[i][1]*dt;p[i*3+2]+=d.v[i][2]*dt;if(p[i*3+1]>4.1)p[i*3+1]=.1}d.p.geometry.attributes.position.needsUpdate=true}
  Object.keys(EX).forEach(function(k){var e=EX[k];if(e.kind!=='obj')return;var tg=S.held===e?1:0;e.h+=(tg-e.h)*Math.min(1,dt*5);if(Math.abs(tg-e.h)<.002)e.h=tg;var o=e.obj;
-  if(e.h<=0){if(o.parent!==e.g){e.g.add(o)}o.position.copy(e.home.p);o.quaternion.copy(e.home.q);o.scale.setScalar(e.home.s);if(!e.prop)o.rotation.y=Math.sin(s*.3+k.charCodeAt(1))*.04;return}
-  if(o.parent!==scene){scene.attach(o)}var ee=e.h*e.h*(3-2*e.h);_v.f.set(0,0,-1).applyQuaternion(cam.quaternion);_v.u.set(0,1,0).applyQuaternion(cam.quaternion);
+  if(e.h<=0){if(o.userData.fg)fgSet(o,false);if(o.parent!==e.g){e.g.add(o)}o.position.copy(e.home.p);o.quaternion.copy(e.home.q);o.scale.setScalar(e.home.s);if(!e.prop)o.rotation.y=Math.sin(s*.3+k.charCodeAt(1))*.04;return}
+  if(o.parent!==scene){scene.attach(o)}var ee=e.h*e.h*(3-2*e.h);fgSet(o,ee>.001);_v.f.set(0,0,-1).applyQuaternion(cam.quaternion);_v.u.set(0,1,0).applyQuaternion(cam.quaternion);
   var dist=Math.max(.42,(e.r||.2)/.22)+S.zd,rgt=new T.Vector3(1,0,0).applyQuaternion(cam.quaternion),sw=Math.sin(s*1.1)*.004,sw2=Math.sin(s*.73+1)*.003,c_=freeCentre(),th=Math.tan(cam.fov*Math.PI/360);
   _v.p.copy(cam.position).addScaledVector(_v.f,dist).addScaledVector(rgt,c_[0]*dist*th*cam.aspect+sw2).addScaledVector(_v.u,c_[1]*dist*th-e.ch+sw);var hp=new T.Vector3();e.g.localToWorld(hp.copy(e.home.p));o.position.lerpVectors(hp,_v.p,ee);
   _v.e.set(S.rx+sw*.6,S.ry+S.yaw+sw2*.8,0,'YXZ');_v.q.setFromEuler(_v.e);var hq=e.g.quaternion.clone().multiply(e.home.q);o.quaternion.slerpQuaternions(hq,_v.q,ee);o.scale.setScalar(e.home.s);hold=Math.max(hold,ee);hd=dist;hr=e.r||.2});
